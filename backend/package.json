@@ -1,0 +1,19 @@
+{
+  "name": "unipost-backend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "supabase start",
+    "build": "supabase functions build",
+    "deploy": "supabase functions deploy",
+    "db:reset": "supabase db reset",
+    "db:push": "supabase db push",
+    "db:diff": "supabase db diff"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.38.4"
+  },
+  "devDependencies": {
+    "supabase": "^1.127.4"
+  }
+} 
