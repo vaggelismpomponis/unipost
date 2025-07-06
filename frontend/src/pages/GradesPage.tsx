@@ -7,8 +7,7 @@ import { useProfile } from '../hooks/useProfile'
 import CryptoJS from 'crypto-js'
 import FilterListIcon from '@mui/icons-material/FilterList'
 import RefreshIcon from '@mui/icons-material/Refresh'
-
-const API_BASE_URL = 'http://localhost:3001/api'
+import { API_BASE_URL } from '../utils/apiConfig'
 
 interface Grade {
   code?: string

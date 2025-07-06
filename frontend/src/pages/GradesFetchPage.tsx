@@ -33,8 +33,7 @@ import {
 import { Visibility, VisibilityOff, School, Star } from '@mui/icons-material'
 import CloseIcon from '@mui/icons-material/Close'
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
-
-const API_BASE_URL = 'http://localhost:3001/api'
+import { API_BASE_URL } from '../utils/apiConfig'
 
 export interface Grade {
   code?: string
