@@ -1,0 +1,3166 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" class=" js sessionstorage"><head>
+
+        <title>Η Καρτέλα μου</title>
+
+        
+
+            <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+            <meta name="_csrf" content="8ae802c8-e7db-473d-8d36-daa1985897d1">
+            <!-- default header name is X-CSRF-TOKEN -->
+            <meta name="_csrf_header" content="X-CSRF-TOKEN">
+
+            <base id="baseurl" href="/">
+
+            <link href="resources/vendor/bootstrap-3.3.4/css/bootstrap.min.css" rel="stylesheet">
+            <link href="resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+            <link href="resources/assets/css/custom.css" rel="stylesheet">
+            <link href="resources/vendor/gentelella_template/css/gentelella.css" rel="stylesheet">
+            <!--<link href="resources/vendor/datatables/css/datatables.bootstrap.css" rel="stylesheet"/>-->
+            <link href="resources/vendor/datatables/css/buttons/buttons.bootstrap.css" rel="stylesheet">
+            <link href="resources/vendor/datatables/css/buttons/buttons.dataTables.css" rel="stylesheet">
+            <link href="resources/vendor/datatables/css/responsive.bootstrap.css" rel="stylesheet">
+            <link href="resources/vendor/datatables/css/keyTable.bootstrap.css" rel="stylesheet">
+            <link href="resources/vendor/datatables/css/colReorder.bootstrap.css" rel="stylesheet">
+            <link href="resources/vendor/datatables/css/rowGroup.bootstrap.css" rel="stylesheet">
+            <link href="resources/vendor/datatables/css/select.bootstrap.css" rel="stylesheet">
+            <link href="resources/assets/css/growl.css" rel="stylesheet">
+            <link href="resources/assets/css/multi-dropdown.css" rel="stylesheet">
+            <link href="resources/assets/css/bootstrap_hacks.css" rel="stylesheet">
+            <link href="resources/assets/css/office.min.css" rel="stylesheet">
+            <link href="resources/assets/css/custom_application.css" rel="stylesheet">
+            <!--<link href="resources/vendor/jquery/ui/1.10.4/themes/smoothness/jquery-ui.css" rel="stylesheet"/>-->
+            <link href="resources/vendor/datepicker/css/datepicker.css" rel="stylesheet">
+
+            <link href="resources/assets/css/theme.css" rel="stylesheet">
+            <link href="resources/assets/css/gentelella_hacks.css" rel="stylesheet" type="text/css">
+            <link href="resources/assets/css/datatables_hacks.css" rel="stylesheet" type="text/css">
+            <link href="resources/assets/css/application-icons.css" rel="stylesheet" type="text/css">
+
+            <script src="templates/js/ily_locales.js"></script>
+
+            <script src="resources/vendor/jquery/jquery-3.2.1.min.js"></script>
+            <!--<script src="resources/vendor/jquery/ui/1.10.4/jquery-ui.js"></script>-->
+            <script src="resources/vendor/jquery/ui/jquery-ui.min.js"></script>
+            <script src="resources/assets/js/jquery-tree-menu.js"></script>
+            <script src="resources/vendor/jquery-tmpl-master/jquery.tmpl.js"></script>
+            <script src="resources/vendor/jquery-masked-input/jquery.maskedinput.js"></script>
+
+            <script src="resources/vendor/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+            <script src="resources/vendor/jquery/jquery.validate.js"></script>
+
+            <script src="resources/vendor/smart-wizard/jquery.smartWizard.js"></script>
+
+            <script src="resources/vendor/datepicker/js/bootstrap-datepicker.js"></script>
+            <script src="resources/vendor/datepicker/js/locales/bootstrap-datepicker.el.js"></script>
+            <script src="resources/vendor/js/moment.min.js"></script>
+
+            <script src="resources/vendor/polyfills/sessionStorage.js"></script>
+            <script src="resources/vendor/polyfills/map.js"></script> 
+
+            <script src="resources/vendor/datatables/js/jquery.dataTables.min.js"></script>
+            <script src="resources/vendor/datatables/js/datatables.min.js"></script>
+            <script src="resources/vendor/datatables/js/dataTables.bootstrap.min.js"></script>
+            <script src="resources/vendor/datatables/js/dataTables.responsive.js"></script>
+            <script src="resources/vendor/datatables/js/responsive.bootstrap.js"></script>
+            <script src="resources/vendor/datatables/js/dataTables.keyTable.js"></script>
+            <script src="resources/vendor/datatables/js/dataTables.colReorder.js"></script>
+            <script src="resources/vendor/datatables/js/dataTables.select.js"></script>
+            <script src="resources/vendor/datatables/js/dataTables.rowGroup.js"></script>
+            <script src="resources/vendor/datatables/js/moment.js"></script>
+            <script src="resources/vendor/datatables/js/buttons/dataTables.buttons.min.js"></script>
+            <script src="resources/vendor/datatables/js/buttons/buttons.bootstrap.js"></script>
+            <script src="resources/vendor/datatables/js/buttons/buttons.colVis.min.js"></script>
+            <script src="resources/vendor/datatables/js/buttons/buttons.flash.min.js"></script>
+            <script src="resources/vendor/datatables/js/buttons/buttons.html5.min.js"></script>
+            <script src="resources/vendor/datatables/js/buttons/buttons.print.min.js"></script>
+
+            <script src="resources/assets/js/ily_datatables.js"></script>
+            <script src="resources/assets/js/constant_variables.js"></script>
+            <script src="resources/assets/js/ily_forms.js"></script>
+            <script src="resources/assets/js/ily_lib.js"></script>
+            <script src="resources/assets/js/custom.js"></script>
+            <script src="resources/assets/js/app_lib.js"></script> 
+            <script src="resources/assets/js/student_transactions/student_transactions.js"></script>
+            <script src="resources/assets/js/staff_getters.js"></script>            
+            <script src="resources/assets/js/growl.js"></script>
+            <script src="resources/assets/js/override.jquery.validator.js"></script>
+            <script src="resources/vendor/js/sanitize.js"></script>
+            <script src="resources/vendor/jquery/jquery.blockUI.js"></script>
+            <script src="resources/vendor/js/rsvp.js"></script>
+            <script src="resources/vendor/js/substitutor.js"></script>
+            <script src="resources/vendor/jcrop/js/jquery.Jcrop.js"></script>
+            <!--<script type="text/javascript" src="//unpkg.com/xlsx/dist/xlsx.full.min.js"></script>-->
+
+            <!-- Fav and touch icons -->
+            <link rel="apple-touch-icon-precomposed" sizes="144x144" href="resources/assets/img/logos/favicon.ico">
+            <link rel="apple-touch-icon-precomposed" sizes="114x114" href="resources/assets/img/logos/favicon.ico">
+            <link rel="apple-touch-icon-precomposed" sizes="72x72" href="resources/assets/img/logos/favicon.ico">
+            <link rel="apple-touch-icon-precomposed" href="resources/assets/img/logos/favicon.ico">
+            <link rel="shortcut icon" href="resources/assets/img/logos/favicon.ico">
+
+            <script type="text/javascript">
+
+                //make sure csrf token is included in ajax modifying requests.
+                $(document).ajaxSend(function (e, xhr, options) {
+                    var sid = $('meta[name="_csrf"]').attr('content');
+                    xhr.setRequestHeader($('meta[name="_csrf_header"]').attr('content'), sid);
+                });
+            </script>
+
+        
+    </head>
+
+    <body class="nav-md footer_fixed" style="">
+
+        
+
+            <div>
+
+    <!--<script src="resources/assets/js/dashboard.js"></script>-->
+
+    <script>
+        /*<![CDATA[*/
+        var header_locale = "el";
+        /*]]>*/
+    </script>
+
+    <script type="text/javascript">
+        $("body").on(".modal hidden.bs.modal", function (e) {
+            if ($(".modal").hasClass("in")) {
+                $("body").addClass("modal-open");
+            }
+        });
+
+        $(document).ready(function () {
+
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                url: ily_url.general.locales.GET
+            }).done(function (results) {
+                $.each(results, function (idx, res) {
+                    var localeCode = res.code;
+                    var localeTitle = res.title;
+                    var localeFlag = res.flag;
+
+                    var langEnumObj = {
+                        langCode: localeCode + "Locale",
+                        langFlag: localeFlag,
+                        langTitle: localeTitle
+                    };
+                    $.tmpl($("#lingualTemplate"), langEnumObj).appendTo($("#lingualMenu"));
+
+                    $("#" + localeCode + "Locale").on('click', function () {
+                        changeLocale(localeCode);
+                    });
+
+                    if (header_locale === localeCode) {
+                        $("#localeDropDown").text(localeTitle);
+                        $("#localeDropDownImg").attr("src", localeFlag);
+
+                        if (typeof localStorage.getItem("changeLanguage") !== "undefined"
+                            && localStorage.getItem("changeLanguage") !== null) {
+                            localStorage.removeItem("changeLanguage");
+
+                            $.when(fetchProfiles()).done(function (profilesAjax) {
+                                var profileId = IlyLib.helpers.getUrlParameter("p");
+                                var studentProfiles = profilesAjax["studentProfiles"];
+                                var teacherProfiles = profilesAjax["teacherProfiles"];
+
+                                var profile = null;
+
+                                for (var idx in studentProfiles) {
+                                    var studentProfile = studentProfiles[idx];
+                                    if (profileId == studentProfile.id) {
+                                        if (typeof (Storage) !== "undefined") {
+                                            profile = studentProfile;
+                                        }
+                                    }
+                                }
+                                for (var idx in teacherProfiles) {
+                                    var teacherProfile = teacherProfiles[idx];
+                                    if (profileId == teacherProfile.id) {
+                                        if (typeof (Storage) !== "undefined") {
+                                            profile = teacherProfile;
+                                        }
+                                    }
+                                }
+                                if (profile !== null) {
+                                    localStorage.setItem(profileId, JSON.stringify(profile));
+                                    appendCurrentProfileDescription();
+                                }
+                            });
+                        }
+                    }
+                });
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR);
+                var message = jqXHR.responseText ? jqXHR.responseText : IlyLocales.general.error.try_again;
+                console.log(jqXHR.status, message);
+                $.growl.error({
+                    message: message,
+                    timeout: 1500
+                });
+            });
+
+        });
+
+        function changeLocale(new_locale) {
+            if (new_locale !== '') {
+                var url = window.location.origin + window.location.pathname;
+                if (!window.location.search) {
+                    url = url + '?lang=' + new_locale;
+                } else {
+                    url = url + window.location.search;
+                    var locale = IlyLib.helpers.getUrlParameter("lang");
+                    if (locale) {
+                        url = url.replace("lang=" + locale, "lang=" + new_locale);
+                    } else {
+                        url = url + "&lang=" + new_locale;
+                    }
+                }
+
+                if (typeof (Storage) !== "undefined") {
+                    localStorage.setItem("changeLanguage", true);
+                }
+
+                if (window.location.hash) {
+                    url = url + window.location.hash;
+                }
+                window.location.assign(url);
+            }
+        }
+
+        function fetchProfiles() {
+            return $.ajax({
+                type: "GET",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                url: ily_url.person.profile.GET
+            }).done(function (results) {
+
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR);
+                var message = jqXHR.responseText ? jqXHR.responseText : (IlyLocales.general.error.try_again);
+                console.log(jqXHR.status, message);
+                $.growl.error({
+                    message: message,
+                    timeout: 1500
+                });
+            });
+        }
+    </script>
+
+    <div class="">
+        <div class="container body">
+            <div class="main_container">
+                <!-- Navigation Bar (Menu) -->
+                <!--<div class="col-md-3 left_col">-->
+                <div class="col-md-3 left_col" style="position: fixed; top: 0px">
+                    <!--<div class="left_col scroll-view" style='height:1000px; overflow-y: scroll'>-->
+                    <div class="left_col scroll-view" style="height:95vh; overflow: auto; width:100%">
+                        <div class="navbar nav_title" style="border: 0;">
+                            <a href="" class="site_title"><em class="fa fa-graduation-cap"></em>
+                                <span>Πύλη Φοιτητολογίου</span></a>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        <!-- menu profile quick info -->
+                        <div class="profile clearfix">
+                            <div class="profile_pic">
+                                <img src="resources/assets/img/logos/MainMenu_logo.png" alt="..." class="img-circle profile_img">
+                            </div>
+                            <div class="profile_info">
+                                <span>Καλωσήρθατε,</span>
+                                <h2>ebomponis</h2>
+                            </div>
+                        </div>
+
+                        <!-- /menu profile quick info -->
+
+                        <br>
+
+                        <!-- sidebar menu -->
+                        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+
+                            <div>
+                                <div class="current-profile-description">
+                                    <p id="menuProfileDescription1" style="margin-bottom: 5px;"></p>
+                                    <p id="menuProfileDescription2" style="margin-bottom: 0px;"></p>
+                                </div>
+
+                                <div>
+                                    <script type="text/javascript">
+                                        $(document).ready(function () {
+                                            appendCurrentProfileDescription();
+                                        });
+
+                                        function appendCurrentProfileDescription() {
+                                            var profile = JSON.parse(localStorage.getItem(IlyLib.helpers.getUrlParameter("p")));
+                                            if (profile !== null && typeof profile !== "undefined") {
+                                                $("#menuProfileDescription1").text(profile.lastname + " " + profile.firstname + " (" + profile.studentNo + ")");
+                                                var intro = "";
+                                                if (profile.studentStatusId == _studentStatusEnum.ACTIVE.value) {
+                                                    intro = profile.gender == _genderEnum.MALE.value ? IlyLocales.general.authentication.registered.male + ": " : IlyLocales.general.authentication.registered.female + ": ";
+                                                }
+                                                $("#menuProfileDescription2").text(intro + profile.lastPeriod + " " + IlyLib.helpers.getSyllabusLabel(profile.lastSyllabus));
+                                            }
+                                        }
+                                    </script>
+                                </div>
+
+                                
+                            </div>
+
+                            <div class="menu_section active">
+                                <h3></h3>
+                                <ul class="nav side-menu">
+                                    
+                                    <div>
+                                        <li>
+                                            <a href="/?p=7556D54A-9AFE-446E-8E57-8AC9375CE0C2629A08F6-4A31-43C3-B98A-60E31E2F4779"><em class="ic ic-roles"></em> <span>Προφίλ</span></a></li>
+                                        <li><a href="student/student_data/?p=7556D54A-9AFE-446E-8E57-8AC9375CE0C2629A08F6-4A31-43C3-B98A-60E31E2F4779"><em class="ic ic-student"></em> <span>Στοιχεία Φοιτητή</span></a></li>
+                                        <li><a><em class="ic ic-all-courses"></em>
+                                            <span>Μαθήματα</span> <span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                <li>
+                                                    <a href="student/program_course?p=7556D54A-9AFE-446E-8E57-8AC9375CE0C2629A08F6-4A31-43C3-B98A-60E31E2F4779"><em class="ic-md ic-all-courses"></em> <span>Πρόγραμμα Σπουδών</span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="student/course/scheduler?p=7556D54A-9AFE-446E-8E57-8AC9375CE0C2629A08F6-4A31-43C3-B98A-60E31E2F4779">
+                                                        <em class="ic-md ic-academic-year"></em> <span>Ημερολόγιο διδασκαλίας</span></a> 
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="student/student_registration/?p=7556D54A-9AFE-446E-8E57-8AC9375CE0C2629A08F6-4A31-43C3-B98A-60E31E2F4779"><em class="ic ic-statement-form"></em> <span>Δηλώσεις</span> </a>
+                                        </li><li class="active"><a><em class="ic ic-grades-alt3"></em>
+                                            <span>Βαθμολογίες</span> <span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu" style="display: block; overflow: hidden; height: 1.65556px; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
+                                                <li class="current-page">
+                                                    <a href="student/grades/list_diploma?p=7556D54A-9AFE-446E-8E57-8AC9375CE0C2629A08F6-4A31-43C3-B98A-60E31E2F4779"><em class="ic-md ic-grades"></em> <span>Η Καρτέλα μου</span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="student/grades/list?p=7556D54A-9AFE-446E-8E57-8AC9375CE0C2629A08F6-4A31-43C3-B98A-60E31E2F4779"><em class="ic-md ic-grades-alt2"></em> <span>Όλες οι προσπάθειες</span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="student/grades/periods?p=7556D54A-9AFE-446E-8E57-8AC9375CE0C2629A08F6-4A31-43C3-B98A-60E31E2F4779"><em class="ic-md ic-terms"></em> <span>Ανά Εξεταστική Περίοδο</span></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                            <li><a href="student/csc_mock_exam/list?p=7556D54A-9AFE-446E-8E57-8AC9375CE0C2629A08F6-4A31-43C3-B98A-60E31E2F4779"><em class="ic ic-class-schedule"></em> <span>Ασκήσεις - Πρόοδοι</span> </a>
+                                        </li><li>
+                                            <a><em class="ic ic-grades-alt1"></em>
+                                                <span>Εξετάσεις</span> <span class="fa fa-chevron-down"></span>
+                                            </a>
+                                            <ul class="nav child_menu">
+                                                <li>
+                                                    <a href="student/course_syllabus_exam/list?p=7556D54A-9AFE-446E-8E57-8AC9375CE0C2629A08F6-4A31-43C3-B98A-60E31E2F4779">
+                                                        <em class="ic-md ic-grades-alt1"></em> <span>Οι εξετάσεις μου</span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="student/course_syllabus_exam/scheduler?p=7556D54A-9AFE-446E-8E57-8AC9375CE0C2629A08F6-4A31-43C3-B98A-60E31E2F4779">
+                                                        <em class="ic-md ic-academic-year"></em> <span>Ημερολόγιο εξετάσεων</span></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="student/thesis/?p=7556D54A-9AFE-446E-8E57-8AC9375CE0C2629A08F6-4A31-43C3-B98A-60E31E2F4779"><em class="ic ic-paper-study"></em> <span>Εργασίες</span> </a>
+                                        </li><li><a href="student/practice/?p=7556D54A-9AFE-446E-8E57-8AC9375CE0C2629A08F6-4A31-43C3-B98A-60E31E2F4779"><em class="ic ic-work-experience"></em> <span>Πρακτικές</span> </a>
+                                        </li><li>
+                                            <a href="student/certificate/list?p=7556D54A-9AFE-446E-8E57-8AC9375CE0C2629A08F6-4A31-43C3-B98A-60E31E2F4779"><em class="fa fa-certificate"></em> <span>Πιστοποιητικά</span></a></li>
+                                        <li>
+                                            <a><em class="ic ic-graduation-info"></em> <span>Υποτροφίες</span> <span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                <li>
+                                                    <a href="student/scholarship/?p=7556D54A-9AFE-446E-8E57-8AC9375CE0C2629A08F6-4A31-43C3-B98A-60E31E2F4779"><em class="ic-md ic-diploma-thesis-study"></em> <span>Διαθέσιμες υποτροφίες </span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="student/student_scholarship/?p=7556D54A-9AFE-446E-8E57-8AC9375CE0C2629A08F6-4A31-43C3-B98A-60E31E2F4779"><em class="ic-md ic-graduation-info"></em> <span>Οι υποτροφίες μου</span></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <!--                                                    <li><a th:href="@{student/statistics(p=${#authentication.getPrincipal().getActiveProfileId()})}"><em class="fa fa-bar-chart"></em><span th=text="#{main.student.statistics}"></span> </a></li>-->
+                                        <li>
+                                            <a href="student/announcement/list?p=7556D54A-9AFE-446E-8E57-8AC9375CE0C2629A08F6-4A31-43C3-B98A-60E31E2F4779"><em class="ic-md ic-announcements"></em> <span>Ανακοινώσεις</span></a>
+                                        </li>
+                                        <li>
+                                            <a href="feign/student/general/manual?p=7556D54A-9AFE-446E-8E57-8AC9375CE0C2629A08F6-4A31-43C3-B98A-60E31E2F4779" target="_blank"><em class="fa fa-file-pdf-o"></em> <span>Εγχειρίδιο χρήσης</span></a>
+                                        </li>
+                                        <li>
+                                            <a href="https://qa-app.uth.gr/student/student_evaluation/list" target="_blank"><em class="fa fa-file-archive-o"></em> <span>Αξιολόγηση</span> </a></li>
+                                    </div>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- /sidebar menu -->
+
+                        <!-- /menu footer buttons -->
+                        <div class="sidebar-footer hidden-small">
+                            <a data-toggle="tooltip" data-placement="top" title="" href="logout" data-original-title="Αποσύνδεση">
+                                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                            </a>
+                        </div>
+                        <!-- /menu footer buttons -->
+                    </div>
+                </div>
+
+                <!-- top navigation -->
+                <div class="top_nav">
+                    <!--<div class="nav_menu">-->
+                    <div class="nav_menu" style="z-index: 1; top:0px;">
+                        <nav>
+                            <div class="nav toggle">
+                                <a id="menu_toggle"><em class="fa fa-bars"></em></a>
+                            </div>
+
+                            <!--                            <select id="locales" class=" form-control nav navbar-nav navbar-right col-md-6">-->
+                            <!--                                <option th:value="el" th:text="#{main.locale.description_el}" th:selected="${#locale.toString()}=='el'">el</option>-->
+                            <!--                                <option th:value="en" th:text="#{main.locale.description_en}" th:selected="${#locale.toString()}=='en'">en</option>-->
+                            <!--                            </select>-->
+                            <ul class="nav navbar-nav navbar-right col-md-6">
+                                <li>
+                                    <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <span class="user-profile-name">ebomponis</span>
+                                        <span class="fa fa-angle-down"></span>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                        <li>
+                                            <a href="/?p=7556D54A-9AFE-446E-8E57-8AC9375CE0C2629A08F6-4A31-43C3-B98A-60E31E2F4779"><em class="ic ic-roles pull-right"></em> <span>Προφίλ</span></a></li>
+                                        <!--<div th:if="${#authentication.getPrincipal().getActiveProfileType()== T(com.ilyda.unitron.portal.core.security.model.ProfileType).STUDENT}">-->
+                                        <!--                                                <li th:if="${#authentication.getPrincipal().getActiveProfileType()== T(com.ilyda.unitron.portal.core.security.model.ProfileType).STUDENT}">
+                                                                                            <a href="https://localhost:8181/Modip/student/student_evaluation/list" target="_blank"><em class="fa fa-file-archive-o pull-right"></em> <span th:text="#{menu.student.evaluation}"></span></a>
+                                                                                        </li>-->
+                                        <!--</div>-->
+                                        <li><a href="logout"><em class="fa fa-sign-out pull-right"></em><span>Αποσύνδεση</span></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="javascript:;" class=" dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <span id="localeDropDown"></span>
+                                        <img alt="language" id="localeDropDownImg" style="margin: 0px 4px 2px 5px;">
+                                        <span class=" fa fa-angle-down"></span>
+                                    </a>
+                                    <ul id="lingualMenu" class="dropdown-menu pull-right" style="width: 140px; min-width: 100px">
+                                    </ul>
+                                </li>
+                            </ul>
+
+                        </nav>
+                    </div>
+                </div>
+                <!-- /top navigation -->
+            </div>
+        </div>
+
+    </div>
+
+    <template id="lingualTemplate">
+        <li>
+            <a id="${langCode}" href="javascript:;">
+                <img src="${langFlag}" class="pull-right" alt="${langCode}">
+                <span>${langTitle}</span>
+            </a>
+        </li>
+    </template>
+
+    <!-- Put it here so that it runs after header html components is rendered, otherwise it will not work out of the box -->
+    <script src="resources/vendor/gentelella_template/js/gentelella.js"></script>
+
+</div>
+            <div>
+            <script type="text/javascript">
+
+                $(document).ready(function () {
+                    var hash = $.trim(window.location.hash);
+                    if (hash) {
+                        $('a[href$="' + hash + '"]').trigger("click");
+                    }
+                })
+
+                function fillEntity(element, entity, date_fields, boolean_fields) {
+                    for (var key in entity) {
+                        if (entity[key] !== undefined && entity[key] !== null) {
+                            if ($.inArray(key, date_fields) > -1) {
+                                $(element + "." + key).text(IlyLib.helpers.presentOutput(entity[key], IlyLib.helpers.dateConvertedNormal, ''));
+                            } else if ($.inArray(key, boolean_fields) > -1) {
+                                $(element + "." + key).text(entity[key] ? IlyLocales.general.yes : IlyLocales.general.no);
+                            } else {
+                                $(element + "." + key).text(entity[key]).html();
+                            }
+                        } else {
+                            $(element + "." + key).text("-").html();
+                        }
+                    }
+                }
+
+                function prepareForm(form) {
+                    form = $(form);
+
+                    if (!form.valid()) {
+                        return;
+                    }
+
+                    var formData = form.serializeObject();
+                    //        formData = removeEmptyStringsFromJSONObject(formData);
+
+                    for (var key in formData) {
+                        if (key === "id") {
+                            formData[key] = formData[key] === "" ? null : formData[key];
+                        }
+                        if ($("[name=" + key + "]").attr("type") === "checkbox") {
+                            formData[key] = $("[name='" + key + "']")[0].checked ? "true" : "false";
+                        }
+                    }
+
+                    return formData;
+                }
+
+                function rsvpCall(ajaxObj) {
+                    $.blockUI({"message": "<spring:message code='core.general.blockui_wait'/>"});
+
+                    return new RSVP.Promise(function (resolve, reject) {
+                        $.ajax({
+                            type: ajaxObj.type,
+                            url: ajaxObj.url,
+                            data: ajaxObj.data,
+                            dataType: ajaxObj.dataType,
+                            contentType: "application/json; charset=utf-8"
+                        }).done(function (results) {
+                            resolve(results);
+                        }).fail(function (jqXHR, textStatus, errorThrown) {
+                            console.log(jqXHR.status, errorThrown);
+                            reject(jqXHR);
+                        }).always(function () {
+                            $.unblockUI();
+                        });
+                    });
+                }
+
+                function rsvpCallMultipart(ajaxObj) {
+                    return new RSVP.Promise(function (resolve, reject) {
+                        $.ajax({
+                            type: ajaxObj.type,
+                            enctype: "multipart/form-data",
+                            url: ajaxObj.url,
+                            data: ajaxObj.data,
+                            cache: false,
+                            contentType: false,
+                            processData: false
+                        }).done(function (results) {
+                            resolve(results);
+                        }).fail(function (jqXHR, textStatus, errorThrown) {
+                            console.log(jqXHR.status, errorThrown);
+                            reject(jqXHR);
+                        }).always(function () {
+                            $.unblockUI();
+                        });
+                    });
+                }
+            </script>
+
+            
+            
+            <div class="modal fade grid_modal" id="studentTransactionModal" tabindex="-1" data-backdrop="static">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="text-center modal-title"></h4>
+                        </div>
+                        <div class="modal-body">                            
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="studentTransactionForm"></div> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="modal fade" id="alertModal" data-backdrop="static" data-keyboard="false" style="z-index: 9999;">
+                <div class="modal-dialog modal-sm" style="top: 30%;">
+                    <div class="modal-content" style="border-color: rgba(162, 67, 36, 0.76);">
+                        <div class="modal-header-alert" id="alertModalHeader">
+                            <button type="button" id="closeBtn" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title" style="margin-left: 5px;">
+                                <span id="alertModalTitle">Προειδοποίηση !</span>
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+                            <h5 id="alertModalMessage" class="text-center" style="font-size: 15px;"></h5>
+                        </div>
+                        <div class="modal-footer modal-footer-alert">
+                            <button id="alertModalBtn" type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true"><span>Επιστροφή</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade grid_modal" id="chooseStudentProgramCourseGroupsModal" tabindex="-1" data-backdrop="static">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="text-center modal-title">Επιλογή Ομάδων</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="help-text">
+                                        <p>Επιλέξτε τις ομάδες που επιθυμείτε και πατήστε Επιλογή. Αναλόγως των ομάδων που θα δηλώσετε, θα επιτρέπεται η δήλωση μόνο των μαθημάτων που ανήκουν στις ομάδες αυτές.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="dynamic-content">
+                                      <div id="treeAccordionGroup"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="btn-toolbar pull-right">
+                                        <div class="btn-group">
+                                            <button class="btn-chooseStudentProgramCourseGroups btn btn-primary"><span class="glyphicon glyphicon-check"></span> <span>Επιλογή</span></button>
+                                        </div>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn" data-dismiss="modal" aria-hidden="true"><span class="fa fa-undo"></span> <span>Επιστροφή</span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <template id="programGroupsTableTemplate">
+                <div class="col-md-12" style="background-color:snow; box-shadow:1px 2px lightgrey">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th style="width:30%">${groupTitle}</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="table_body_${id}"></tbody>
+                    </table>
+                </div>
+            </template>
+            
+            <template id="programGroupsTableRowTemplate">
+                <tr>
+                    <td style="width:30%"><input class="selectedGroup_${id}" data-id="${id}" data-parent-id="${idFather}" type="checkbox" ${checked}="" ${disabled}=""></td>
+                    <td>${title}</td>
+                </tr>
+            </template>            
+            
+            <template id="announcementsEditableActionsTemplate">
+                <span>
+                    <a id="${editId}" data-id="${id}" type="button" class="btn btn-default"><span class="fa fa-pencil"></span></a>
+                    <a id="${deleteId}" data-id="${id}" type="button" class="btn btn-danger"><span class="fa fa-trash"></span></a>
+                </span>
+            </template> 
+            
+            <template id="tableButtonEditTemplate"><a id="${id}" type="button" class="btn btn-default"><span class="fa fa-pencil"></span></a></template>
+            <template id="tableButtonViewTemplate"><a id="${id}" type="button" class="btn btn-default"><span class="fa fa-eye"></span></a></template>
+            <template id="tableButtonDeleteTemplate"><a id="${id}" type="button" class="btn btn-danger"><span class="fa fa-trash"></span></a></template>
+            
+            <template id="optionsTemplate">
+                <option value="${value}">${text}</option>
+            </template>
+            
+            <template id="fileLinkTemplate">
+                <a href="\${url}" target="_blank" class="file-link">${mask}</a>
+            </template>
+            
+            <template id="announcementSegmentTemplate">               
+                <li class="announcement_${id}">
+                    <div class="block">
+                        <div class="tags">
+                            <a class="tag" title="${announcementTagTitle}" style="${announcementTagBackground}"> 
+                                <span>${announcementTagTitle}</span> 
+                                    <span class="tag_pointer" style="${announcementTagPointer}"></span> 
+                            </a>
+                        </div>
+                        <div class="block_content">
+                            <h2 class="title"><i class="${isExclamationHidden} fa fa-exclamation red" style="font-size: 130%;"></i> ${title}</h2>
+                            <div class="byline"><span>${datePublished}</span> <span class="${teacherExists}">από</span> <span>${teacherName}</span></div>
+                            <div style="margin-top: 5px;">${preview}</div>
+                            <div class="announcement-content" style="margin-top: 5px;">${content}</div>
+                            <div class="announcement-documents" style="margin-top: 5px;"></div>
+                            <a class="${isMoreLinkHidden}" href="\${url}">Περισσότερα...</a>
+                        </div>
+                    </div>
+                </li>
+            </template>
+            
+            <script id="announcementDocumentTemplate" type="text/x-jquery-tmpl">
+                {{if (announcementDocuments && announcementDocuments.length>0) }}
+                <div style="margin: 10px 0px;">Επισυναπτόμενα Έγγραφα</div>
+                {{each(i,val) announcementDocuments}}
+                <div style="margin: 5px 0px;">
+                    <a href=${url} target=\"blank\"><span class="glyphicon glyphicon-paperclip"></span> ${mask} </a>
+                </div>
+                {{/each}}
+                {{/if}}
+            </script>
+
+            <script id="preRegFilesTemplate" type="text/x-jquery-tmpl">
+                <div class="row">
+                    <div class="col-sm-12">
+                        {{if preRegFiles.length != 0}}
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="width-50">Τίτλος</th>
+                                        {{if editable }}
+                                        <th></th>
+                                        {{/if}}
+                                        <th>Αρχεία</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{each(i) preRegFiles}}
+                                        <tr>
+                                            <td {{if files.length != 0}}rowspan="${files.length}"{{/if}}>
+                                                <label class="control-label">
+                                                    <span>${i+1}. ${title} {{if required}}*{{/if}}</span>
+                                                </label>
+                                            </td>
+                                            {{if editable }}
+                                            <td {{if files.length != 0}}rowspan="${files.length}"{{/if}}>
+                                                <form method="POST">
+                                                    <input id="${id}" name="webStudentPreRegFiles" type="file" />
+                                                </form>
+                                            </td>
+                                            {{/if}}
+                                            {{if files.length != 0}}
+                                                {{each(j) files}}
+                                                    <td>
+                                                        <a href="${baseUrl}" target="_blank">${mask}</a>
+                                                        {{if editable }}
+                                                        <span class="file-upload">
+                                                            <a class="btn btn-link" role="button" onclick="deleteFile('${id}', '${baseUrl}')" title="Διαγραφή"> <span class="text-danger"><span class="glyphicon glyphicon-remove-circle" /></span></a>
+                                                        </span>
+                                                        {{/if}}
+                                                    </td>
+                                                </tr>
+                                                    {{if j > 0}}
+                                                        <tr>
+                                                    {{/if}}
+                                                {{/each}}
+                                            {{else}}
+                                                    <td>Δεν υπάρχουν ανεβασμένα αρχεία</td>
+                                                </tr>
+                                            {{/if}}
+                                    {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                            {{else}}
+                                <p>Δεν υπάρχουν αρχεία</p>
+                            {{/if}}
+                        </div>
+                    </div>
+            </script>
+
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    var lbl = $("body").find(".k-grid-header").find(".k-link");
+                    hideAsterisksInHeader(lbl);
+
+                    $('.custom-syll-dp').change(function (e) {
+                        var val = $(this).val();
+                        if (val !== undefined && val !== null && val !== "") {
+                            var lst = parseInt(val);
+                            var nxt = lst + 1;
+                            var final = val + "-" + nxt;
+                            $(this).val(final);
+                            if (!($(this).hasClass("custom-syll-scnd"))) {
+                                $('.custom-syll-scnd').datepicker('setStartDate', new Date(lst, 1, 0));
+                            }
+                        }
+                    });
+
+                    $('.custom-syll-dp').click(function (e) {
+                        var year = $(".datepicker-years").find(".year");
+                        arrangeDpElements(year);
+                        $(".table-condensed").find("th.next").attr("onClick", "arrangeYears(this)");
+                        $(".table-condensed").find("th.prev").attr("onClick", "arrangeYears(this)");
+                    });
+
+                });
+
+                function hideAsterisksInHeader(label) {
+                    label.each(function () {
+                        $(this).html($(this).html().split("*").join(""));
+                    });
+                }
+
+                function arrangeYears(el) {
+                    setTimeout(function () {
+                        var year = $(el).closest(".datepicker-years").find(".year");
+                        arrangeDpElements(year);
+                    }, 0);
+                }
+
+                function arrangeDpElements(year) {
+                    $(".table-condensed").addClass("custom-dp-tbl");
+                    $(".datepicker-years").addClass("custom-dp-yr");
+                    $(".year").addClass("custom-spn-yr");
+                    year.each(function () {
+                        var txt = $(this).text();
+                        if (txt.indexOf("-") < 0) {
+                            $(this).empty();
+                            $(this).text(txt + "-" + (parseInt(txt) + 1));
+                        }
+                    });
+                }
+
+                function arrangeDpSelections(el) {
+                    var year = $(el + "_dateview").find(".k-link").not(".k-nav-next, .k-nav-prev");
+                    $(el + "_dateview").find(".k-calendar").addClass("custom-dp-cal");
+                    arrangeKdpElements(year);
+                    $(el + "_dateview").find(".k-nav-next").attr("onClick", "arrangeKyears(this)");
+                    $(el + "_dateview").find(".k-nav-prev").attr("onClick", "arrangeKyears(this)");
+                }
+
+                function arrangeKyears(el) {
+                    var year = $(el).closest(".k-calendar-container").find(".k-link").not(".k-nav-next, .k-nav-prev");
+                    arrangeKdpElements(year);
+                }
+
+                function arrangeKdpElements(year) {
+                    year.each(function () {
+                        var txt = $(this).text();
+                        if (txt.indexOf("-") < 0) {
+                            $(this).empty();
+                            $(this).text(txt + "-" + (parseInt(txt) + 1));
+                        }
+                    });
+                }
+
+                /**
+                 * Enables the dropdown functionality from dashboard
+                 * @returns {undefined}
+                 */
+                function enableDropDownPanel() {
+                    $('.collapse-link').on('click', function () {
+                        var $BOX_PANEL = $(this).closest('.x_panel'),
+                                $ICON = $(this).find('i'),
+                                $BOX_CONTENT = $BOX_PANEL.find('.x_content');
+
+                        // fix for some div with hardcoded fix class
+                        if ($BOX_PANEL.attr('style')) {
+                            $BOX_CONTENT.slideToggle(200, function () {
+                                $BOX_PANEL.removeAttr('style');
+                            });
+                        } else {
+                            $BOX_CONTENT.slideToggle(200);
+                            $BOX_PANEL.css('height', 'auto');
+                        }
+
+                        $ICON.toggleClass('fa-chevron-up fa-chevron-down');
+                    });
+                }
+            </script>
+        </div>
+            <div>
+
+            <script>
+                function hideAlertModal() {
+                    $("#alertModal").modal("hide");
+                }
+
+                var alertObj = {
+                    title: IlyLocales.general.message,
+                    message: "",
+                    buttonTxt: IlyLocales.general.return,
+                    btnAction: hideAlertModal,
+                    closeAction: hideAlertModal
+                };
+
+                function alertModal(alert) {
+
+                    alert = initAlert(alert);
+
+                    $("#alertModalTitle").empty();
+                    $("#alertModalTitle").append(alert.title);
+                    $("#alertModalMessage").empty();
+                    $("#alertModalMessage").append(alert.message);
+                    $("#alertModalBtn").empty();
+                    $("#alertModalBtn").append(alert.buttonTxt);
+
+                    $("#alertModalBtn").unbind().on("click", function (event) {
+                        alert.btnAction();
+                    });
+
+                    $("#closeBtn").unbind().on("click", function (event) {
+                        alert.closeAction();
+                    });
+
+                    $("#alertModal").modal("show");
+                }
+
+                $("#alertModal").unbind().on("shown.bs.modal", function () {
+                    $("#alertModalBtn").focus();
+                });
+
+                function initAlert(a) {
+                    return {
+                        title: (typeof a.title === "undefined" || a.title === null) ? alertObj.title : a.title,
+                        message: (typeof a.message === "undefined" || a.message === null) ? alertObj.message : a.message,
+                        buttonTxt: (typeof a.buttonTxt === "undefined" || a.buttonTxt === null) ? alertObj.buttonTxt : a.buttonTxt,
+                        btnAction: (typeof a.btnAction === "undefined" || a.btnAction === null) ? alertObj.btnAction : a.btnAction,
+                        closeAction: (typeof a.closeAction === "undefined" || a.closeAction === null) ? alertObj.closeAction : a.closeAction
+                    };
+                }
+            </script>
+
+            <script type="text/javascript">
+
+                function alertMessage(alert, alertType, element) {
+
+                    var alert = "<div id=\"alertMessage\" class=\"alert " + alertType + " alert-dismissable fade in\">"
+                            + "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>"
+                            + "<strong id=\"alertMessageStrong\"></strong> <span id=\"alertMessageMessage\">" + alert + "</span>"
+                            + "</div>";
+
+                    $(element).hide().html(alert).fadeIn();
+                }
+
+            </script>
+
+            <div id="alert-template">
+                <div data-type="alert-wrapper" class="" role="alert">
+                    <div data-type="alert-content"></div>
+                </div>
+            </div>
+
+            <script type="text/javascript">
+                function createAlert(alertObj) {
+
+                    var alert = $("#alert-template").clone();
+
+                    $(alert).attr("id", alertObj.id);
+
+                    $(alert).find("[data-type='alert-wrapper']").append(alertObj.content);
+
+                    var alertClass = "info";
+                    if (typeof alertObj.alertClass !== "undefined" && alertObj.alertClass !== null) {
+                        alertClass = alertObj.alertClass;
+                    }
+
+                    $(alert).find("[data-type='alert-wrapper']").addClass("alert");
+                    $(alert).find("[data-type='alert-wrapper']").addClass("alert-" + alertClass);
+                    
+                    return alert;
+                }
+            </script>
+        </div>
+            <div>
+            <div class="modal fade" id="alertConfirmModal" data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header" id="alertConfirmModalHeader">
+                            <button type="button" id="closeConfirmBtn" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title">
+                                <span id="alertConfirmModalTitle"><span>Προειδοποίηση !</span></span>
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+                            <h4 id="alertConfirmModalMessage" class="text-center"></h4>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="alertCancelModalBtn" type="button" class="btn right btn-danger" data-dismiss="modal" aria-hidden="true"><span>Όχι</span></button>
+                            <button id="alertConfirmModalBtn" type="button" class="btn right btn-success" data-dismiss="modal" aria-hidden="true" style="margin-right:7px;"><span>Ναι</span></button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+
+            <script>
+                function hideAlertConfirmModal()
+                {
+                    $("#alertConfirmModal").modal("hide");
+                }
+
+                var alertConfirm = {
+                    title: IlyLocales.general.message,
+                    message: "",
+                    buttonTxt: IlyLocales.general.yes,
+                    buttonValue: "value",
+                    buttonProp: "btn-prop",
+                    btnConfirmAction: hideAlertConfirmModal,
+                    closeConfirmAction: hideAlertConfirmModal
+                };
+
+                function alertConfirmModal(alert) {
+
+                    alert = initAlertConfirm(alert);
+
+                    $("#alertConfirmModalTitle").empty();
+                    $("#alertConfirmModalTitle").append(alert.title);
+                    $("#alertConfirmModalMessage").empty();
+                    $("#alertConfirmModalMessage").append(alert.message);
+                    $("#alertConfirmModalBtn").empty();
+                    $("#alertConfirmModalBtn").append(alert.buttonTxt);
+                    $("#alertConfirmModalBtn").attr("data-value", alert.buttonValue);
+                    $("#alertConfirmModalBtn").attr("btn-prop", alert.buttonProp);
+
+                    $("#alertConfirmModalBtn").off().on("click", function (event) {
+                        $("#alertConfirmModalBtn").unbind("click");
+                        alert.btnConfirmAction();
+                    });
+
+                    $("#closeConfirmBtn").off().on("click", function (event) {
+                        alert.closeConfirmAction();
+                    });
+
+                    $("#alertCancelModalBtn").on("click", function (event) {
+                        alert.closeConfirmAction();
+                    });
+
+                    $("#alertConfirmModal").modal("show");
+                }
+
+                $("#alertConfirmModal").on("shown.bs.modal", function () {
+                    $("#alertConfirmModalBtn").focus();
+                });
+
+                function initAlertConfirm(a) {
+                    return {
+                        title: (a.title == null) ? alertConfirm.title : a.title,
+                        message: (a.message == null) ? alertConfirm.message : a.message,
+                        buttonTxt: (a.buttonTxt == null) ? alertConfirm.buttonTxt : a.buttonTxt,
+                        buttonValue: (a.buttonValue == null) ? alertConfirm.buttonValue : a.buttonValue,
+                        buttonProp: (a.buttonProp == null) ? alertConfirm.buttonProp : a.buttonProp,
+                        btnConfirmAction: (a.btnConfirmAction == null) ? alertConfirm.btnConfirmAction : a.btnConfirmAction,
+                        closeConfirmAction: (a.closeConfirmAction == null) ? alertConfirm.closeConfirmAction : a.closeConfirmAction,
+                    };
+                }
+            </script>
+
+            <script type="text/javascript">
+
+                function alertConfirmMessage(alert, alertType, element) {
+
+                    var alert = "<div id=\"alertConfirmMessage\" class=\"alert " + alertType + " alert-dismissable fade in\">"
+                            + "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>"
+                            + "<strong id=\"alertConfirmMessageStrong\"></strong> <span id=\"alertConfirmMessageMessage\">" + alert + "</span>"
+                            + "</div>";
+
+                    $(element).hide().html(alert).fadeIn();
+                }
+
+            </script>
+        </div>
+            <div>
+
+            <div class="modal fade" id="reLoginModal" tabindex="-1" data-backdrop="static">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="text-center modal-title">Λήξη Σύνδεσης</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-errors alert alert-danger" role="alert" style="display:none"></div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="reLoginContent">
+                                        <span>Η σύνδεσή σας με την εφαρμογή έχει λήξει.</span> <span>Για να συνδεθείτε ξανά πατήστε <a id="reLoginLink" style="cursor:pointer;">εδώ</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer"></div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal fade" id="formCrudModal" tabindex="-1" data-backdrop="static">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="text-center modal-title"></h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-errors alert alert-danger" role="alert" style="display:none"></div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="formCrudContent">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="btn-toolbar pull-right">
+                                        <div class="btn-group">
+                                            <button class="btn-saveEntity btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> <span>Αποθήκευση</span></button>
+                                        </div>
+                                        <div class="btn-group">
+                                            <button id="formCrudModalBtn" type="button" class="btn" data-dismiss="modal" aria-hidden="true"><span class="fa fa-undo"></span> <span>Επιστροφή</span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script type="text/javascript">
+
+                function initDropDown(dropdownObj) {
+                    var dropDown = $(dropdownObj.selector).data("kendoDropDownList");
+                    if (typeof dropDown === "undefined" || dropDown === null) {
+                        $(dropdownObj.selector).kendoDropDownList({
+                            optionLabel: dropdownObj.optionLabel ? dropdownObj.optionLabel : IlyLocales.general.form.select,
+                            dataTextField: dropdownObj.dataTextField,
+                            dataValueField: dropdownObj.dataValueField,
+                            itemTemplate: dropdownObj.itemTemplate ? dropdownObj.itemTemplate : null,
+                            tagTemplate: dropdownObj.tagTemplate ? dropdownObj.tagTemplate : null,
+                            template: dropdownObj.template ? dropdownObj.template : null,
+                            valueTemplate: dropdownObj.valueTemplate ? dropdownObj.valueTemplate : null,
+                            cascadeFrom: dropdownObj.cascadeFrom ? dropdownObj.cascadeFrom : null,
+                            select: dropdownObj.select ? dropdownObj.select : null,
+                            change: dropdownObj.change ? dropdownObj.change : null,
+                            enable: (typeof dropdownObj.enable === 'boolean') ? dropdownObj.enable : true,
+                            dataSource: dropdownObj.url
+                                    ? new kendo.data.DataSource({
+                                        serverFiltering: true,
+                                        transport: {
+                                            read: {
+                                                dataType: "json",
+                                                type: "GET",
+                                                contentType: "application/json; charset=utf-8",
+                                                url: dropdownObj.url
+                                            },
+                                            parameterMap: function (data, operation) {
+                                                if (operation !== "read") {
+                                                    return JSON.stringify(data);
+                                                }
+                                            }
+                                        },
+                                        schema: dropdownObj.schema
+                                    })
+                                    : dropdownObj.data,
+                            value: dropdownObj.value
+                        });
+                        $(dropdownObj.selector).data("kendoDropDownList").bind("cascade", function () {
+                            if ($(dropdownObj.selector).attr("readonly") === "readonly") {
+                                $(dropdownObj.selector).hide();
+                                $(dropdownObj.selector).data("kendoDropDownList").wrapper.find(".k-input").hide();
+                                $(dropdownObj.selector).data("kendoDropDownList").wrapper.find(".k-dropdown-wrap").hide();
+                                $.tmpl($("#viewDisplayTemplate"), {code: $(dropdownObj.selector).data("kendoDropDownList").value(),
+                                    value: $(dropdownObj.selector).data("kendoDropDownList").text()}).insertBefore($(dropdownObj.selector));
+                            }
+                        });
+                        if (dropdownObj.value !== undefined && dropdownObj.value !== null) {
+                            $(dropdownObj.selector).data("kendoDropDownList").trigger("change");
+                        }
+                    } else {
+                        dropDown.value("");
+                        dropDown.trigger("change");
+                    }
+                }
+
+                function initMultiSelectDropDown(dropdownObj) {
+                    var dropDown = $(dropdownObj.selector).data("kendoMultiSelect");
+
+                    if (typeof dropDown === "undefined" || dropDown === null) {
+                        $(dropdownObj.selector).kendoMultiSelect({
+                            autoBind: dropdownObj.autoBind === true,
+                            autoClose: dropdownObj.autoClose !== false,
+                            placeholder: dropdownObj.placeholder ? dropdownObj.placeholder : null,
+                            dataTextField: dropdownObj.dataTextField,
+                            dataValueField: dropdownObj.dataValueField,
+                            itemTemplate: dropdownObj.itemTemplate ? dropdownObj.itemTemplate : null,
+                            tagTemplate: dropdownObj.tagTemplate ? dropdownObj.tagTemplate : null,
+                            template: dropdownObj.template ? dropdownObj.template : null,
+                            filter: dropdownObj.filter ? dropdownObj.filter : null,
+                            filtering: dropdownObj.filtering ? dropdownObj.filtering : null,
+                            minLength: dropdownObj.minLength ? dropdownObj.minLength : 1,
+                            maxSelectedItems: dropdownObj.maxSelectedItems ? dropdownObj.maxSelectedItems : null,
+                            change: dropdownObj.change ? dropdownObj.change : null,
+                            select: dropdownObj.select ? dropdownObj.select : null,
+                            deselect: dropdownObj.deselect ? dropdownObj.deselect : null,
+                            dataBound: dropdownObj.dataBound ? dropdownObj.dataBound : null,
+                            dataSource: new kendo.data.DataSource({
+                                serverFiltering: true,
+                                transport: {
+                                    read: {
+                                        data: {},
+                                        dataType: "json",
+                                        type: "GET",
+                                        contentType: "application/json; charset=utf-8",
+                                        url: dropdownObj.url
+                                    },
+                                    parameterMap: function (data, operation) {
+                                        if (operation === "read") {
+                                            try {
+                                                return dropdownObj.parameterMapRead(data);
+                                            } catch (e) {
+                                                // parameterMapRead not defined
+                                            }
+                                        } else {
+                                            return JSON.stringify(data);
+                                        }
+                                    }
+                                },
+                                schema: dropdownObj.schema
+                            }),
+                            value: dropdownObj.value ? dropdownObj.value : null
+                        });
+                        if (typeof dropdownObj.value !== "undefined" && dropdownObj.value !== null) {
+                            $(dropdownObj.selector).data("kendoMultiSelect").trigger("change");
+                        }
+                    } else {
+                        dropDown.value("");
+                        dropDown.trigger("change");
+                    }
+                }
+
+                function initKendoEditor(editorObj) {
+                    var editor = $(editorObj.selector).data("kendoEditor");
+                    if (typeof editor === "undefined" || editor === null) {
+
+                        $(editorObj.selector).kendoEditor({
+                            tools: [
+                                {name: "formatting", width: "200px"},
+                                {name: "bold"},
+                                {name: "italic"},
+                                {name: "underline"},
+                                {name: "justifyLeft"},
+                                {name: "justifyCenter"},
+                                {name: "justifyRight"},
+                                {name: "justifyFull"}
+                            ]
+                        });
+
+                        editor = $(editorObj.selector).data("kendoEditor");
+
+                        if (editorObj.value !== undefined && editorObj.value !== null) {
+                            editor.value($.parseHTML(editorObj.value)[0].data);
+                        }
+                    } else {
+                        editor.value("");
+                    }
+                }
+
+                function initContextMenu(contextMenuObj) {
+                    var contextMenu = $(contextMenuObj.selector).data("kendoContextMenu");
+                    if (typeof contextMenu === "undefined" || contextMenu === null) {
+                        contextMenu = $(contextMenuObj.selector).kendoContextMenu({
+                            target: contextMenuObj.target,
+                            filter: contextMenuObj.filter,
+                            dataSource: contextMenuObj.dataSource,
+                            select: contextMenuObj.select ? contextMenuObj.select : null,
+                            open: contextMenuObj.open || null
+                        }).data("kendoContextMenu");
+                    }
+                    return contextMenu;
+                }
+
+                function enableViewMode(options) {
+                    var fields = options.formFields.fields;
+                    var formId = options.formFields.formId;
+                    searchAndDisable(formId, fields);
+
+                    var form = $("#" + formId);
+                    var saveBtn = form.find(".btn-saveEntity");
+                    if (saveBtn) {
+                        saveBtn.attr("disabled", true);
+                        saveBtn.unbind();
+                        saveBtn.hide();
+                    }
+                }
+
+                function searchAndDisable(formId, fields) {
+                    if (!fields) {
+                        return;
+                    }
+                    for (var idx in fields) {
+                        var field = fields[idx];
+                        if (field.type === "field" || field.type === "input_group" || field.type === "button") {
+                            disableField(formId, field);
+                        } else if (field.type === "group") {
+                            searchAndDisable(formId, field.children);
+                        }
+                    }
+                }
+
+                function disableField(formId, field) {
+                    var selector = "#" + formId + " [name=" + field.code + "]";
+                    switch (field.datatype) {
+                        case "string":
+                        case "email":
+                        case "password":
+                        case "short":
+                        case "year":
+                        case "time":
+                        case "number":
+                        case "htmlText":
+                            $(selector).attr("readonly", "readonly");
+                            $(selector).addClass("view-mode");
+                            $(selector).removeClass("edit-mode");
+                            if (field.datatype === "number" && $(selector).val() === "") {
+                                $(selector).val();
+                            } else if (!$(selector).val() || $(selector).val().trim() === "") {
+                                $(selector).val("-");
+                            }
+                            $(selector).hide();
+                            $.tmpl($("#viewDisplayTemplate"), {code: field.code, value: $(selector).val()}).insertBefore($(selector));
+                            break;
+                        case "radio":
+                        case "boolean":
+                        case "divArea":
+                            $(selector).attr("disabled", true);
+                            $(selector).css("cursor", "auto");
+                            $(selector).addClass("view-mode");
+                            $(selector).removeClass("edit-mode");
+                            break;
+                        case "textarea":
+                            $(selector).attr("disabled", true);
+                            $(selector).attr("readonly", "readonly");
+                            $(selector).css("cursor", "auto");
+                            $(selector).css("resize", "vertical");
+                            $(selector).css("overflow", "hidden");
+                            $(selector).addClass("view-mode");
+                            $(selector).removeClass("edit-mode");
+                            if ($(selector).val() === "") {
+                                $(selector).val("-");
+                            }
+                            $(selector).hide();
+                            $.tmpl($("#viewDisplayTemplate"), {code: field.code, value: $(selector).val()}).insertBefore($(selector));
+                            break;
+                        case "date":
+                            $(selector).attr("readonly", "readonly");
+                            $(selector).unbind();
+                            $(selector).addClass("view-mode");
+                            $(selector).removeClass("edit-mode");
+                            $($(selector).get(0).nextElementSibling).hide();
+                            if ($(selector).val() === "") {
+                                $(selector).val("-");
+                            }
+                            break;
+                        case "kendoSelect":
+                            var input = $("#" + field.code).data("kendoDropDownList");
+                            if (input) {
+                                input.options.optionLabel = "-";
+                                input.wrapper.css("cursor", "auto");
+                                input.wrapper.css("disable", "disable");
+                                input.wrapper.find(".k-select").hide();
+                                input.wrapper.find(".k-input").css("display", "inline");
+                                input.wrapper.find(".k-input").css("font-size", "14px");
+                                input.wrapper.find(".k-dropdown-wrap").css("border", "none");
+                                input.wrapper.find(".k-dropdown-wrap").css("box-shadow", "none");
+                                input.readonly();
+                            }
+                            break;
+                        case "kendoMultiSelect":
+                            var input = $("#" + field.code).data("kendoMultiSelect");
+                            if (input) {
+                                input.options.optionLabel = "-";
+                                input.wrapper.css("cursor", "auto");
+                                input.wrapper.css("disable", "disable");
+                                input.wrapper.find(".k-select").hide();
+                                input.wrapper.find(".k-input").css("display", "inline");
+                                input.wrapper.find(".k-input").css("font-size", "14px");
+                                input.wrapper.find(".k-dropdown-wrap").css("border", "none");
+                                input.wrapper.find(".k-dropdown-wrap").css("box-shadow", "none");
+                                input.readonly();
+                            }
+                            break;
+                        case "maskedTextBox":
+                            $(selector).attr("disabled", true);
+                            $(selector).css("cursor", "auto");
+                            $(selector).attr("readonly", "readonly");
+                            $(selector).addClass("view-mode");
+                            $(selector).removeClass("edit-mode");
+                            $(selector).removeClass("k-textbox");
+                            $(selector).parent().removeClass("k-widget");
+                            $(selector).parent().removeClass("form-control");
+                            if ($(selector).val() === "") {
+                                $(selector).val("-");
+                            }
+                            break;
+                        case "select":
+                            if ($(selector).val() === "") {
+                                $(selector).find("option[value='']").text("-");
+                            }
+                            $(selector).attr("disabled", true);
+                            $(selector).attr("readonly", "readonly");
+                            $(selector).addClass("view-mode");
+                            $(selector).removeClass("edit-mode");
+                            $(selector).hide();
+                            $.tmpl($("#viewDisplayTemplate"), {code: field.code,
+                                value: $(selector).find("option[value='" + $(selector).val() + "']").text()}).insertBefore($(selector));
+                            break;
+                        case "image":
+                            $("#" + formId).find("[data-selectImage='" + field.code + "']").remove();
+                            $("#" + formId).find("[data-deletePhotograph='" + field.code + "']").remove();
+                            if ($(selector).val() === "") {
+                                $(selector).val("-");
+                            }
+                            break;
+                        case "button":
+                            $("#" + field.btnId + " .btn").attr("disabled", true);
+                            $("#" + field.btnId + " .btn").unbind();
+                            $("#" + field.btnId + " .btn").hide();
+                            break;
+                        case "link":
+                            break;
+                        default:
+                            console.log("Unsupported type: " + field.datatype);
+                            break;
+                    }
+
+                    if (field.buttons_after) {
+                        for (var idx in field.buttons_after) {
+                            var btn = field.buttons_after[idx];
+                            $("#" + btn.btnId).attr("disabled", true);
+                            $("#" + btn.btnId).hide();
+                        }
+                    }
+
+                    $("#" + formId).find(".clearBtn").attr("disabled", true);
+                    $("#" + formId).find(".clearBtn").hide();
+                }
+
+            </script>
+
+            <script type="text/javascript">
+
+                var jcrop_api;
+
+                $("body").on("click", "[id^=selectImage][data-code]", function () {
+                    var code = $(this).attr("data-code");
+                    $("#imgInp-" + code).click();
+                });
+
+                $("body").on("change", "[id^=imgInp][data-code]", function () {
+                    var code = $(this).attr("data-code");
+                    readURL(this, code);
+                });
+
+                function readURL(input, code) {
+
+                    var maxSizeKB = 2000;
+                    var maxSize = maxSizeKB * 1024;
+                    var allowedFileType = ["image/jpeg", "image/png"];
+                    if (input === undefined || input === null) {
+                        return;
+                    }
+
+                    var files = input.files;
+                    if (files === undefined || files === null) {
+                        return;
+                    }
+
+                    var file = input.files[0];
+                    if (file === undefined || file === null) {
+                        return;
+                    }
+
+                    if (file.size > (maxSize)) {
+                        $.growl.error({message: IlyLocales.general.file.upload.error.max_file_size});
+                    } else if (allowedFileType.indexOf(file.type) < 0) {
+                        $.growl.error({message: IlyLocales.general.file.error.type});
+                    } else {
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+
+                            destroyJCrop(code);
+                            $("#preview-" + code).attr("src", e.target.result);
+                            $("#target-" + code).attr("src", e.target.result);
+                            initImage(code);
+                        };
+                        reader.readAsDataURL(input.files[0]);
+                        $("#noImageError").hide();
+                        $("#imagePanel").css("border-color", "#2b542c");
+                    }
+                }
+
+                function initImage(code) {
+                    var maxImgSizeX = 500;
+                    var maxImgSizeY = 500;
+                    var minX = 150;
+                    var minY = 150;
+                    var maxX = 400;
+                    var maxY = 400;
+                    var wX = 200;
+                    var hY = 200;
+                    var x = Math.round($("#preview-" + code).width() / 2) - Math.round(wX / 2);
+                    var y = Math.round($("#preview-" + code).height() / 2) - Math.round(hY / 2);
+                    var x1 = x + wX;
+                    var y1 = y + hY;
+                    $("#target-" + code).Jcrop({
+                        bgColor: "white",
+                        bgOpacity: .4,
+                        setSelect: [x, y, x1, y1],
+                        minSize: [minX, minY],
+                        maxSize: [maxX, maxY],
+                        onChange: function (coords) {
+                            showPreview(coords, code);
+                        },
+                        onSelect: function (coords) {
+                            showPreview(coords, code);
+                        },
+                        aspectRatio: 0,
+                        boxWidth: maxImgSizeX,
+                        boxHeight: maxImgSizeY
+                    }, function () {
+                        jcrop_api = this;
+                    });
+                }
+
+                function showPreview(coords, code) {
+                    var rx = $("#previewContainer-" + code)[0].offsetWidth / coords.w;
+                    var ry = $("#previewContainer-" + code)[0].offsetHeight / coords.h;
+                    $("#preview-" + code).css({
+                        position: 'relative',
+                        overflow: 'hidden',
+                        width: Math.round(rx * $("#target-" + code).width()) + "px",
+                        height: Math.round(ry * $("#target-" + code).height()) + "px",
+                        marginLeft: '-' + Math.round(rx * coords.x) + "px",
+                        marginTop: '-' + Math.round(ry * coords.y) + "px"
+                    });
+                }
+
+                function setPreviewImage(code) {
+
+                    if ((jcrop_api === null) || (jcrop_api === undefined) || ($("#target-" + code).attr("src") === "")) {
+                        return;
+                    }
+
+                    var selection = jcrop_api.tellSelect();
+                    var img = $("#target-" + code)[0];
+                    var canvas = document.createElement("canvas");
+                    var previewContainer = $("#previewContainer-" + code)[0];
+                    canvas.width = previewContainer.offsetWidth;
+                    canvas.height = previewContainer.offsetHeight;
+                    var ctx = canvas.getContext("2d");
+                    ctx.drawImage(img, selection.x, selection.y, selection.w, selection.h, 0, 0, canvas.width, canvas.height);
+                    $("#preview-" + code).attr("src", canvas.toDataURL());
+                    $("#preview-" + code).removeAttr("style");
+                    destroyJCrop(code);
+                }
+
+                function destroyJCrop(code) {
+                    if (jcrop_api) {
+                        jcrop_api.destroy();
+                    }
+
+                    $("#targetContainer-" + code).empty();
+                    $("#targetContainer-" + code).append("<img id='target-" + code + "' src='' >");
+                }
+
+                function deletePhotograph(code) {
+                    $("#preview-" + code).attr("src", "");
+                }
+
+                function formConstructor(formFields) {
+                    var formId = formFields.formId;
+                    var fields = formFields.fields;
+                    var formHtml = $.tmpl($("#formHtmlPrototypeTemplate"), [{formId: formId}]);
+                    var entities = formFields.entity;
+                    if (entities !== null && entities !== "" && typeof entities !== 'undefined') {
+                        appendFields(fields, formHtml, "append", entities[0]);
+                    } else {
+                        appendFields(fields, formHtml, "append", null);
+                    }
+                    if (formFields.googleCaptchaSrcId) {
+                        $.tmpl($("#googleCaptchaInputTemplate"), [{}]).appendTo(formHtml);
+                    }
+                    if (!formFields.modal) {
+                        var formButtonsDiv = $.tmpl($("#buttonActionsPrototypeTemplate"), [{}]).appendTo(formHtml);
+                        var formButtons = formButtonsDiv.find(".buttonsHere");
+                        formButtons.removeClass("buttonsHere");
+                        var actions = formFields.custom_actions;
+                        if (actions) {
+                            for (var idx in actions) {
+                                var action = actions[idx];
+                                var btn = $.tmpl($("#actionButtonPrototypeTemplate"), [action]).appendTo(formButtons);
+                                btn.html(action.action_title);
+                            }
+                        } else {
+                            switch (formFields.action) {
+                                case "delete":
+                                    $.tmpl($("#deleteButtonTemplate"), [{}]).appendTo(formButtons);
+                                    break;
+                                case "view":
+                                    break;
+                                default:
+                                    $.tmpl($("#saveButtonTemplate"), [{}]).appendTo(formButtons);
+                                    break;
+                            }
+                        }
+
+                    }
+                    return formHtml;
+                }
+
+                /**
+                 * 
+                 * @param {type} fields {new fields to be appended}
+                 * @param {type} formElement {element to append things}
+                 * @param {type} action {append, prepend, before, after}
+                 * @returns {undefined}
+                 */
+                function addAdditionalFieldsToForm(fields, formElement, action, entity) {
+                    if (formElement[0].nodeName === "FORM") {
+                        formElement.find(".form-errors").remove();
+                    }
+                    switch (action) {
+                        case "prepend":
+                        case "before":
+                            var reverse = [];
+                            for (var idx in fields) {
+                                reverse.unshift(fields[idx]);
+                            }
+                            appendFields(reverse, formElement, action, entity);
+                            break;
+                        case "append":
+                        case "after":
+                            appendFields(fields, formElement, action, entity);
+                            break;
+                        default:
+                            console.log("Wrong action. Actions can be 'append', 'prepend', 'before', 'after'");
+                            break;
+                    }
+                    if (formElement[0].nodeName === "FORM") {
+                        $.tmpl($("#formErrorsTemplate"), [{}]).prependTo(formElement);
+                    }
+                }
+
+                function addAdditionalHtmlToForm(parent, element, action) {
+                    switch (action) {
+                        case "prepend":
+                            element.prependTo(parent);
+                            break;
+                        case "before":
+                            element.insertBefore(parent);
+                            break;
+                        case "append":
+                            element.appendTo(parent);
+                            break;
+                        case "after":
+                            element.insertAfter(parent);
+                            break;
+                        default:
+                            console.log("Wrong action. Actions can be 'append', 'prepend', 'before', 'after'");
+                            break;
+                    }
+                }
+
+                function appendFields(fields, parent, appendAction, defEntity) {
+                    for (var idx in fields) {
+                        var field = fields[idx];
+                        switch (field.type) {
+                            case "complementary_field":
+                                createNormalAndComplementaryField(field, parent, appendAction);
+                                break;
+                            case "field":
+                                checkGrammarForField(field, defEntity);
+                                createField(field, parent, appendAction);
+                                break;
+                            case "input_group":
+                                checkGrammarForField(field, defEntity);
+                                createGroupField(field, parent, appendAction);
+                                break;
+                            case "group":
+                                var group;
+                                var children = field.children;
+                                switch (appendAction) {
+                                    case "prepend":
+                                        group = $.tmpl($("#groupHtmlPrototypeTemplate"), [field]).prependTo(parent);
+                                        if (children && children.length > 0) {
+                                            var reverseChildren = [];
+                                            for (var idx in children) {
+                                                reverseChildren.unshift(children[idx]);
+                                            }
+                                            appendFields(reverseChildren, group, appendAction, defEntity);
+                                        }
+                                        break;
+                                    case "before":
+                                        group = $.tmpl($("#groupHtmlPrototypeTemplate"), [field]).insertBefore(parent);
+                                        if (children && children.length > 0) {
+                                            var reverseChildren = [];
+                                            for (var idx in children) {
+                                                reverseChildren.unshift(children[idx]);
+                                            }
+                                            appendFields(reverseChildren, group, appendAction, defEntity);
+                                        }
+                                        break;
+                                    case "append":
+                                        group = $.tmpl($("#groupHtmlPrototypeTemplate"), [field]).appendTo(parent);
+                                        if (children && children.length > 0) {
+                                            appendFields(children, group, appendAction, defEntity);
+                                        }
+                                        break;
+                                    case "after":
+                                        group = $.tmpl($("#groupHtmlPrototypeTemplate"), [field]).insertAfter(parent);
+                                        if (children && children.length > 0) {
+                                            appendFields(children, group, appendAction, defEntity);
+                                        }
+                                        break;
+                                    default:
+                                        console.log("Warning : Wrong additionType in createField. Supported additionTypes : 'append', 'prepend', 'before', 'after'. Fallback to append");
+                                        group = $.tmpl($("#groupHtmlPrototypeTemplate"), [field]).appendTo(parent);
+                                        if (children && children.length > 0) {
+                                            appendFields(children, group, appendAction, defEntity);
+                                        }
+                                        break;
+                                }
+                                break;
+                            case "title":
+                                var titleArea;
+                                switch (appendAction) {
+                                    case "prepend":
+                                        titleArea = $.tmpl($("#titleHtmlPrototypeTemplate"), [field]).prependTo(parent);
+                                        break;
+                                    case "before":
+                                        titleArea = $.tmpl($("#titleHtmlPrototypeTemplate"), [field]).insertBefore(parent);
+                                        break;
+                                    case "append":
+                                        titleArea = $.tmpl($("#titleHtmlPrototypeTemplate"), [field]).appendTo(parent);
+                                        break;
+                                    case "after":
+                                        titleArea = $.tmpl($("#titleHtmlPrototypeTemplate"), [field]).insertAfter(parent);
+                                        break;
+                                    default:
+                                        break;
+                                }
+                                if (field.hidden) {
+                                    titleArea.addClass("hidden");
+                                }
+                                if (field.disabled) {
+                                    titleArea.addClass("disabled");
+                                }
+                                break;
+                            case "help_text":
+                                var helpTextArea;
+                                switch (appendAction) {
+                                    case "prepend":
+                                        helpTextArea = $.tmpl($("#helpTextHtmlPrototypeTemplate"), [field]).prependTo(parent);
+                                        break;
+                                    case "before":
+                                        helpTextArea = $.tmpl($("#helpTextHtmlPrototypeTemplate"), [field]).insertBefore(parent);
+                                        break;
+                                    case "append":
+                                        helpTextArea = $.tmpl($("#helpTextHtmlPrototypeTemplate"), [field]).appendTo(parent);
+                                        break;
+                                    case "after":
+                                        helpTextArea = $.tmpl($("#helpTextHtmlPrototypeTemplate"), [field]).insertAfter(parent);
+                                        break;
+                                    default:
+                                        break;
+                                }
+                                if (field.hidden) {
+                                    helpTextArea.addClass("hidden");
+                                }
+                                if (field.disabled) {
+                                    helpTextArea.addClass("disabled");
+                                }
+                                break;
+                            case "clear":
+                                switch (appendAction) {
+                                    case "prepend":
+                                        $.tmpl($("#clearHtmlPrototypeTemplate"), [field]).prependTo(parent);
+                                        break;
+                                    case "before":
+                                        $.tmpl($("#clearHtmlPrototypeTemplate"), [field]).insertBefore(parent);
+                                        break;
+                                    case "append":
+                                        $.tmpl($("#clearHtmlPrototypeTemplate"), [field]).appendTo(parent);
+                                        break;
+                                    case "after":
+                                        $.tmpl($("#clearHtmlPrototypeTemplate"), [field]).insertAfter(parent);
+                                        break;
+                                    default:
+                                        break;
+                                }
+                                break;
+                            case "button":
+                                if (typeof (field.btnLabel) === 'undefined' || field.btnLabel === null) {
+                                    field.btnLabel = IlyLocales.general.form.choose;
+                                }
+                                switch (appendAction) {
+                                    case "prepend":
+                                        var but = $.tmpl($("#buttonPrototypeTemplate"), [field]).prependTo(parent);
+                                        addButtonAttributes(field, but, field);
+                                        break;
+                                    case "before":
+                                        var but = $.tmpl($("#buttonPrototypeTemplate"), [field]).insertBefore(parent);
+                                        addButtonAttributes(field, but, field);
+                                        break;
+                                    case "append":
+                                        var but = $.tmpl($("#buttonPrototypeTemplate"), [field]).appendTo(parent);
+                                        addButtonAttributes(field, but, field);
+                                        break;
+                                    case "after":
+                                        var but = $.tmpl($("#buttonPrototypeTemplate"), [field]).insertAfter(parent);
+                                        addButtonAttributes(field, but, field);
+                                        break;
+                                    default:
+                                        break;
+                                }
+                                break;
+                            default:
+                                console.log("Wrong type for field with name " + field.code);
+                                break;
+                        }
+                    }
+                }
+
+                function checkGrammarForField(field, defEntity) {
+                    if (field.datatype === "string" || field.datatype === "textarea") {
+                        var entity = null;
+                        if (field.group !== null && field.group !== "" && typeof field.group !== 'undefined') {
+                            if (Model[capitalizeFirstLetter(field.group)] !== null && Model[capitalizeFirstLetter(field.group)] !== "" && typeof Model[capitalizeFirstLetter(field.group)] !== 'undefined') {
+                                entity = Model[capitalizeFirstLetter(field.group)].canonicalName;
+                            }
+                        } else if (defEntity !== null && defEntity !== "" && typeof defEntity !== 'undefined') {
+                            entity = defEntity;
+                        }
+                        if (entity !== null) {
+                            if (!_attributesFromEntity.hasOwnProperty(entity)) {
+                                Drools.api.fetchGrammarForQuasicsSynchronous([entity], Entities.actions.addEntitiesToMap);
+                            }
+                            if (_attributesFromEntity.hasOwnProperty(entity)) {
+                                field = enrichFromGrammar(_attributesFromEntity[entity], field);
+                            }
+                        }
+                    }
+                }
+
+                function createField(field, parent, additionType) {
+                    var fieldPrototype;
+                    switch (additionType) {
+                        case "append":
+                            fieldPrototype = $.tmpl($("#fieldInputPrototypeTemplate"), [field]).appendTo(parent);
+                            break;
+                        case "prepend":
+                            fieldPrototype = $.tmpl($("#fieldInputPrototypeTemplate"), [field]).prependTo(parent);
+                            break;
+                        case "before":
+                            fieldPrototype = $.tmpl($("#fieldInputPrototypeTemplate"), [field]).insertBefore(parent);
+                            break;
+                        case "after":
+                            fieldPrototype = $.tmpl($("#fieldInputPrototypeTemplate"), [field]).insertAfter(parent);
+                            break;
+                        default:
+                            console.log("Wrong additionType in createField. supported additionTypes : 'append', 'prepend', 'before', 'after'. Fallback to append");
+                            fieldPrototype = $.tmpl($("#fieldInputPrototypeTemplate"), [field]).appendTo(parent);
+                            break;
+                    }
+
+                    addFieldPrototypeAttributes(field, fieldPrototype);
+                    var inputDiv = fieldPrototype.find(".inputHere");
+                    inputDiv.removeClass("inputHere");
+                    appendDataType(field, inputDiv);
+                    $.tmpl($("#reportStatusPrototypeTemplate"), [{}]).appendTo(inputDiv);
+                }
+
+                function createNormalAndComplementaryField(field, parent, additionType) {
+                    var fieldPrototype;
+                    switch (additionType) {
+                        case "append":
+                            fieldPrototype = $.tmpl($("#fieldHelpInputGroupPrototypeTemplate"), [field]).appendTo(parent);
+                            break;
+                        case "prepend":
+                            fieldPrototype = $.tmpl($("#fieldHelpInputGroupPrototypeTemplate"), [field]).prependTo(parent);
+                            break;
+                        case "before":
+                            fieldPrototype = $.tmpl($("#fieldHelpInputGroupPrototypeTemplate"), [field]).insertBefore(parent);
+                            break;
+                        case "after":
+                            fieldPrototype = $.tmpl($("#fieldHelpInputGroupPrototypeTemplate"), [field]).insertAfter(parent);
+                            break;
+                        default:
+                            console.log("Wrong additionType in createField. supported additionTypes : 'append', 'prepend', 'before', 'after'. Fallback to append");
+                            fieldPrototype = $.tmpl($("#fieldHelpInputGroupPrototypeTemplate"), [field]).appendTo(parent);
+                            break;
+                    }
+
+                    addFieldAndComplementaryPrototypeAttributes(field, fieldPrototype);
+                    var inputDiv = fieldPrototype.find(".inputBasicHere");
+                    inputDiv.removeClass("inputBasicHere");
+                    appendDataType(field, inputDiv);
+                    $.tmpl($("#reportStatusPrototypeTemplate"), [{}]).appendTo(inputDiv);
+                }
+
+                function createGroupField(field, parent, additionType) {
+                    var fieldPrototype;
+                    var tmplField = "#fieldInputGroupPrototypeTemplate";
+
+                    switch (additionType) {
+                        case "append":
+                            fieldPrototype = $.tmpl($(tmplField), [field]).appendTo(parent);
+                            break;
+                        case "prepend":
+                            fieldPrototype = $.tmpl($(tmplField), [field]).prependTo(parent);
+                            break;
+                        case "before":
+                            fieldPrototype = $.tmpl($(tmplField), [field]).insertBefore(parent);
+                            break;
+                        case "after":
+                            fieldPrototype = $.tmpl($(tmplField), [field]).insertAfter(parent);
+                            break;
+                        default:
+                            console.log("Wrong additionType in createField. supported additionTypes : 'append', 'prepend', 'before', 'after'. Fallback to append");
+                            fieldPrototype = $.tmpl($("#fieldInputGroupPrototypeTemplate"), [field]).appendTo(parent);
+                            break;
+                    }
+                    addFieldPrototypeAttributes(field, fieldPrototype);
+                    var inputDiv = fieldPrototype.find(".inputHere");
+                    var inputGroup = fieldPrototype.find(".input-group");
+                    inputDiv.removeClass("inputHere");
+                    if (field.buttons_before) {
+                        for (var idx in field.buttons_before) {
+                            if (typeof (field.buttons_before[idx].btnLabel) === 'undefined' || field.buttons_before[idx].btnLabel === null) {
+                                field.buttons_before[idx].btnLabel = IlyLocales.general.form.choose;
+                            }
+                            var bb = field.buttons_before[idx];
+                            var buttonBefore = $.tmpl($("#buttonPrototypeTemplate"), [bb]).appendTo(inputGroup);
+                            addButtonAttributes(field, buttonBefore, bb);
+                        }
+
+                    }
+                    appendDataType(field, inputGroup);
+                    if (field.buttons_after) {
+                        for (var idx in field.buttons_after) {
+                            if (typeof (field.buttons_after[idx].btnLabel) === 'undefined' || field.buttons_after[idx].btnLabel === null) {
+                                field.buttons_after[idx].btnLabel = IlyLocales.general.form.choose;
+                            }
+                            field.buttons_after[idx].btnClass = "chooseBtn";
+                            var bb = field.buttons_after[idx];
+                            var buttonAfter = $.tmpl($("#buttonPrototypeTemplate"), [bb]).appendTo(inputGroup);
+                            addButtonAttributes(field, buttonAfter, bb);
+                        }
+                    }
+                    $.tmpl($("#reportStatusPrototypeTemplate"), [{}]).appendTo(inputDiv);
+                }
+
+                function appendDataType(field, inputDiv) {
+                    switch (field.datatype) {
+                        case "string":
+                        case "email":
+                        case "password":
+                            var type = field.datatype === "string" ? "text" : field.datatype;
+                            field.formType = type;
+                            var textInput = $.tmpl($("#textFieldHtmlPrototypeTemplate"), [field]).appendTo(inputDiv);
+                            addBasicAttributes(field, textInput);
+                            break;
+                        case "number":
+                            var numberInput = $.tmpl($("#numberFieldHtmlPrototypeTemplate"), [field]).appendTo(inputDiv);
+                            addBasicAttributes(field, numberInput);
+                            addNumericAttributes(field, numberInput);
+                            break;
+                        case "link":
+                            var linkInput = $.tmpl($("#linkFieldHtmlPrototypeTemplate"), [field]).appendTo(inputDiv);
+                            addBasicAttributes(field, linkInput);
+                            break;
+                        case "divArea":
+                            var divInput = $.tmpl($("#divHtmlPrototypeTemplate"), [field]).appendTo(inputDiv);
+                            addBasicAttributes(field, divInput);
+                            break;
+                        case "year":
+                            var yearInput = $.tmpl($("#yearFieldHtmlPrototypeTemplate"), [field]).appendTo(inputDiv);
+                            addBasicAttributes(field, yearInput);
+                            addNumericAttributes(field, yearInput);
+                            break;
+                        case "short":
+                            var shortInput = $.tmpl($("#shortFieldHtmlPrototypeTemplate"), [field]).appendTo(inputDiv);
+                            addBasicAttributes(field, shortInput);
+                            addShortAttributes(field, shortInput);
+                            break;
+                        case "maskedTextBox":
+                            var kendoMaskedInput = $.tmpl($("#kendoMaskedTextBoxFieldHtmlPrototypeTemplate"), [field]).appendTo(inputDiv);
+                            addBasicAttributes(field, kendoMaskedInput);
+                            break;
+                        case "htmlArea":
+                            var htmlInput = $.tmpl($("#plainHtmlPrototypeTemplate"), [field]).appendTo(inputDiv);
+                            addBasicAttributes(field, htmlInput);
+                            break;
+                        case "boolean":
+                            var booleanGroup = $.tmpl($("#booleanFieldHtmlPrototypeTemplate"), [field]).appendTo(inputDiv);
+                            var booleanInput = $(booleanGroup.find("[name=" + field.code + "]"));
+                            addBasicAttributes(field, booleanInput);
+                            break;
+                        case "date":
+                            var dateGroup = $.tmpl($("#dateFieldHtmlPrototypeTemplate"), [field]).appendTo(inputDiv);
+                            var dateInput = $(dateGroup.find("[name=" + field.code + "]"));
+                            var dateSpan = $(dateGroup.find("span"));
+                            addBasicAttributes(field, dateInput);
+//                            if(field.format){
+//                                dateFormat(dateInput, field.format);
+//                            }
+                            if (field.hidden) {
+                                $(dateSpan).addClass("hidden");
+                            }
+                            break;
+                        case "textarea":
+                            var textareaInput = $.tmpl($("#textareaFieldHtmlPrototypeTemplate"), [field]).appendTo(inputDiv);
+                            addBasicAttributes(field, textareaInput);
+                            addTextareaAttributes(field, textareaInput);
+                            break;
+                        case "select":
+                            var selectInput = $.tmpl($("#selectFieldHtmlPrototypeTemplate"), [field]).appendTo(inputDiv);
+                            addBasicAttributes(field, selectInput);
+                            var select_options = field.options;
+                            if (select_options) {
+                                for (var idx in select_options) {
+                                    var opt = select_options[idx];
+                                    var optionsInput = $.tmpl($("#selectOptionsFieldHtmlPrototypeTemplate"), [opt]).appendTo(selectInput);
+                                    addOptionAttributes(opt, optionsInput);
+                                }
+                            }
+                            break;
+                        case "radio":
+                            var radio_options = field.options;
+                            if (radio_options) {
+                                for (var idx in radio_options) {
+                                    var r_opt = radio_options[idx];
+                                    r_opt.code = field.code;
+                                    var radioInput = $.tmpl($("#radioOptionsFieldHtmlPrototypeTemplate"), [r_opt]).appendTo(inputDiv);
+                                    addRadioOptionsAttr(r_opt, radioInput, field);
+                                }
+                            }
+                            break;
+                        case "kendoSelect":
+                            var kendoSelectInput = $.tmpl($("#kendoSelectHtmlPrototypeTemplate"), [field]).appendTo(inputDiv);
+                            addBasicAttributes(field, kendoSelectInput);
+                            break;
+                        case "kendoMultiSelect":
+                            var kendoMultiSelectInput = $.tmpl($("#kendoMultiSelectHtmlPrototypeTemplate"), [field]).appendTo(inputDiv);
+                            if (field.hidden) {
+                                kendoMultiSelectInput.addClass("hidden");
+                            }
+                            break;
+                        case "image":
+                            var imageInput = $.tmpl($("#imageHtmlPrototypeTemplate"), [field]).appendTo(inputDiv);
+                            break;
+                        case "file":
+                            var fileInput = $.tmpl($("#fileHtmlPrototypeTemplate"), [field]).appendTo(inputDiv);
+                            addBasicAttributes(field, fileInput);
+                            break;
+                        case "expressionTreeList":
+                            var treelistInput = $.tmpl($("#kendoTreeviewHtmlPrototypeTemplate"), [field]).appendTo(inputDiv);
+                            break;
+                        case "kendoEditor":
+                            var kendoEditorInput = $.tmpl($("#kendoEditorHtmlPrototypeTemplate"), [field]).appendTo(inputDiv);
+                            break;
+                        case "htmlText":
+                            var htmlText = $.tmpl($("#htmlTextPrototypeTemplate"), [field]).appendTo(inputDiv);
+                            addBasicAttributes(field, htmlText);
+                            break;
+                        default:
+                            console.log("Unknown datatype '" + field.datatype + "' for field " + field.code + ". Using generic purpose input");
+                            var genericInput = $.tmpl($("#genericHtmlPrototypeTemplate"), [field]).appendTo(inputDiv);
+                            addBasicAttributes(field, genericInput);
+                            break;
+                    }
+                }
+                
+                function addFieldPrototypeAttributes(field, fieldPrototype) {
+                    var label = fieldPrototype.find(".labelHere");
+                    var labelText = label.find("label");
+
+                    var input = fieldPrototype.find(".inputHere");
+                    if (field.inputClass) {
+                        input.addClass(field.inputClass);
+                    } else {
+                        input.addClass("col-md-8");
+                        input.addClass("col-sm-8");
+                        input.addClass("col-xs-8");
+                    }
+                    if (field.hidden) {
+                        fieldPrototype.addClass("hidden");
+                        label.addClass("hidden");
+                    }
+                    if (field.labelClass) {
+                        label.addClass(field.labelClass);
+                    } else {
+                        label.addClass("col-md-4");
+                        label.addClass("col-sm-4");
+                        label.addClass("col-xs-4");
+                    }
+                    if (field.required) {
+                        labelText.text(field.title + " *");
+                    }
+                    if (field.description) {
+                        $.tmpl($("#descriptionPrototypeTemplate"), [{description: field.description}]).appendTo(label);
+                    }
+                    label.removeClass("labelHere");
+                }
+
+                function addBasicAttributes(field, input) {
+                    if (field.hidden) {
+                        input.addClass("hidden");
+                    }
+                    if (field.required) {
+                        input.attr("required", "required");
+                    }
+                    if (field.disabled) {
+                        input.attr("disabled", true);
+                    }
+                    if (field.readonly) {
+                        input.attr("readonly", "readonly");
+                    }
+                    if (field.group) {
+                        input.attr("data-group-map", field.group);
+                    }
+                    if (field.fromField) {
+                        input.attr("data-from-field", field.fromField);
+                    }
+                    if (field.maxlength) {
+                        input.attr("maxlength", field.maxlength);
+                    }
+                    if (field.additionalAttrs) {
+                        $.each(field.additionalAttrs, function (i, additionalAttr) {
+                            input.attr(additionalAttr.attr, additionalAttr.value);
+                        });
+                    }
+                }
+
+                function addNumericAttributes(field, input) {
+                    if (field.max_number) {
+                        input.attr("max", field.max_number);
+                    }
+                    if (field.min_number) {
+                        input.attr("min", field.min_number);
+                    }
+                    if (field.step) {
+                        input.attr("step", field.step);
+                    }
+                }
+
+                function addShortAttributes(field, input) {
+                    if (field.max_number && field.max_number <= 32767) {
+                        input.attr("max", field.max_number);
+                    } else {
+                        input.attr("max", 32767);
+                    }
+                    if (field.min_number) {
+                        input.attr("min", field.min_number);
+                    }
+                    if (field.step) {
+                        input.attr("step", field.step);
+                    }
+                }
+
+                function addTextareaAttributes(field, input) {
+                    if (field.row) {
+                        input.attr("row", field.row);
+                    } else {
+                        input.attr("row", "2");
+                    }
+                }
+
+                function addButtonAttributes(field, button, buttonAttr) {
+                    if (field.hidden) {
+                        button.addClass("hidden");
+                    }
+                    if (field.disabled) {
+                        button.addClass("disabled");
+                    }
+                    if (buttonAttr.btnId) {
+                        button.attr("id", buttonAttr.btnId);
+                    }
+                    if (buttonAttr.btnLabel) {
+                        $(button.find("button")).html(buttonAttr.btnLabel);
+                    }
+                    if (buttonAttr.btnTitle) {
+                        $(button.find("button")).attr("title", buttonAttr.btnTitle);
+                    }
+                    if (buttonAttr.btnClass) {
+                        $(button.find("button")).addClass(buttonAttr.btnClass);
+                    }
+                }
+
+                function addOptionAttributes(option, optionsInput) {
+                    if (option.additional) {
+                        optionsInput.attr("additional", option.additional);
+                    }
+                    if (option.entityId) {
+                        optionsInput.attr("data-entityId", option.entityId);
+                    } else {
+                        optionsInput.attr("data-entityId", "id");
+                    }
+                }
+
+                function addRadioOptionsAttr(r_opt, radioInput, field) {
+                    var input = radioInput.find("input");
+                    if (field.hidden) {
+                        radioInput.addClass("hidden");
+                    }
+                    addBasicAttributes(field, input);
+                }
+
+            </script>
+
+            <template id="formHtmlPrototypeTemplate">
+                <form id="${formId}" class="form-horizontal">
+                    <div class="form-errors alert alert-danger" role="alert" style="display:none"></div>
+                </form>
+            </template>
+
+            <template id="formErrorsTemplate">
+                <div class="form-errors alert alert-danger" role="alert" style="display:none"></div>
+            </template>
+
+            <template id="titleHtmlPrototypeTemplate">
+                <p class="title">${title}</p>
+            </template>
+
+            <template id="viewDisplayTemplate">
+                <p class="form-control-p" data-value-name="${code}">${value}</p>
+            </template>
+
+            <template id="helpTextHtmlPrototypeTemplate">
+                <p class="form-control-help-text">${title}</p>
+            </template>
+
+            <template id="clearHtmlPrototypeTemplate">
+                <div style="clear:both;"></div>
+            </template>
+
+            <template id="plainHtmlPrototypeTemplate">
+                <div class="form-html-content form-control" name="${code}" type="htmlArea"></div>
+            </template>
+
+            <template id="groupHtmlPrototypeTemplate">
+                <div class="${groupClass}"></div>
+            </template>
+
+            <template id="fieldInputPrototypeTemplate">
+                <div class="form-group">
+                    <div class="labelHere">
+                        <label class="control-label" for="${code}">${title}</label>
+                    </div>
+                    <div class="inputHere"></div>
+                </div>
+            </template>
+
+            <template id="fieldHelpInputGroupPrototypeTemplate">
+                <div class="form-group">
+                    <div class="labelHere">
+                        <label class="control-label" for="${code}">${title}</label>
+                    </div>
+                    <div class="helpInfoHere col-md-3">
+                        <p>${defaultTitle}</p>  
+                    </div>
+                    <div class="inputBasicHere"></div>
+                </div>
+            </template>
+
+            <template id="fieldInputGroupPrototypeTemplate">
+                <div class="form-group">
+                    <div class="labelHere">
+                        <label class="control-label" for="${code}">${title}</label>
+                    </div>
+                    <div class="inputHere">
+                        <div class="input-group"></div>
+                    </div>
+                </div>
+            </template>
+
+            <template id="textFieldHtmlPrototypeTemplate">
+                <input type="${formType}" name="${code}" value="${value}" data-valid="true" class="form-control">
+            </template>
+            
+            <template id="htmlTextPrototypeTemplate">
+                <input type="htmlText" name="${code}" value="${value}" class="form-control">
+            </template>
+           
+            <template id="numberFieldHtmlPrototypeTemplate">
+                <input type="number" name="${code}" value="${value}" data-valid="true" class="form-control">
+            </template>
+
+            <template id="yearFieldHtmlPrototypeTemplate">
+                <input type="number" data-type="${datatype}" name="${code}" value="${value}" data-valid="true" class="form-control">
+            </template>
+
+            <template id="linkFieldHtmlPrototypeTemplate">
+                <a data-name="${code}" target="_blank" class="link-form-control btn-link">${value}</a>
+            </template>
+
+            <template id="shortFieldHtmlPrototypeTemplate">
+                <input type="number" name="${code}" value="${value}" data-valid="true" class="form-control">
+            </template>
+
+            <template id="kendoMaskedTextBoxFieldHtmlPrototypeTemplate">
+                <input type="text" data-type="${datatype}" name="${code}" value="${value}" data-valid="true" class="form-control">
+            </template>
+
+            <template id="fileHtmlPrototypeTemplate">
+                <a href="" target="_blank" data-code="${code}"></a>
+                <input type="file" name="${code}" id="${code}">
+            </template>
+
+            <template id="kendoTreeviewHtmlPrototypeTemplate">
+                <div id="${code}">
+                    <div id="${code}_before" class="col-md-12"></div>
+                    <div class="col-md-12"><div id="${code}_treelist" class="treelist-data"></div></div>
+                </div>
+            </template>
+
+            <template id="booleanFieldHtmlPrototypeTemplate">
+                <div class="input-group">
+                    <input type="checkbox" name="${code}" data-valid="true">
+                </div>   
+            </template>
+
+            <template id="dateFieldHtmlPrototypeTemplate">
+                <div class="calendar input-group date min-width-100">
+                    <input data-valid="true" type="text" class="form-control date-field" name="${code}">
+                    <span class="input-group-addon"><em class="glyphicon glyphicon-calendar"></em></span>
+                </div>   
+            </template>
+
+            <template id="textareaFieldHtmlPrototypeTemplate">
+                <textarea name="${code}" data-valid="true" class="form-control"></textarea>
+            </template>
+
+            <template id="divHtmlPrototypeTemplate">
+                <div class="form-box form-control" name="${code}"></div>
+            </template>
+
+            <template id="selectFieldHtmlPrototypeTemplate">
+                <select name="${code}" type="select" id="${code}" data-valid="true" class="form-control">
+                    <option value="">Επιλέξτε</option>
+                </select>
+            </template>
+
+            <template id="selectOptionsFieldHtmlPrototypeTemplate">
+                <option value="${key}">${value}</option>
+            </template>
+
+            <template id="radioOptionsFieldHtmlPrototypeTemplate">
+                <div class="radio-inline">
+                    <label>
+                        <input type="radio" name="${code}" value="${key}" data-valid="true" class=""> ${value}
+                    </label>
+                </div>
+            </template>
+
+            <template id="kendoSelectHtmlPrototypeTemplate">
+                <select style="width:100%;" data-type="${datatype}" name="${code}" id="${code}" data-placeholder="..."></select>
+            </template>
+
+            <template id="kendoMultiSelectHtmlPrototypeTemplate">
+                <select style="width:100%;" data-type="${datatype}" name="${code}" id="${code}" data-placeholder="..."></select>
+            </template>
+
+            <template id="kendoEditorHtmlPrototypeTemplate">
+                <textarea name="${code}"></textarea>
+            </template>
+
+            <template id="imageHtmlPrototypeTemplate">
+                <div class="row">
+                    <div class="col-md-6" data-selectimage="${code}">
+                        <a href="javascript:void(0)" id="selectImage-${code}" data-code="${code}" class="btn btn-default"><span>Επιλογή Φωτογραφίας</span></a>
+                        <label for="imgInp-${code}" style="display:none;">Language</label>
+                        <input type="file" id="imgInp-${code}" accept="image/*" data-code="${code}" style="display:none;">
+                        <div id="targetContainer-${code}" data-code="${code}">
+                            <img src="" id="target-${code}" data-code="${code}" alt="#{general.form.photo.chosen}">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-link" data-deletephotograph="${code}" onclick="deletePhotograph('${code}')"><span>Διαγραφή Φωτογραφίας</span></button>
+                        <div id="previewContainer-${code}" class="form-preview-container">
+                            <img type="img" id="preview-${code}" class="form-preview-img" name="${code}" data-code="${code}" alt="#{general.form.photo.preview}">
+                        </div>
+                    </div>
+                </div>
+            </template>
+
+            <template id="genericHtmlPrototypeTemplate">
+                <input type="${datatype}" name="${code}" data-valid="true" class="form-control">
+            </template>
+
+            <template id="descriptionPrototypeTemplate">
+                <span class="form-helper-text" data-toggle="tooltip" data-placement="right" title="${description}"><em class="glyphicon glyphicon-info-sign"></em></span>
+            </template>
+
+            <template id="buttonPrototypeTemplate">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button"></button>
+                </span>
+            </template>
+
+            <template id="googleCaptchaInputTemplate">
+                <div id="g-recaptcha"></div>
+            </template>
+            <template id="googleCaptchaScriptTemplate">
+                <script id="captchaSrc" async="" defer=""></script>
+            </template>
+
+            <template id="buttonActionsPrototypeTemplate">
+                <!--<div class="row">-->
+                <div class="col-md-12">
+                    <div class="btn-toolbar pull-right">
+                        <div class="btn-group buttonsHere"></div>
+                    </div>
+                </div>
+                <!--</div>-->
+            </template>
+
+            <template id="deleteButtonTemplate">
+                <button type="button" class="btn-deleteEntity btn btn-danger"><span class="glyphicon glyphicon-trash"></span> <span>Διαγραφή</span></button>
+            </template>
+            <template id="saveButtonTemplate">
+                <button type="button" class="btn-saveEntity btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> <span>Αποθήκευση</span></button>
+            </template>
+            <template id="actionButtonPrototypeTemplate">
+                <!--                <button type="button" class="${action_class}" onclick="${
+                                            onclick
+                                        }"></button>-->
+                <button type="button" class="${action_class} btn btn-primary" onclick="${
+                            onclick
+                        }"><span class="${icon}"></span> ${label}</button>
+            </template>
+            <template id="reportStatusPrototypeTemplate">
+                <div class="report-status"></div>
+            </template>
+
+            <script id="formPrototypeTemplate" type="text/x-jquery-tmpl">
+                <form id="${formId}" class="form-horizontal">
+                {{if modal}}
+                <div class="form-errors alert alert-danger" role="alert" style="display:none"></div>
+                {{else}}
+                <div class="form-errors alert alert-danger" role="alert" style="display:none"></div>
+                {{/if}}
+                {{if (fields.length > 0)}}
+                {{tmpl(fields) "#fieldsPrototypeTemplate"}}
+                {{/if}}
+                {{if modal}}
+                {{else}}
+                <div class="row">
+                <div class="col-md-12">
+                {{if custom_actions}}
+                <div class="btn-toolbar pull-right">
+                <div class="btn-group">
+                {{each(i, custom_action) custom_actions}}
+                <button type="button" class="${action_class}" onclick="${onclick}">{{html action_title}}</button>
+                {{/each}}
+                </div>
+                </div>
+                {{else}}
+                <div class="btn-toolbar pull-right">
+                <div class="btn-group">
+                {{if action === "delete"}}
+                <button type="button" class="btn-deleteEntity btn btn-danger"><span class="glyphicon glyphicon-trash"></span> <span>Διαγραφή</span></button>
+                {{else}}
+                <button type="button" class="btn-saveEntity btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> <span>Αποθήκευση</span></button>
+                {{/if}}
+                </div>
+                </div>
+                {{/if}}
+                </div>
+                </div>
+                {{/if}}
+                </form>
+            </script>
+
+            <script id="fieldsPrototypeTemplate" type="text/x-jquery-tmpl">
+                {{if type === "field" || type === "input_group"}}
+                {{tmpl($data) "#fieldProtoTypeTemplate"}}
+                {{else type === "group"}}
+                {{tmpl($data) "#groupProtoTypeTemplate"}}
+                {{else type === "title"}}
+                <p class="title">${title}</p>
+                {{else type === "clear"}}
+                <div style="clear:both;"></div>
+                {{/if}}
+            </script>
+
+            <script id="groupProtoTypeTemplate" type="text/x-jquery-tmpl">
+                <div class="${groupClass}">
+                {{if children}}
+                {{if (children.length > 0)}}
+                {{tmpl(children) "#fieldsPrototypeTemplate"}}
+                {{/if}}
+                {{/if}}
+                </div>
+            </script>
+
+            <script id="textFieldProtoTypeTemplate" type="text/x-jquery-tmpl">
+                <input type="text" name="${code}" value="${value}" data-valid="true" class="form-control {{if hidden}}hidden{{/if}}" {{if required}}required {{/if}}{{if disabled}} disabled{{/if}}{{if readonly}} readonly{{/if}}{{if group}} data-group-map="${group}"{{/if}} />
+            </script>
+
+            <script id="numberFieldProtoTypeTemplate" type="text/x-jquery-tmpl">
+                <input type="number" name="${code}" value="${value}" data-valid="true" class="form-control {{if hidden}}hidden{{/if}}" {{if required}} required {{/if}}{{if disabled}} disabled{{/if}}{{if readonly}} readonly{{/if}}{{if group}} data-group-map="${group}"{{/if}} {{tmpl($data) "#numberFieldValidationTemplate"}} />
+            </script>
+
+            <script id="shortFieldProtoTypeTemplate" type="text/x-jquery-tmpl">
+                <input type="number" name="${code}" value="${value}" data-valid="true" class="form-control {{if hidden}}hidden{{/if}}" {{if required}} required {{/if}}{{if disabled}} disabled{{/if}}{{if readonly}} readonly{{/if}}{{if group}} data-group-map="${group}"{{/if}} {{tmpl($data) "#shortFieldValidationTemplate"}} />
+            </script>
+
+            <script id="numberFieldValidationTemplate" type="text/x-jquery-tmpl">
+                {{if typeof max_number !== "undefined" && max_number !== null}} max="${max_number}"{{/if}}
+                {{if typeof min_number !== "undefined" && min_number !== null}} min="${min_number}"{{/if}}
+                {{if typeof step !== "undefined" && step !== null}} step="${step}"{{/if}}
+            </script>
+
+            <script id="shortFieldValidationTemplate" type="text/x-jquery-tmpl">
+                {{if typeof max_number !== "undefined" && max_number !== null && max_number < 32768}} max="${max_number}"{{else}} max="32767"{{/if}}
+                {{if typeof min_number !== "undefined" && min_number !== null}} min="${min_number}"{{/if}}
+                {{if typeof step !== "undefined" && step !== null}} step="${step}"{{/if}}
+            </script>
+
+            <script id="yearFieldProtoTypeTemplate" type="text/x-jquery-tmpl">
+                <input type="number" data-type="${datatype}" name="${code}" value="${value}" data-valid="true" class="form-control {{if hidden}}hidden{{/if}}" {{if required}} required {{/if}}{{if disabled}} disabled{{/if}}{{if readonly}} readonly{{/if}}{{if group}} data-group-map="${group}"{{/if}} {{tmpl($data) "#numberFieldValidationTemplate"}} />
+            </script>
+
+            <script id="selectFieldProtoTypeTemplate" type="text/x-jquery-tmpl">
+                <select name="${code}" type="select" id="${code}" data-valid="true" class="form-control {{if hidden}}hidden{{/if}}" {{if required}}required {{/if}}{{if disabled}} disabled{{/if}}{{if readonly}} readonly{{/if}}{{if group}} data-group-map="${group}"{{/if}} >
+                <option value=""><span>Επιλογή</span></option>
+                {{if options}}
+                {{each options}}
+                <option value="${key}" {{if additional}}${additional}{{/if}} data-entityId="{{if entityId}}${entityId}{{else}}id{{/if}}">${value}</option>
+                {{/each}}
+                {{/if}}
+                </select>
+            </script>
+
+            <script id="fieldProtoTypeTemplate" type="text/x-jquery-tmpl">
+                <div class="form-group">
+                {{if title}}
+                <div class="{{if labelClass}}${labelClass}{{else}}col-md-4{{/if}}">
+                <label class="control-label {{if hidden}}hidden{{/if}}" for="${code}">${title} {{if required}}*{{/if}} {{if description}}<span class="form-helper-text" data-toggle="tooltip" data-placement="right" title="${description}" ><i class="glyphicon glyphicon-info-sign"></i></span>{{/if}}</label>
+                </div>
+                <div class="{{if inputClass}}${inputClass}{{else}}col-md-8{{/if}}">
+                {{/if}}
+                {{if type === "input_group"}}
+                <div class="input-group">
+                {{/if}}
+                {{if type === "input_group"}}
+                {{if buttons_before}}
+                {{if (buttons_before.length > 0)}}
+                {{each(i, button_before) buttons_before}}
+                <span class="input-group-btn">
+                <button class="btn btn-default {{if hidden}}hidden{{/if}}" type="button" {{if btnId}}id="${btnId}"{{/if}}>${btnLabel}</button>
+                </span>
+                {{/each}}
+                {{/if}}
+                {{/if}}
+                {{/if}}
+                {{if datatype === "string"}}
+                {{tmpl($data) "#textFieldProtoTypeTemplate"}}
+                {{else datatype === "number"}}
+                {{tmpl($data) "#numberFieldProtoTypeTemplate"}}
+                {{else datatype === "year"}}
+                {{tmpl($data) "#yearFieldProtoTypeTemplate"}}
+                {{else datatype === "short"}}
+                {{tmpl($data) "#shortFieldProtoTypeTemplate"}}
+                {{else datatype === "maskedTextBox"}}
+                <input type="text" data-type="${datatype}" name="${code}" value="${value}" data-valid="true" class="form-control {{if hidden}}hidden{{/if}}" {{if required}}required {{/if}}{{/if}}{{if disabled}} disabled{{/if}}{{if readonly}} readonly{{/if}}{{if group}} data-group-map="${group}"{{/if}} />                
+                {{else datatype === "boolean"}}
+                <div class="input-group">
+                <input type="checkbox" name="${code}" data-valid="true" class="{{if hidden}}hidden{{/if}}" {{if required}}required {{/if}}{{if disabled}} disabled{{/if}}{{if readonly}} readonly{{/if}}{{if group}} data-group-map="${group}"{{/if}} />
+                </div>                     
+                {{else datatype === "date"}} 
+                <div class="calendar input-group date min-width-100">
+                <input data-valid="true" type="text" class="form-control date-field {{if hidden}}hidden{{/if}}" name="${code}" {{if required}}required {{/if}}{{if disabled}} disabled{{/if}}{{if readonly}} readonly{{/if}}{{if group}} data-group-map="${group}"{{/if}} />
+                <span class="input-group-addon {{if hidden}}hidden{{/if}}"><i class="glyphicon glyphicon-calendar"></i></span>
+                </div>
+                {{else datatype === "textarea"}}
+                <textarea rows="{{if rows}}${rows}{{else}}2{{/if}}" name="${code}" data-valid="true" class="form-control {{if hidden}}hidden{{/if}}" {{if required}}required {{/if}}{{if disabled}} disabled{{/if}}{{if readonly}} readonly{{/if}}{{if group}} data-group-map="${group}"{{/if}} />
+                {{else datatype === "select"}}
+                {{tmpl($data) "#selectFieldProtoTypeTemplate"}}
+                {{else datatype === "radio"}}
+                {{if options}}
+                {{each options}}
+                <div class="radio-inline {{if hidden}}hidden{{/if}}">
+                <label>
+                <input type="radio" name="${code}" value="${key}" data-valid="true" class="{{if hidden}}hidden{{/if}}" {{if required}}required {{/if}}{{if disabled}} disabled{{/if}}{{if readonly}} readonly{{/if}} /> ${value}
+                </label>
+                </div>
+                {{/each}}
+                {{/if}}
+                {{else datatype === "kendoSelect" || datatype === "kendoMultiSelect"}}
+                <select style="width:100%;" data-type="${datatype}"{{if required}} required{{/if}}{{if group}} data-group-map="${group}"{{/if}} name="${code}" id="${code}" data-placeholder="#{general.form.select}"></select>
+                {{else datatype === "image"}}
+                <div class="row">
+                <div class="col-md-6">
+                <a href="javascript:void(0)" id="selectImage-${code}" data-code="${code}" class="btn btn-default"><span>Επιλογή Φωτογραφίας</span></a>
+                <input type="file" id="imgInp-${code}" accept="image/*" data-code="${code}" style="display:none;" />
+                <div id="targetContainer-${code}" data-code="${code}">
+                <img src="" id="target-${code}" data-code="${code}" alt="general.form.photo.chosen" />
+                </div>
+                </div>
+                <div class="col-md-6">
+                <button type="button" class="btn btn-link" onclick="deletePhotograph('${code}')"><span>Διαγραφή Φωτογραφίας</span></button>
+                <div id="previewContainer-${code}" class="form-preview-container">
+                <img type="img" id="preview-${code}" class="form-preview-img" name="${code}" data-code="${code}" alt="#{general.form.photo.preview}" />
+                </div>
+                </div>
+                </div>
+                {{else}}
+                <input type="${datatype}" name="${code}" data-valid="true" class="form-control {{if hidden}}hidden{{/if}}" {{if required}}required {{/if}}{{if disabled}} disabled{{/if}}{{if readonly}} readonly{{/if}} />
+                {{/if}}
+                {{if type === "input_group"}}
+                {{if buttons_after}}
+                {{if (buttons_after.length > 0)}}
+                {{each(i, button_after) buttons_after}}
+                <span class="input-group-btn">
+                <button class="btn btn-default {{if hidden}}hidden{{/if}}" type="button" {{if btnId}}id="${btnId}"{{/if}}>${btnLabel}</button>
+                </span>
+                {{/each}}
+                {{/if}}
+                {{/if}}
+                {{/if}}
+                {{if type === "input_group"}}
+                </div>
+                {{/if}}
+                <div class="report-status"></div>
+                {{if title}}
+                </div>
+                {{/if}}
+                </div>
+            </script>
+        </div>
+            <div>
+
+            <script type="text/javascript">
+
+                function generateTab(options) {
+                    var tabContent = options.tabFields;
+                    var selectorEl = options.selectorEl;
+                    var tabSkeletonHtml = $.tmpl($("#tabSkeletonTemplate"), [{}]);
+
+                    var linkAppender = tabSkeletonHtml.find(".toAddLink");
+                    $.tmpl($("#tabPillTemplate"), tabContent).appendTo(linkAppender);
+                    linkAppender.removeClass("toAddLink");
+
+                    var bodyAppender = tabSkeletonHtml.find(".toAddBody");
+                    $.tmpl($("#tabBodyTemplate"), tabContent).appendTo(bodyAppender);
+                    bodyAppender.removeClass("toAddBody");
+
+                    for (var idx in tabContent) {
+                        var tab = tabContent[idx];
+                        if (tab.active) {
+                            linkAppender.find("." + tab.code + "_pill").addClass("active");
+                            bodyAppender.find("#" + tab.code).addClass("active");
+                            break;
+                        }
+                    }
+
+                    $(selectorEl).empty();
+                    $(selectorEl).append(tabSkeletonHtml);
+                }
+
+                function generateSimpleSpace(options) {
+                    var divs = options.divs;
+                    var selector = options.selector;
+                    $.tmpl($("#simpleDivTemplate"), divs).appendTo(selector);
+                }
+                function generateIndentSpace(options) {
+                    var divs = options.divs;
+                    var selector = options.selector;
+                    $.tmpl($("#indentDivTemplate"), divs).appendTo(selector);
+                }
+
+                /**
+                 * 
+                 * @param {type} navOptions
+                 *      content  : pills to be created along with their configuration
+                 *      selector : where you want to append the stacked navs
+                 *      link_size : defines the col-md-xx property for the pills. add only the number
+                 *      content_size : defines the col-md-xx property for the content. add only the number
+                 * @returns {undefined}
+                 */
+                function createStackedNav(navOptions) {
+                    var content = navOptions.tabFields;
+                    var selector = navOptions.selector;
+                    var link_size = navOptions.link_size;
+                    var content_size = navOptions.content_size;
+                    if (!link_size || !content_size) {
+                        link_size = 4;
+                        content_size = 8;
+                    }
+
+                    var pillSkeletonHtml = $.tmpl($("#stackedPillSkeletonTemplate"), [{link_size: link_size, content_size: content_size}]);
+
+                    var linkAppender = pillSkeletonHtml.find(".toAddLink");
+                    $.tmpl($("#tabPillTemplate"), content).appendTo(linkAppender);
+                    linkAppender.removeClass("toAddLink");
+
+                    var bodyAppender = pillSkeletonHtml.find(".toAddBody");
+                    $.tmpl($("#tabBodyTemplate"), content).appendTo(bodyAppender);
+                    bodyAppender.removeClass("toAddBody");
+
+                    for (var idx in content) {
+                        var tab = content[idx];
+                        if (tab.active) {
+                            linkAppender.find("." + tab.code + "_pill").addClass("active");
+                            bodyAppender.find("#" + tab.code).addClass("active");
+                            break;
+                        }
+                    }
+
+                    $(selector).empty();
+                    $(selector).append(pillSkeletonHtml);
+
+                }
+
+                function createAccordion(options) {
+                    var selector = options.selector;
+                    var accordionId = options.accordionId;
+                    var content = options.content;
+
+                    var accordionSkeleton = $.tmpl($("#accordionSkeletonTemplate"), [{accordionId: accordionId}]);
+                    for (var dix in content) {
+                        content[dix].accordionId = accordionId;
+                        content[dix].collapse_class = content[dix].expanded ? "collapse in" : "collapse";
+                    }
+                    $.tmpl($("#accordionElementTemplate"), content).appendTo(accordionSkeleton);
+                    accordionSkeleton.appendTo($(selector));
+                }
+
+                function createAccordionWithCustomTitle(options) {
+                    var selector = options.selector;
+                    var accordionId = options.accordionId;
+                    var content = options.content;
+
+                    var accordionSkeleton = $.tmpl($("#accordionSkeletonTemplate"), [{accordionId: accordionId}]);
+                    for (var dix in content) {
+                        content[dix].accordionId = accordionId;
+                        content[dix].collapse_class = content[dix].expanded ? "collapse in" : "collapse";
+                    }
+                    var mainContent = $.tmpl($("#accordionElementTemplateCustom"), content).appendTo(accordionSkeleton);
+
+                    for (var idx in content) {
+                        var customTitle = content[idx].title;
+                        var code = content[idx].code;
+                        var template = customTitle.type.templateId;
+                        customTitle.code = code;
+                        customTitle.active_icon = content[dix].expanded ? customTitle.icon_expanded : customTitle.icon;
+                        $.tmpl($(template), customTitle).appendTo(mainContent.find("#accordion_title_span_" + code));
+//                        if (customTitle.icon && customTitle.icon_expanded) {
+//                            mainContent.find("#" + "accordion_button_" + code).on('shown.bs.collapse', function () {
+//                                console.log("collapse");
+//                                $(this).parent().find("." + customTitle.icon).removeClass(customTitle.icon).addClass(customTitle.icon_expanded);
+//                            }).on('hidden.bs.collapse', function () {
+//                                console.log("collapse");
+//                                $(this).parent().find("." + customTitle.icon_expanded).removeClass(customTitle.icon_expanded).addClass(customTitle.icon);
+//                            });
+//                        }
+                    }
+                    accordionSkeleton.appendTo($(selector));
+
+                    for (var idx in content) {
+
+                        var customTitle = content[idx].title;
+                        var code = content[idx].code;
+                        activateAccordionToggle(code, customTitle);
+                    }
+                }
+
+                function activateAccordionToggle(code, customTitle) {
+                    if (customTitle.icon && customTitle.icon_expanded) {
+                        $("#" + code).off().on('show.bs.collapse', function (e) {
+                            e.stopPropagation();
+                            $("#accordion_title_icon_" + code).removeClass(customTitle.icon).addClass(customTitle.icon_expanded);
+                        }).on('hide.bs.collapse', function (e) {
+                            e.stopPropagation();
+                            $("#accordion_title_icon_" + code).removeClass(customTitle.icon_expanded).addClass(customTitle.icon);
+                        });
+                    }
+                }
+
+                var _customTitle = {
+                    H4: {
+                        type: "h4",
+                        templateId: "#customTitleH4"
+                    },
+                    H5: {
+                        type: "h5",
+                        templateId: "#customTitleH5"
+                    }
+                }
+
+            </script>
+
+            <!--Tab-->
+            <template id="tabSkeletonTemplate">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="nav nav-tabs toAddLink"></ul>
+                        <div class="tab-content col-md-12 toAddBody"></div>
+                    </div>
+                </div>
+            </template>
+            <template id="tabPillTemplate">
+                <li class="${code}_pill"><a href="#${code}" data-toggle="tab">${title}</a></li>
+            </template>
+            <template id="tabBodyTemplate">
+                <div class="tab-pane col-md-12" id="${code}"></div>
+            </template>
+
+            <!--Nav pill stacked -->
+            <template id="stackedPillSkeletonTemplate">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-${link_size}">
+                            <ul class="nav nav-pills nav-stacked toAddLink"></ul>
+                        </div>
+                        <div class="tab-content col-md-${content_size} toAddBody"></div>
+                    </div>
+                </div>
+            </template>
+
+            <!--Div-->
+            <template id="simpleDivTemplate">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>${title}</h4>
+                    </div>
+                    <div class="col-md-12">
+                        <div id="${code}"></div>
+                    </div>
+                </div>
+            </template>
+            <template id="indentDivTemplate">
+                <div class="col-md-12">
+                    <div id="${code}"></div>
+                </div>
+            </template>
+
+            <!-- Accordion -->
+            <template id="accordionSkeletonTemplate">
+                <div id="${accordionId}"></div>
+            </template>
+            <template id="accordionElementTemplate">
+                <div class="card">
+                    <div class="card-header" id="${code}_head">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#${code}" aria-expanded="${expanded}" aria-controls="${code}">
+                                ${title}
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="${code}" class="${collapse_class}" aria-labelledby="${code}_head" data-parent="#${accordionId}"></div>
+                </div>
+            </template>
+
+            <template id="accordionElementTemplateCustom">
+                <div class="card col-md-12 col-sm-12 col-xs-12">
+                    <div class="card-header" id="${code}_head">
+                        <h5 class="mb-0">
+                            <button id="accordion_button_${code}" class="btn btn-link accordion-btn" data-toggle="collapse" data-target="#${code}" aria-expanded="${expanded}" aria-controls="${code}">
+                                <span id="accordion_title_span_${code}"></span>
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="${code}" class="col-md-12 ${collapse_class}" aria-labelledby="${code}_head" data-parent="#${accordionId}">
+                    </div>
+                </div>
+            </template>
+            <template id="customTitleH4">
+                <h4 style="${style}"><span id="accordion_title_icon_${code}" class="${active_icon}"></span>  ${title}</h4>
+            </template>
+            <template id="customTitleH5">
+                <h5 style="${style}"><span id="accordion_title_icon_${code}" class="${active_icon}"></span>  ${title}</h5>
+            </template>
+        </div>
+
+            <div class="container body">
+                <div id="main_content" class="right_col" role="main">
+                    <div class="row main_content_title">
+                        <div class="col-md-12">
+                            
+                            <div class="pull-right">
+                                <div>
+            <h3>Η Καρτέλα μου</h3>
+        </div>
+                            </div>
+                        </div>
+                    </div>                    
+                    <div class="row">
+                        <div>
+            <h3>Η Καρτέλα μου</h3>
+
+            <div class="pendingTransactionsDisclaimer row margin-top-5" style="display: none;">
+                <div class="col-md-12 alert alert-info">
+                    <p><span>&lt;p&gt;Πατήστε &lt;strong&gt;ανανέωση&lt;/strong&gt; της σελίδας για να δείτε την επικαιροποιημένη Καρτέλα σας. Η καρτέλα σας βρίσκεται υπό επεξεργασία, μετά το προηγούμενο αίτημά σας για Δήλωση Κατεύθυνσης / Υποκατεύθυνσης / Ομάδων.&lt;/p&gt;</span></p>
+                </div>  
+            </div>
+
+            <div id="infoAndHelp" class="row">
+                <div class="col-md-12">
+                    <div class="col-md-12" style="background-color:snow; box-shadow:1px 2px lightgrey">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="col-md-12 col-sm-12 col-xs-12"><h5>Σημειώσεις</h5></div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <h5>Εδώ εμφανίζονται οι βαθμοί της καρτέλας του φοιτητή.</h5>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <table class="table borderless" style="margin-bottom: 20px;">
+                                    <tbody>
+                                    <tr>
+                                        <th style="border:none; width:5%"><span class="success-grades-dot"></span></th>
+                                        <td style="border:none">
+                                            <p>Με πράσινο χρώμα εμφανίζονται τα περασμένα μαθήματα που συμμετέχουν στις προϋποθέσεις λήψης πτυχίου</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th style="border:none; width:5%"><span class="failed-grades-dot"></span></th>
+                                        <td style="border:none">
+                                            <p>Με κόκκινο χρώμα εμφανίζονται τα μη-περασμένα μαθήματα</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th style="border:none; width:5%"><span class="neutral-grades-dot"></span></th>
+                                        <td style="border:none">
+                                            <p>Χωρίς χρώμα εμφανίζονται τα μαθήματα που είναι περασμένα αλλά δεν συμμετέχουν στις προϋποθέσεις λήψης πτυχίου</p>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="col-md-12">
+                        <hr>
+                    </div>
+                </div>
+            </div>
+
+            <div id="summary" class="row">
+                <div class="col-md-12">
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="background-color:snow; box-shadow:1px 2px lightgrey">
+                        <div id="summaryDtl"></div>
+                    </div>
+                </div>
+            </div>
+
+            <p id="selectTriggerFilter" class="margin-top-10">
+                <label><b>Επιλογή εμφάνισης:</b></label>
+                <select class="form-control" name="showOptions" id="options">
+                    <option value="all">Όλα τα μαθήματα</option>
+                    <option value="isCountInGrade">Εμφάνιση περασμένων μαθημάτων που συμμετέχουν στο βαθμό πτυχίου</option>
+                    <option value="isCountInDiploma">Εμφάνιση περασμένων μαθημάτων που συμμετέχουν στις προϋποθέσεις πτυχίου</option>
+                </select>
+            </p>
+            <table id="student_grades_diploma" style="width:100%"></table>
+            <script src="resources/vendor/js/jszip.min.js"></script>
+            <script src="resources/vendor/js/pdfmake.min.js"></script>
+            <script src="resources/vendor/js/vfs_fonts.js"></script>
+            <script>
+                $(document).ready(function () {
+                    $.blockUI({message: IlyLocales.general.please_wait});
+                    var transactionsPromise = RSVP.all([getWebStudentTransactionsPending()]);
+                    transactionsPromise["then"](function (webTransactionsResults) {
+                        var webTransactions = webTransactionsResults[0];
+                        if (typeof webTransactions !== "undefined" && webTransactions !== null && webTransactions.length >= 1) {
+                            $(".pendingTransactionsDisclaimer").show();
+                        }
+                    });
+                    transactionsPromise["catch"](function (e) {
+                        console.log("Promise failed for some reason.");
+                        var message = IlyLocales.message.student.pending_web_student_transaction.error.loading;
+                        $.growl.error({
+                            message: message,
+                            timeout: 1500
+                        });
+                    });
+                    transactionsPromise["finally"](function (results) {
+                        $.unblockUI();
+                    });
+
+                    $.blockUI({message: IlyLocales.general.please_wait});
+                    $.when(initScalesAjax(), getStudentGradesForDiploma(), getStudentGradesAvarage()).done(function (gradingScalesAjax, studentGradesAjax, studentGradesAvgAjax) {
+                        var studentGrades = studentGradesAjax[0];
+                        var studentGradesCount = [];
+                        for(var i = 0; i < studentGrades.length; i++) {
+                            if(studentGrades[i].isCountInDiploma && studentGrades[i].idFather === null && studentGrades[i].studentGradesId !== null) {
+                                studentGradesCount.push(studentGrades[i]);
+                            }
+                        }
+                        var studentGradesAvg = studentGradesAvgAjax[0];
+
+                        var studGradesMap = {};
+                        var totalValues = {
+                            totalCourses: 0,
+                            totalEcts: 0,
+                            totalUnits: 0,
+                            descr: IlyLocales.message.student.grades.counts
+                        };
+                        for (var idx in studentGradesCount) {
+                            var grade = studentGradesCount[idx];
+                            var typeId;
+                            var categId;
+                            if (grade.typeId) {
+                                typeId = grade.typeId;
+                            } else {
+                                typeId = "-666";
+                            }
+                            if (grade.categId) {
+                                categId = grade.categId;
+                            } else {
+                                categId = "-666";
+                            }
+                            if (!studGradesMap[typeId.id]) {
+                                studGradesMap[typeId.id] = {
+                                    total: 0, ects: 0, units: 0,
+                                    descr: typeId === "-666" ? IlyLocales.entity.all.typeId.unknown.title : grade.typeId.title
+                                };
+                            }
+                            var cur_ects = grade.ects;
+                            var cur_units = grade.units;
+                            studGradesMap[typeId.id].total += 1;
+                            studGradesMap[typeId.id].ects += cur_ects;
+                            studGradesMap[typeId.id].units += cur_units;
+                            totalValues.totalCourses += 1;
+                            totalValues.totalEcts += cur_ects;
+                            totalValues.totalUnits += cur_units;
+                        }
+                        totalValues.totalEcts = Number(Math.round(totalValues.totalEcts + 'e1') + 'e-1');
+                        totalValues.totalUnits = Number(Math.round(totalValues.totalUnits + 'e1') + 'e-1');
+                        var studGradesArray = [];
+                        var keys = Object.keys(studGradesMap);
+                        for (var idx in keys) {
+                            var key = keys[idx];
+                            studGradesMap[key].ects = Number(Math.round(studGradesMap[key].ects + 'e1') + 'e-1');
+                            studGradesMap[key].units = Number(Math.round(studGradesMap[key].units + 'e1') + 'e-1');
+                            studGradesArray.push(studGradesMap[key]);
+                        }
+                        var statisticsTable = $.tmpl($("#gradesStatisticsTableTemplate"), [{
+                            averageGradeCoursesOnly: studentGradesAvg
+                        }]).appendTo($("#summaryDtl"));
+                        $.tmpl($("#gradesStatisticsRowTemplate"), studGradesArray).appendTo(statisticsTable.find("#gradesStatisticsBody"));
+                        $.tmpl($("#gradesStatisticsFooterTemplate"), [totalValues]).appendTo(statisticsTable.find("#gradesStatisticsBody"));
+
+                        studentGradesDatatable("#student_grades_diploma", studentGrades);
+                    }).always(function () {
+                        $.unblockUI();
+                    });
+                });
+
+                function getStudentGradesForDiploma() {
+                    return $.ajax({
+                        type: "GET",
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        url: ily_url.student.grades.api.feign.DIPLOMA_GET
+                    }).done(function (results) {
+
+                    }).fail(function (jqXHR, textStatus, errorThrown) {
+                        console.log(jqXHR);
+                        var message = jqXHR.responseText ? jqXHR.responseText : IlyLocales.general.error.try_again;
+                        console.log(jqXHR.status, message);
+                        $.growl.error({
+                            message: message,
+                            timeout: 1500
+                        });
+                    });
+                }
+
+                function getStudentGradesAvarage() {
+                    return $.ajax({
+                        type: "GET",
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        url: ily_url.student.grades.api.feign.STUDENT_GRADES_AVG
+                    }).done(function (results) {
+
+                    }).fail(function (jqXHR, textStatus, errorThrown) {
+                        console.log(jqXHR);
+                        var message = jqXHR.responseText ? jqXHR.responseText : IlyLocales.general.error.try_again;
+                        console.log(jqXHR.status, message);
+                        $.growl.error({
+                            message: message,
+                            timeout: 1500
+                        });
+                    });
+                }
+
+            </script>
+            <template id="gradesStatisticsTableTemplate">
+                <div class="col-md-12 col-sm-12" style="box-shadow: 1px 2px lightgrey;">
+                    <div class="col-md-12 col-sm-12"><h5>Σύνοψη Μαθημάτων Πτυχίου</h5></div>
+                    <div class="col-md-12 col-sm-12"><strong>Μ.O. Μαθημάτων</strong><strong>: ${averageGradeCoursesOnly}</strong></div>
+                    <div class="col-md-12 col-sm-12"><h5>Ανά Τύπο Μαθήματος</h5></div>
+                    <div class="col-md-12 col-sm-12 table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Τύπος</th>
+                                <th>Πλήθος</th>
+                                <th>Ects</th>
+                                <th>ΔΜ</th>
+                            </tr>
+                            </thead>
+                            <tbody id="gradesStatisticsBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </template>
+            <template id="gradesStatisticsRowTemplate">
+                <tr>
+                    <td>${descr}</td>
+                    <td>${total}</td>
+                    <td>${ects}</td>
+                    <td>${units}</td>
+                </tr>
+            </template>
+            <template id="gradesStatisticsFooterTemplate">
+                <tr>
+                    <td><strong>${descr}</strong></td>
+                    <td><strong>${totalCourses}</strong></td>
+                    <td><strong>${totalEcts}</strong></td>
+                    <td><strong>${totalUnits}</strong></td>
+                </tr>
+            </template>
+        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+            <footer>
+                <div class="powered-by-ilyda">
+                    Powered by <a href="http://www.ilyda.com" target="_blank"><span style="font-weight: 600">ILYDA</span></a>
+                </div>
+                <div class="powered-by-ilyda">
+                    <span style="vertical-align: middle;">v 2.2.0.0</span>
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+        </div>
+        
+
+        
+    
+<div class="blockUI" style="display:none"></div><div class="blockUI blockOverlay" style="z-index: 1000; border: none; margin: 0px; padding: 0px; width: 100%; height: 100%; top: 0px; left: 0px; background-color: rgb(0, 0, 0); opacity: 0.037108; cursor: wait; position: fixed;"></div><div class="blockUI blockMsg blockPage" style="z-index: 1011; position: fixed; padding: 0px; margin: 0px; width: 30%; top: 40%; left: 35%; text-align: center; color: rgb(0, 0, 0); border: 3px solid rgb(170, 170, 170); background-color: rgb(255, 255, 255); cursor: wait; opacity: 0.0618467;">Παρακαλώ περιμένετε...</div></body></html>

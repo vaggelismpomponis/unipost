@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
 const cheerio = require('cheerio');
+const { fetchGradesWithPlaywright } = require('./playwright-sis-login');
+const { supabase } = require('./supabaseClient');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -11,124 +13,208 @@ app.use(cors());
 app.use(express.json());
 
 // UTH SIS Configuration
+const CAS_BASE_URL = 'https://cas.uth.gr/login';
 const SIS_BASE_URL = 'https://sis-web.uth.gr';
-const CAS_LOGIN_URL = 'https://cas.uth.gr/login?service=https%3A%2F%2Fsis-web.uth.gr%2Flogin%2Fcas';
+const GRADES_URL = `${SIS_BASE_URL}/student/grades`;
 
 // Store sessions (in production, use Redis or database)
 const sessions = new Map();
 
-// Helper function to extract grades from HTML
+// Helper function to extract grades from HTML using proper XPath-like selectors
 function extractGradesFromHTML(html) {
   const $ = cheerio.load(html);
   const grades = [];
   
-  // Look for tables with grade data
-  $('table').each((tableIndex, table) => {
-    const rows = $(table).find('tr');
+  console.log('Extracting grades from HTML...');
+  
+  // Approach 1: Look for the specific grades table (gvGrades)
+  const gradesTable = $('#gvGrades');
+  if (gradesTable.length > 0) {
+    console.log('Found gvGrades table');
     
-    rows.each((rowIndex, row) => {
-      const cells = $(row).find('td');
+    gradesTable.find('tr').each((index, row) => {
+      if (index === 0) return; // Skip header row
       
-      if (cells.length >= 5) {
-        const code = $(cells[0]).text().trim();
-        const course = $(cells[1]).text().trim();
-        let gradeRaw = $(cells[2]).text().trim();
-        const period = $(cells[3]).text().trim();
-        const year = $(cells[4]).text().trim();
+      const cells = $(row).find('td');
+      if (cells.length >= 7) {
+        const code = $(cells[1]).text().trim();
+        const title = $(cells[2]).text().trim();
+        const gradeText = $(cells[4]).text().trim();
+        const ects = $(cells[5]).text().trim();
+        const date = $(cells[6]).text().trim();
         
-        // Convert grade (e.g., "5,7" -> 5.7)
+        // Parse grade
         let grade = null;
-        if (gradeRaw) {
-          gradeRaw = gradeRaw.replace(',', '.');
-          grade = parseFloat(gradeRaw);
-          if (isNaN(grade)) grade = null;
+        if (gradeText) {
+          const gradeNum = parseFloat(gradeText.replace(',', '.'));
+          if (!isNaN(gradeNum) && gradeNum >= 0 && gradeNum <= 10) {
+            grade = gradeNum;
+          }
         }
         
-        // Only extract if we have course name and valid grade
-        if (course && grade !== null && !isNaN(grade)) {
+        if (title && grade !== null) {
           grades.push({
             code,
-            course,
+            course: title,
             grade,
-            period,
-            year,
+            ects: parseFloat(ects) || 0,
+            date,
+            status: grade >= 5 ? 'passed' : 'failed',
             extractedAt: new Date().toISOString()
           });
+          console.log(`Found grade: ${title} - ${grade}`);
         }
       }
     });
-  });
+  }
   
+  // Approach 2: Look for any table with grade-like data
+  if (grades.length === 0) {
+    console.log('gvGrades table not found, trying generic table search...');
+    
+    $('table').each((tableIndex, table) => {
+      const rows = $(table).find('tr');
+      console.log(`Table ${tableIndex}: ${rows.length} rows`);
+      
+      rows.each((rowIndex, row) => {
+        const cells = $(row).find('td');
+        
+        if (cells.length >= 3) {
+          const course = $(cells[0]).text().trim();
+          let gradeRaw = $(cells[1]).text().trim();
+          const semester = $(cells[2]).text().trim();
+          
+          // Try to parse grade
+          let grade = null;
+          if (gradeRaw) {
+            gradeRaw = gradeRaw.replace(/[^\d,.]/g, '');
+            gradeRaw = gradeRaw.replace(',', '.');
+            grade = parseFloat(gradeRaw);
+            if (isNaN(grade)) grade = null;
+          }
+          
+          // Only extract if we have course name and valid grade
+          if (course && grade !== null && !isNaN(grade) && grade > 0 && grade <= 10) {
+            grades.push({
+              course,
+              grade,
+              semester: semester || 'Άγνωστο',
+              status: grade >= 5 ? 'passed' : 'failed',
+              extractedAt: new Date().toISOString()
+            });
+            console.log(`Found grade: ${course} - ${grade}`);
+          }
+        }
+      });
+    });
+  }
+  
+  console.log(`Total grades found: ${grades.length}`);
   return grades;
 }
 
-// Login endpoint
+// CAS SSO Login endpoint
 app.post('/api/sis/login', async (req, res) => {
   try {
-    const { username, password } = req.body;
-    
-    if (!username || !password) {
+    const { username, password, gradesUrl } = req.body;
+    if (!username || !password || !gradesUrl) {
       return res.status(400).json({ 
         success: false, 
-        error: 'Χρειάζονται username και password' 
+        error: 'Χρειάζονται username, password και gradesUrl' 
       });
     }
 
-    // Create axios instance with session cookies
+    console.log('Starting CAS SSO login...');
+
+    // Create axios instance with browser-like headers
     const axiosInstance = axios.create({
       withCredentials: true,
       headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+        'Accept-Language': 'el,en;q=0.9',
+        'Connection': 'keep-alive',
+        'Upgrade-Insecure-Requests': '1'
       }
     });
 
-    // Step 1: Get CAS login page to get execution parameter
-    const casResponse = await axiosInstance.get(CAS_LOGIN_URL);
-    const $ = cheerio.load(casResponse.data);
-    const execution = $('input[name="execution"]').val();
-
-    if (!execution) {
-      return res.status(400).json({ 
-        success: false, 
-        error: 'Δεν μπόρεσε να βρεθεί το execution parameter' 
-      });
-    }
-
-    // Step 2: Submit login form
+    // Step 1: GET CAS login page to get cookies (no need to extract lt/execution)
+    const serviceUrl = encodeURIComponent(gradesUrl);
+    const casLoginUrl = `${CAS_BASE_URL}?service=${serviceUrl}`;
+    
+    console.log('Fetching CAS login page (GET)...');
+    const casGetResponse = await axiosInstance.get(casLoginUrl);
+    const cookiesFromGet = casGetResponse.headers['set-cookie'] || [];
+    // No need to extract lt/execution
+    
+    // Step 2: POST login form with cookies from GET
     const loginData = new URLSearchParams({
       username,
       password,
-      execution,
       _eventId: 'submit'
     });
 
-    const loginResponse = await axiosInstance.post(CAS_LOGIN_URL, loginData, {
+    console.log('Submitting login credentials (POST)...');
+    const loginResponse = await axiosInstance.post(casLoginUrl, loginData, {
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Cookie': cookiesFromGet.join('; '),
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+        'Accept-Language': 'el,en;q=0.9',
+        'Connection': 'keep-alive',
+        'Upgrade-Insecure-Requests': '1'
       },
-      maxRedirects: 5
+      maxRedirects: 0, // We want to handle the redirect manually
+      validateStatus: (status) => status < 400 || status === 302 // Accept 302
     });
 
-    // Check if login was successful
-    if (loginResponse.data.includes('error') || loginResponse.data.includes('Invalid')) {
+    // Check for redirect to service URL (with ticket)
+    const redirectUrl = loginResponse.headers.location;
+    let cookies = loginResponse.headers['set-cookie'] || [];
+    let finalCookies = cookies.join('; ');
+
+    if (redirectUrl) {
+      console.log('Following CAS redirect to service URL:', redirectUrl);
+      // Follow the redirect to establish session in SIS
+      const followResponse = await axiosInstance.get(redirectUrl, {
+        headers: {
+          'Cookie': finalCookies,
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+        },
+        maxRedirects: 5,
+        validateStatus: (status) => status < 400 || status === 302
+      });
+      // Merge any new cookies
+      const followCookies = followResponse.headers['set-cookie'] || [];
+      if (followCookies.length > 0) {
+        finalCookies += '; ' + followCookies.join('; ');
+      }
+      console.log('SIS session established after redirect.');
+    }
+
+    // Check if we have CASTGC or JSESSIONID in cookies
+    if (!finalCookies.includes('CASTGC') && !finalCookies.includes('JSESSIONID')) {
+      console.error('Login failed - no CASTGC or JSESSIONID cookie found');
       return res.status(401).json({ 
         success: false, 
-        error: 'Λάθος username ή password' 
+        error: 'Λάθος username ή password ή αποτυχία CAS flow' 
       });
     }
 
-    // Store session cookies
+    // Store session cookies and gradesUrl
     const sessionId = Math.random().toString(36).substring(7);
     sessions.set(sessionId, {
-      cookies: axiosInstance.defaults.headers.Cookie || loginResponse.headers['set-cookie'],
+      cookies: finalCookies,
       username,
+      gradesUrl,
       createdAt: new Date()
     });
 
     res.json({ 
       success: true, 
       sessionId,
-      message: 'Επιτυχής σύνδεση' 
+      message: 'Επιτυχής σύνδεση με CAS SSO' 
     });
 
   } catch (error) {
@@ -160,6 +246,8 @@ app.post('/api/sis/grades', async (req, res) => {
       });
     }
 
+    console.log('Fetching grades with session cookies...');
+
     // Create axios instance with stored cookies
     const axiosInstance = axios.create({
       withCredentials: true,
@@ -169,23 +257,34 @@ app.post('/api/sis/grades', async (req, res) => {
       }
     });
 
-    // Fetch grades page
-    const gradesResponse = await axiosInstance.get(`${SIS_BASE_URL}/pls/studweb/studweb.grades`);
+    // Fetch grades page using the stored gradesUrl
+    console.log('Fetching grades page...');
+    const gradesResponse = await axiosInstance.get(session.gradesUrl);
     
     if (gradesResponse.status !== 200) {
+      console.error('Grades page fetch failed:', gradesResponse.status);
       return res.status(500).json({ 
         success: false, 
         error: 'Δεν μπόρεσε να φορτώσει η σελίδα βαθμών' 
       });
     }
 
+    console.log('Grades page fetched successfully');
+    console.log('Page length:', gradesResponse.data.length);
+    
     // Extract grades from HTML
     const grades = extractGradesFromHTML(gradesResponse.data);
     
     if (grades.length === 0) {
+      console.log('No grades found in the page');
+      // Save HTML for debugging
+      const fs = require('fs');
+      fs.writeFileSync('debug_page.html', gradesResponse.data);
+      console.log('Saved page HTML to debug_page.html');
+      
       return res.status(404).json({ 
         success: false, 
-        error: 'Δεν βρέθηκαν βαθμοί στη σελίδα' 
+        error: 'Δεν βρέθηκαν βαθμοί στη σελίδα. Ελέγξτε ότι είστε στη σωστή σελίδα βαθμών.' 
       });
     }
 
@@ -205,6 +304,97 @@ app.post('/api/sis/grades', async (req, res) => {
   }
 });
 
+// Playwright-based grades fetch endpoint
+app.post('/api/sis/playwright-grades', async (req, res) => {
+  try {
+    const { username, password, gradesUrl } = req.body;
+    if (!username || !password || !gradesUrl) {
+      return res.status(400).json({
+        success: false,
+        error: 'Χρειάζονται username, password και gradesUrl'
+      });
+    }
+    // Τρέξε το Playwright flow και πάρε τους βαθμούς
+    const grades = await fetchGradesWithPlaywright({ username, password, gradesUrl });
+
+    // --- Supabase snapshot logic ---
+    // Φέρε το πιο πρόσφατο snapshot για τον χρήστη
+    const { data: lastSnapshots, error: fetchError } = await supabase
+      .from('grades_history')
+      .select('grades, fetched_at')
+      .eq('username', username)
+      .order('fetched_at', { ascending: false })
+      .limit(1);
+    let shouldInsert = false;
+    if (!lastSnapshots || lastSnapshots.length === 0) {
+      shouldInsert = true; // Πρώτο fetch, αποθήκευσε
+    } else {
+      const lastGrades = lastSnapshots[0].grades;
+      // Σύγκρινε τα arrays (stringify για απλότητα)
+      shouldInsert = JSON.stringify(lastGrades) !== JSON.stringify(grades);
+    }
+    if (shouldInsert) {
+      const { error: insertError } = await supabase
+        .from('grades_history')
+        .insert([{ username, grades }]);
+      if (insertError) {
+        console.error('Supabase insert error:', insertError);
+        // Δεν σταματάμε το flow, απλά ενημερώνουμε
+      }
+    }
+    // --- τέλος snapshot logic ---
+
+    return res.json({ success: true, grades });
+  } catch (error) {
+    console.error('Playwright grades fetch error:', error);
+    return res.status(500).json({ success: false, error: 'Σφάλμα κατά την ανάκτηση βαθμών με Playwright' });
+  }
+});
+
+// Endpoint για αποθήκευση βαθμών στο Supabase
+app.post('/api/sis/save-grades', async (req, res) => {
+  try {
+    const { username, grades } = req.body;
+    if (!username || !grades || !Array.isArray(grades)) {
+      return res.status(400).json({ success: false, error: 'Χρειάζονται username και grades array' });
+    }
+    const { error } = await supabase
+      .from('grades_history')
+      .insert([{ username, grades }]);
+    if (error) {
+      console.error('Supabase insert error:', error);
+      return res.status(500).json({ success: false, error: 'Σφάλμα κατά την αποθήκευση στο Supabase' });
+    }
+    return res.json({ success: true });
+  } catch (err) {
+    console.error('Save grades error:', err);
+    return res.status(500).json({ success: false, error: 'Σφάλμα κατά την αποθήκευση' });
+  }
+});
+
+// Endpoint για λήψη ιστορικού βαθμών από το Supabase
+app.get('/api/sis/grades-history', async (req, res) => {
+  try {
+    const { username } = req.query;
+    if (!username) {
+      return res.status(400).json({ success: false, error: 'Απαιτείται username' });
+    }
+    const { data, error } = await supabase
+      .from('grades_history')
+      .select('id, grades, fetched_at')
+      .eq('username', username)
+      .order('fetched_at', { ascending: false });
+    if (error) {
+      console.error('Supabase fetch error:', error);
+      return res.status(500).json({ success: false, error: 'Σφάλμα κατά τη λήψη ιστορικού' });
+    }
+    return res.json({ success: true, history: data });
+  } catch (err) {
+    console.error('Grades history error:', err);
+    return res.status(500).json({ success: false, error: 'Σφάλμα κατά τη λήψη ιστορικού' });
+  }
+});
+
 // Cleanup old sessions (run every hour)
 setInterval(() => {
   const now = new Date();
@@ -217,4 +407,5 @@ setInterval(() => {
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
+  console.log('UTH SIS Grades Fetcher - UniStudents Architecture');
 }); 

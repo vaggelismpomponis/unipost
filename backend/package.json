@@ -6,6 +6,7 @@
     "dev": "supabase start",
     "server": "node server.js",
     "server:dev": "nodemon server.js",
+    "test:api": "node test-api.js",
     "build": "supabase functions build",
     "deploy": "supabase functions deploy",
     "db:reset": "supabase db reset",
@@ -13,14 +14,19 @@
     "db:diff": "supabase db diff"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.38.4",
-    "express": "^4.18.2",
-    "cors": "^2.8.5",
+    "@supabase/supabase-js": "^2.50.3",
     "axios": "^1.6.2",
-    "cheerio": "^1.0.0-rc.12"
+    "cheerio": "^1.1.0",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.2.0",
+    "dotenv": "^17.0.1",
+    "express": "^4.18.2",
+    "playwright": "^1.53.2",
+    "recharts": "^3.0.2"
   },
   "devDependencies": {
-    "supabase": "^1.127.4",
-    "nodemon": "^3.0.2"
+    "@types/crypto-js": "^4.2.2",
+    "nodemon": "^3.0.2",
+    "supabase": "^1.127.4"
   }
-} 
+}

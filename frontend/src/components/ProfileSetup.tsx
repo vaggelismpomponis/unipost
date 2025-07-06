@@ -34,7 +34,9 @@ const ProfileSetup: React.FC = () => {
     last_name: profile?.last_name || '',
     university: profile?.university || '',
     department: profile?.department || '',
-    semester: profile?.semester || 1
+    semester: profile?.semester || 1,
+    username: profile?.username || '',
+    sis_password: profile?.sis_password || '',
   })
 
   const handleNext = () => {
@@ -96,6 +98,28 @@ const ProfileSetup: React.FC = () => {
               name="last_name"
               value={formData.last_name}
               onChange={handleChange('last_name')}
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="username"
+              label="SIS Username"
+              name="username"
+              value={formData.username}
+              onChange={handleChange('username')}
+              helperText="Το username που χρησιμοποιείς στο sis-web.uth.gr"
+            />
+            <TextField
+              margin="normal"
+              fullWidth
+              id="sis_password"
+              label="SIS Password (προαιρετικό)"
+              name="sis_password"
+              type="password"
+              value={formData.sis_password}
+              onChange={handleChange('sis_password')}
+              helperText="Αν θέλεις να αποθηκεύεται προσωρινά για αυτόματη λήψη βαθμών."
             />
           </Box>
         )

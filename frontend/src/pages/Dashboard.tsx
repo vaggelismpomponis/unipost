@@ -8,8 +8,6 @@ import {
   Card, 
   CardContent,
   Button,
-  AppBar,
-  Toolbar,
   IconButton,
   CircularProgress
 } from '@mui/material'
@@ -21,6 +19,7 @@ import BarChartIcon from '@mui/icons-material/BarChart'
 import AddIcon from '@mui/icons-material/Add'
 import { useAuthStore } from '../store/authStore'
 import { useProfile } from '../hooks/useProfile'
+import { GradesTable, GradesAverageChart } from './GradesFetchPage'
 
 const Dashboard: React.FC = () => {
   const { t } = useTranslation()
@@ -48,22 +47,19 @@ const Dashboard: React.FC = () => {
     return null
   }
 
+  // Προσωρινά mock δεδομένα για επίδειξη
+  const mockGrades = [
+    { code: '123', name: 'Μαθηματικά', grade: 8.5, period: 'Ιούνιος', year: '2023', ects: 6, type: 'Υποχρεωτικό' },
+    { code: '456', name: 'Φυσική', grade: 7.0, period: 'Ιανουάριος', year: '2023', ects: 5, type: 'Επιλογής' },
+  ]
+  const mockAverageHistory = [
+    { date: '01/01/2023', average: 7.5 },
+    { date: '01/06/2023', average: 8.0 },
+    { date: '01/01/2024', average: 8.2 },
+  ]
+
   return (
     <Box sx={{ minHeight: '100vh' }}>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            UniPost
-          </Typography>
-          <IconButton color="inherit">
-            <DarkModeIcon />
-          </IconButton>
-          <Button color="inherit" onClick={handleLogout}>
-            {t('nav.logout')}
-          </Button>
-        </Toolbar>
-      </AppBar>
-
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
         <Typography variant="h4" gutterBottom>
           {t('dashboard.welcome')}, {profile?.first_name || 'φοιτητή'}!
@@ -119,19 +115,6 @@ const Dashboard: React.FC = () => {
         </Typography>
         
         <Grid container spacing={2} sx={{ mb: 4 }}>
-          <Grid item xs={12} sm={6} md={3}>
-            <Button
-              variant="contained"
-              fullWidth
-              startIcon={<AddIcon />}
-              component={Link}
-              to="/grades/add"
-              sx={{ py: 2 }}
-            >
-              {t('dashboard.addGrade')}
-            </Button>
-          </Grid>
-          
           <Grid item xs={12} sm={6} md={3}>
             <Button
               variant="contained"
@@ -193,6 +176,18 @@ const Dashboard: React.FC = () => {
             </Card>
           </Grid>
         </Grid>
+
+        {/* Προβολή βαθμολογιών */}
+        <Box sx={{ mt: 6 }}>
+          <Typography variant="h5" gutterBottom>Βαθμολογίες</Typography>
+          <GradesTable grades={mockGrades} />
+        </Box>
+
+        {/* Προβολή στατιστικών */}
+        <Box sx={{ mt: 6 }}>
+          <Typography variant="h5" gutterBottom>Εξέλιξη μέσου όρου</Typography>
+          <GradesAverageChart averageHistory={mockAverageHistory} />
+        </Box>
       </Container>
     </Box>
   )

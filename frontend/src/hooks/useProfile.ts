@@ -11,6 +11,8 @@ interface Profile {
   semester: number
   created_at: string
   updated_at: string
+  username?: string // SIS username
+  sis_password?: string // SIS password (προαιρετικά, αν θέλουμε να το αποθηκεύουμε)
 }
 
 export const useProfile = () => {

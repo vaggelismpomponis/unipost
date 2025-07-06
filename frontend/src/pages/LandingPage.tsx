@@ -22,21 +22,6 @@ const LandingPage: React.FC = () => {
 
   return (
     <Box sx={{ minHeight: '100vh' }}>
-      <AppBar position="static">
-        <Toolbar>
-          <SchoolIcon sx={{ mr: 2 }} />
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            UniPost
-          </Typography>
-          <Button color="inherit" component={Link} to="/login">
-            {t('auth.login')}
-          </Button>
-          <Button color="inherit" component={Link} to="/register">
-            {t('auth.register')}
-          </Button>
-        </Toolbar>
-      </AppBar>
-
       <Container maxWidth="lg" sx={{ mt: 8, mb: 4 }}>
         <Box textAlign="center" mb={6}>
           <Typography variant="h2" component="h1" gutterBottom>
@@ -72,7 +57,7 @@ const LandingPage: React.FC = () => {
         <Grid container spacing={4}>
           <Grid item xs={12} md={4}>
             <Card>
-              <CardContent textAlign="center">
+              <CardContent sx={{ textAlign: 'center' }}>
                 <AssessmentIcon sx={{ fontSize: 60, color: 'primary.main', mb: 2 }} />
                 <Typography variant="h5" component="h2" gutterBottom>
                   Διαχείριση Βαθμολογιών
@@ -86,7 +71,7 @@ const LandingPage: React.FC = () => {
           
           <Grid item xs={12} md={4}>
             <Card>
-              <CardContent textAlign="center">
+              <CardContent sx={{ textAlign: 'center' }}>
                 <ForumIcon sx={{ fontSize: 60, color: 'primary.main', mb: 2 }} />
                 <Typography variant="h5" component="h2" gutterBottom>
                   Αναρτήσεις & Κοινότητα
@@ -100,7 +85,7 @@ const LandingPage: React.FC = () => {
           
           <Grid item xs={12} md={4}>
             <Card>
-              <CardContent textAlign="center">
+              <CardContent sx={{ textAlign: 'center' }}>
                 <DarkModeIcon sx={{ fontSize: 60, color: 'primary.main', mb: 2 }} />
                 <Typography variant="h5" component="h2" gutterBottom>
                   Dark Mode
