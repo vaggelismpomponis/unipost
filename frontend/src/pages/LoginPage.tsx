@@ -7,19 +7,49 @@ import {
   TextField, 
   Button, 
   Paper,
-  Link as MuiLink
+  Link as MuiLink,
+  InputAdornment,
+  IconButton,
+  Alert
 } from '@mui/material'
-import { Link } from 'react-router-dom'
+import VisibilityIcon from '@mui/icons-material/Visibility'
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
+import { Link, useNavigate } from 'react-router-dom'
+import { supabase } from '../utils/supabaseClient'
 
 const LoginPage: React.FC = () => {
   const { t } = useTranslation()
+  const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [loading, setLoading] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // TODO: Implement login logic
-    console.log('Login attempt:', { email, password })
+    setError(null)
+    setLoading(true)
+    
+    const { data, error: signInError } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    })
+    
+    setLoading(false)
+    
+    if (signInError) {
+      setError(signInError.message)
+    } else if (data.user) {
+      // Check if email is confirmed
+      if (!data.user.email_confirmed_at) {
+        setError('Παρακαλώ επιβεβαιώστε το email σας πριν συνδεθείτε.')
+        return
+      }
+      
+      // Redirect to dashboard
+      navigate('/dashboard')
+    }
   }
 
   return (
@@ -36,6 +66,8 @@ const LoginPage: React.FC = () => {
           <Typography component="h1" variant="h5" textAlign="center" gutterBottom>
             {t('auth.login')}
           </Typography>
+          
+          {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
           
           <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
             <TextField
@@ -56,19 +88,33 @@ const LoginPage: React.FC = () => {
               fullWidth
               name="password"
               label={t('auth.password')}
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               id="password"
               autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={() => setShowPassword(!showPassword)}
+                      edge="end"
+                    >
+                      {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
             />
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              disabled={loading}
             >
-              {t('auth.login')}
+              {loading ? 'Σύνδεση...' : t('auth.login')}
             </Button>
             <Box textAlign="center">
               <MuiLink component={Link} to="/register" variant="body2">

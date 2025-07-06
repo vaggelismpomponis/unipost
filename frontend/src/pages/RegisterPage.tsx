@@ -11,12 +11,21 @@ import {
   FormControl,
   InputLabel,
   Select,
-  MenuItem
+  MenuItem,
+  Alert,
+  InputAdornment,
+  IconButton
 } from '@mui/material'
-import { Link } from 'react-router-dom'
+import VisibilityIcon from '@mui/icons-material/Visibility'
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
+import { Link, useNavigate } from 'react-router-dom'
+import { supabase } from '../utils/supabaseClient'
+
+const UNIVERSITY_EMAIL_REGEX = /@(?:auth|uoa|upatras|uoc|uth)\.gr$/i
 
 const RegisterPage: React.FC = () => {
   const { t } = useTranslation()
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -26,11 +35,44 @@ const RegisterPage: React.FC = () => {
     password: '',
     confirmPassword: ''
   })
+  const [error, setError] = useState<string | null>(null)
+  const [success, setSuccess] = useState<string | null>(null)
+  const [loading, setLoading] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // TODO: Implement registration logic
-    console.log('Registration attempt:', formData)
+    setError(null)
+    setSuccess(null)
+    if (!UNIVERSITY_EMAIL_REGEX.test(formData.email)) {
+      setError('Χρησιμοποίησε πανεπιστημιακό email (π.χ. @auth.gr, @uoa.gr, @upatras.gr, @uoc.gr, @uth.gr)')
+      return
+    }
+    if (formData.password !== formData.confirmPassword) {
+      setError('Οι κωδικοί δεν ταιριάζουν')
+      return
+    }
+    setLoading(true)
+    const { error: signUpError } = await supabase.auth.signUp({
+      email: formData.email,
+      password: formData.password,
+      options: {
+        data: {
+          first_name: formData.firstName,
+          last_name: formData.lastName,
+          university: formData.university,
+          semester: formData.semester,
+        }
+      }
+    })
+    setLoading(false)
+    if (signUpError) {
+      setError(signUpError.message)
+    } else {
+      setSuccess('Επιτυχής εγγραφή! Έλεγξε το email σου για επιβεβαίωση.')
+      setTimeout(() => navigate('/login'), 3000)
+    }
   }
 
   const handleChange = (field: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,7 +97,8 @@ const RegisterPage: React.FC = () => {
           <Typography component="h1" variant="h5" textAlign="center" gutterBottom>
             {t('auth.register')}
           </Typography>
-          
+          {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
+          {success && <Alert severity="success" sx={{ mb: 2 }}>{success}</Alert>}
           <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
             <TextField
               margin="normal"
@@ -104,6 +147,7 @@ const RegisterPage: React.FC = () => {
                 <MenuItem value="uoa">Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών</MenuItem>
                 <MenuItem value="upatras">Πανεπιστήμιο Πατρών</MenuItem>
                 <MenuItem value="uoc">Πανεπιστήμιο Κρήτης</MenuItem>
+                <MenuItem value="uth">Πανεπιστήμιο Θεσσαλίας</MenuItem>
               </Select>
             </FormControl>
             <FormControl fullWidth margin="normal">
@@ -126,11 +170,24 @@ const RegisterPage: React.FC = () => {
               fullWidth
               name="password"
               label={t('auth.password')}
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               id="password"
               autoComplete="new-password"
               value={formData.password}
               onChange={handleChange('password')}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={() => setShowPassword(!showPassword)}
+                      edge="end"
+                    >
+                      {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
             />
             <TextField
               margin="normal"
@@ -138,19 +195,33 @@ const RegisterPage: React.FC = () => {
               fullWidth
               name="confirmPassword"
               label={t('auth.confirmPassword')}
-              type="password"
+              type={showConfirmPassword ? 'text' : 'password'}
               id="confirmPassword"
               autoComplete="new-password"
               value={formData.confirmPassword}
               onChange={handleChange('confirmPassword')}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle confirm password visibility"
+                      onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                      edge="end"
+                    >
+                      {showConfirmPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
             />
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              disabled={loading}
             >
-              {t('auth.register')}
+              {loading ? 'Παρακαλώ περιμένετε...' : t('auth.register')}
             </Button>
             <Box textAlign="center">
               <MuiLink component={Link} to="/login" variant="body2">

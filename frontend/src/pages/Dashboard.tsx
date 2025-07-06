@@ -10,17 +10,43 @@ import {
   Button,
   AppBar,
   Toolbar,
-  IconButton
+  IconButton,
+  CircularProgress
 } from '@mui/material'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import DarkModeIcon from '@mui/icons-material/DarkMode'
 import AssessmentIcon from '@mui/icons-material/Assessment'
 import ForumIcon from '@mui/icons-material/Forum'
 import BarChartIcon from '@mui/icons-material/BarChart'
 import AddIcon from '@mui/icons-material/Add'
+import { useAuthStore } from '../store/authStore'
+import { useProfile } from '../hooks/useProfile'
 
 const Dashboard: React.FC = () => {
   const { t } = useTranslation()
+  const navigate = useNavigate()
+  const { user, signOut } = useAuthStore()
+  const { profile, isProfileComplete, loading: profileLoading } = useProfile()
+
+  const handleLogout = async () => {
+    await signOut()
+    navigate('/')
+  }
+
+  // Show loading while checking profile
+  if (profileLoading) {
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
+        <CircularProgress />
+      </Box>
+    )
+  }
+
+  // Redirect to profile setup if profile is not complete
+  if (!isProfileComplete()) {
+    navigate('/profile-setup')
+    return null
+  }
 
   return (
     <Box sx={{ minHeight: '100vh' }}>
@@ -32,7 +58,7 @@ const Dashboard: React.FC = () => {
           <IconButton color="inherit">
             <DarkModeIcon />
           </IconButton>
-          <Button color="inherit" component={Link} to="/">
+          <Button color="inherit" onClick={handleLogout}>
             {t('nav.logout')}
           </Button>
         </Toolbar>
@@ -40,7 +66,7 @@ const Dashboard: React.FC = () => {
 
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
         <Typography variant="h4" gutterBottom>
-          {t('dashboard.welcome')}, Γιώργο!
+          {t('dashboard.welcome')}, {profile?.first_name || 'φοιτητή'}!
         </Typography>
         
         <Typography variant="body1" color="text.secondary" paragraph>

@@ -67,3 +67,7 @@ npm run dev
 ## 📝 License
 
 MIT License
+
+## uth-sis-extension
+
+Περιέχει τον κώδικα για το browser extension (Chrome/Edge) που κάνει scraping βαθμών από το φοιτητολόγιο του ΠΘ (UTH SIS). Χρήση: εγκατάσταση ως unpacked extension στον browser.

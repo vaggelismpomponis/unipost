@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "UTH SIS Grades Fetcher",
+  "version": "0.1.0",
+  "description": "Αυτόματη λήψη βαθμολογιών από το φοιτητολόγιο του ΠΘ (sis.uth.gr)",
+  "permissions": ["scripting", "storage", "activeTab"],
+  "host_permissions": [
+    "https://sis.uth.gr/*",
+    "https://sis-web.uth.gr/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "UTH SIS Grades"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://sis.uth.gr/*", "https://sis-web.uth.gr/*"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+} 
