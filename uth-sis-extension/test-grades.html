@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <title>Test SIS Grades Page</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .header { background-color: #4CAF50; color: white; padding: 20px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Πανεπιστήμιο Θεσσαλίας - Σύστημα Πληροφορικής Φοιτητών</h1>
+        <h2>Βαθμολογίες Φοιτητή</h2>
+    </div>
+
+    <div style="margin: 20px 0;">
+        <strong>Φοιτητής:</strong> Τεστ Φοιτητής<br>
+        <strong>Αριθμός Μητρώου:</strong> 123456<br>
+        <strong>Τμήμα:</strong> Τμήμα Πληροφορικής
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Κωδικός</th>
+                <th>Μάθημα</th>
+                <th>Εξάμηνο</th>
+                <th>Βαθμός</th>
+                <th>ECTS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>CS101</td>
+                <td>Εισαγωγή στην Πληροφορική</td>
+                <td>1ο Εξάμηνο</td>
+                <td>8.5</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>CS102</td>
+                <td>Προγραμματισμός Ι</td>
+                <td>1ο Εξάμηνο</td>
+                <td>9.0</td>
+                <td>8</td>
+            </tr>
+            <tr>
+                <td>CS103</td>
+                <td>Μαθηματικά Ι</td>
+                <td>1ο Εξάμηνο</td>
+                <td>7.5</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>CS201</td>
+                <td>Δομές Δεδομένων</td>
+                <td>2ο Εξάμηνο</td>
+                <td>8.0</td>
+                <td>8</td>
+            </tr>
+            <tr>
+                <td>CS202</td>
+                <td>Αλγόριθμοι</td>
+                <td>2ο Εξάμηνο</td>
+                <td>9.5</td>
+                <td>8</td>
+            </tr>
+            <tr>
+                <td>CS203</td>
+                <td>Βάσεις Δεδομένων</td>
+                <td>2ο Εξάμηνο</td>
+                <td>8.8</td>
+                <td>6</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div style="margin-top: 20px; padding: 10px; background-color: #f9f9f9;">
+        <strong>Συνολικά ECTS:</strong> 42<br>
+        <strong>Μέσος Όρος:</strong> 8.55
+    </div>
+
+    <script>
+        // Simulate some SIS-specific elements
+        console.log('SIS Test Page Loaded');
+        
+        // Add some dynamic content
+        setTimeout(() => {
+            const footer = document.createElement('div');
+            footer.innerHTML = '<hr><p style="text-align: center; color: #666;">© 2024 Πανεπιστήμιο Θεσσαλίας - Test Environment</p>';
+            document.body.appendChild(footer);
+        }, 1000);
+    </script>
+</body>
+</html> 

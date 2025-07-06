@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <title>Extension Test Page</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; max-width: 800px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .result { background-color: #f5f5f5; padding: 10px; margin: 10px 0; border-radius: 3px; }
+        button { padding: 10px 15px; margin: 5px; background-color: #4CAF50; color: white; border: none; border-radius: 3px; cursor: pointer; }
+        button:hover { background-color: #45a049; }
+        .error { color: #d32f2f; }
+        .success { color: #388e3c; }
+    </style>
+</head>
+<body>
+    <h1>Test Extension Functionality</h1>
+    
+    <div class="test-section">
+        <h2>1. Test Grade Parsing</h2>
+        <p>Αυτό το test δοκιμάζει τη λογική ανάλυσης βαθμών χωρίς το extension.</p>
+        <button onclick="testGradeParsing()">Δοκιμή Ανάλυσης Βαθμών</button>
+        <div id="parsing-result" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>2. Test JSON Export</h2>
+        <p>Δοκιμάζει την εξαγωγή βαθμών σε JSON format.</p>
+        <button onclick="testJSONExport()">Δημιουργία Test JSON</button>
+        <div id="export-result" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>3. Test Extension Installation</h2>
+        <p>Οδηγίες για την εγκατάσταση του extension:</p>
+        <ol>
+            <li>Ανοίξτε τον Chrome/Edge</li>
+            <li>Πηγαίνετε στο <code>chrome://extensions/</code></li>
+            <li>Ενεργοποιήστε το "Developer mode"</li>
+            <li>Κάντε κλικ στο "Load unpacked"</li>
+            <li>Επιλέξτε το φάκελο <code>uth-sis-extension</code></li>
+        </ol>
+        <button onclick="checkExtensionInstalled()">Έλεγχος αν είναι εγκατεστημένο</button>
+        <div id="installation-result" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>4. Test with Real SIS Page</h2>
+        <p>Ανοίξτε τη test σελίδα βαθμών:</p>
+        <button onclick="openTestGradesPage()">Άνοιγμα Test Σελίδας</button>
+    </div>
+
+    <script>
+        // Test data - similar to what the extension would extract
+        const testGrades = [
+            {
+                course: "Εισαγωγή στην Πληροφορική",
+                grade: 8.5,
+                semester: "1ο Εξάμηνο",
+                extractedAt: new Date().toISOString()
+            },
+            {
+                course: "Προγραμματισμός Ι",
+                grade: 9.0,
+                semester: "1ο Εξάμηνο",
+                extractedAt: new Date().toISOString()
+            },
+            {
+                course: "Μαθηματικά Ι",
+                grade: 7.5,
+                semester: "1ο Εξάμηνο",
+                extractedAt: new Date().toISOString()
+            },
+            {
+                course: "Δομές Δεδομένων",
+                grade: 8.0,
+                semester: "2ο Εξάμηνο",
+                extractedAt: new Date().toISOString()
+            },
+            {
+                course: "Αλγόριθμοι",
+                grade: 9.5,
+                semester: "2ο Εξάμηνο",
+                extractedAt: new Date().toISOString()
+            }
+        ];
+
+        function testGradeParsing() {
+            const resultDiv = document.getElementById('parsing-result');
+            
+            try {
+                // Simulate the parsing logic from content.js
+                const mockHTML = `
+                    <table>
+                        <tr><td>Εισαγωγή στην Πληροφορική</td><td>8.5</td><td>1ο Εξάμηνο</td></tr>
+                        <tr><td>Προγραμματισμός Ι</td><td>9.0</td><td>1ο Εξάμηνο</td></tr>
+                    </table>
+                `;
+                
+                const grades = parseGradesFromHTML(mockHTML);
+                
+                resultDiv.innerHTML = `
+                    <div class="success">
+                        <strong>✅ Ανάλυση επιτυχής!</strong><br>
+                        Βρέθηκαν ${grades.length} βαθμοί:<br>
+                        ${grades.map(g => `- ${g.course}: ${g.grade}`).join('<br>')}
+                    </div>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="error">❌ Σφάλμα: ${error.message}</div>`;
+            }
+        }
+
+        function parseGradesFromHTML(html) {
+            const grades = [];
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            
+            const tables = doc.querySelectorAll('table');
+            
+            for (const table of tables) {
+                const rows = table.querySelectorAll('tr');
+                
+                for (const row of rows) {
+                    const cells = row.querySelectorAll('td');
+                    
+                    if (cells.length >= 3) {
+                        const courseName = cells[0]?.textContent?.trim();
+                        const grade = cells[1]?.textContent?.trim();
+                        const semester = cells[2]?.textContent?.trim();
+                        
+                        if (courseName && grade && !isNaN(parseFloat(grade))) {
+                            grades.push({
+                                course: courseName,
+                                grade: parseFloat(grade),
+                                semester: semester || 'Άγνωστο',
+                                extractedAt: new Date().toISOString()
+                            });
+                        }
+                    }
+                }
+            }
+            
+            return grades;
+        }
+
+        function testJSONExport() {
+            const resultDiv = document.getElementById('export-result');
+            
+            try {
+                const jsonData = JSON.stringify(testGrades, null, 2);
+                const blob = new Blob([jsonData], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'test-grades.json';
+                a.click();
+                
+                URL.revokeObjectURL(url);
+                
+                resultDiv.innerHTML = `
+                    <div class="success">
+                        <strong>✅ JSON αρχείο δημιουργήθηκε!</strong><br>
+                        Περιεχόμενο:<br>
+                        <pre style="background: white; padding: 10px; overflow: auto; max-height: 200px;">${jsonData}</pre>
+                    </div>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="error">❌ Σφάλμα: ${error.message}</div>`;
+            }
+        }
+
+        function checkExtensionInstalled() {
+            const resultDiv = document.getElementById('installation-result');
+            
+            // Check if we can access chrome.runtime (indicates extension is installed)
+            if (typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.id) {
+                resultDiv.innerHTML = `
+                    <div class="success">
+                        <strong>✅ Extension φαίνεται να είναι εγκατεστημένο!</strong><br>
+                        ID: ${chrome.runtime.id}
+                    </div>
+                `;
+            } else {
+                resultDiv.innerHTML = `
+                    <div class="error">
+                        <strong>❌ Extension δεν φαίνεται να είναι εγκατεστημένο</strong><br>
+                        Ακολουθήστε τις οδηγίες παραπάνω για την εγκατάσταση.
+                    </div>
+                `;
+            }
+        }
+
+        function openTestGradesPage() {
+            window.open('test-grades.html', '_blank');
+        }
+
+        // Auto-run some tests on page load
+        window.addEventListener('load', () => {
+            console.log('Extension Test Page Loaded');
+            checkExtensionInstalled();
+        });
+    </script>
+</body>
+</html> 
