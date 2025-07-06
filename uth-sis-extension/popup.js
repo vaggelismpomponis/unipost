@@ -3,9 +3,9 @@
 
 class UTHGradesFetcher {
   constructor() {
-    this.baseUrl = 'https://sis.uth.gr';
-    this.loginUrl = 'https://sis.uth.gr/pls/studweb/studweb.login';
-    this.gradesUrl = 'https://sis.uth.gr/pls/studweb/studweb.grades';
+    this.baseUrl = 'https://sis-web.uth.gr';
+    this.loginUrl = 'https://cas.uth.gr/login?service=https%3A%2F%2Fsis-web.uth.gr%2Flogin%2Fcas';
+    this.gradesUrl = 'https://sis-web.uth.gr/pls/studweb/studweb.grades';
   }
 
   async openSISPage() {
@@ -158,11 +158,13 @@ class UIHandler {
     try {
       const result = await this.fetcher.extractGradesFromCurrentPage();
       
-      if (result.success && result.grades.length > 0) {
+      if (result && result.success && result.grades.length > 0) {
         await this.fetcher.saveGrades(result.grades);
         this.displayGrades(result.grades);
+      } else if (result && result.error) {
+        this.showError('Σφάλμα κατά την εξαγωγή: ' + result.error);
       } else {
-        this.showError('Δεν βρέθηκαν βαθμοί. Παρακαλώ βεβαιωθείτε ότι είστε στη σελίδα των βαθμών.');
+        this.showError('Δεν βρέθηκαν βαθμοί ή το extension δεν έχει πρόσβαση στη σελίδα. Βεβαιώσου ότι είσαι στη σελίδα των βαθμών και κάνε refresh.');
       }
     } catch (error) {
       this.showError('Σφάλμα κατά την εξαγωγή: ' + error.message);

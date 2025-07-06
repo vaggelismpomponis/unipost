@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "supabase start",
+    "server": "node server.js",
+    "server:dev": "nodemon server.js",
     "build": "supabase functions build",
     "deploy": "supabase functions deploy",
     "db:reset": "supabase db reset",
@@ -11,9 +13,14 @@
     "db:diff": "supabase db diff"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.38.4"
+    "@supabase/supabase-js": "^2.38.4",
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "axios": "^1.6.2",
+    "cheerio": "^1.0.0-rc.12"
   },
   "devDependencies": {
-    "supabase": "^1.127.4"
+    "supabase": "^1.127.4",
+    "nodemon": "^3.0.2"
   }
 } 

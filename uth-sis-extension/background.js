@@ -25,7 +25,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   
   if (request.action === 'openSISPage') {
     // Open the SIS login page
-    chrome.tabs.create({ url: 'https://sis.uth.gr/pls/studweb/studweb.login' });
+    chrome.tabs.create({ url: 'https://cas.uth.gr/login?service=https%3A%2F%2Fsis-web.uth.gr%2Flogin%2Fcas' });
     sendResponse({ success: true });
   }
   
@@ -56,7 +56,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 // Handle tab updates to inject content script when needed
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   if (changeInfo.status === 'complete' && 
-      (tab.url?.includes('sis.uth.gr') || tab.url?.includes('sis-web.uth.gr'))) {
+      (tab.url?.includes('sis-web.uth.gr'))) {
     
     // Inject content script if not already injected
     chrome.scripting.executeScript({

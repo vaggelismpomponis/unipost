@@ -19,14 +19,14 @@
     <div class="test-section">
         <h2>1. Test Grade Parsing</h2>
         <p>Αυτό το test δοκιμάζει τη λογική ανάλυσης βαθμών χωρίς το extension.</p>
-        <button onclick="testGradeParsing()">Δοκιμή Ανάλυσης Βαθμών</button>
+        <button id="btn-parse">Δοκιμή Ανάλυσης Βαθμών</button>
         <div id="parsing-result" class="result"></div>
     </div>
 
     <div class="test-section">
         <h2>2. Test JSON Export</h2>
         <p>Δοκιμάζει την εξαγωγή βαθμών σε JSON format.</p>
-        <button onclick="testJSONExport()">Δημιουργία Test JSON</button>
+        <button id="btn-json">Δημιουργία Test JSON</button>
         <div id="export-result" class="result"></div>
     </div>
 
@@ -40,14 +40,14 @@
             <li>Κάντε κλικ στο "Load unpacked"</li>
             <li>Επιλέξτε το φάκελο <code>uth-sis-extension</code></li>
         </ol>
-        <button onclick="checkExtensionInstalled()">Έλεγχος αν είναι εγκατεστημένο</button>
+        <button id="btn-check">Έλεγχος αν είναι εγκατεστημένο</button>
         <div id="installation-result" class="result"></div>
     </div>
 
     <div class="test-section">
         <h2>4. Test with Real SIS Page</h2>
         <p>Ανοίξτε τη test σελίδα βαθμών:</p>
-        <button onclick="openTestGradesPage()">Άνοιγμα Test Σελίδας</button>
+        <button id="btn-open-test">Άνοιγμα Test Σελίδας</button>
     </div>
 
     <script>
@@ -199,6 +199,10 @@
         // Auto-run some tests on page load
         window.addEventListener('load', () => {
             console.log('Extension Test Page Loaded');
+            document.getElementById('btn-parse').addEventListener('click', testGradeParsing);
+            document.getElementById('btn-json').addEventListener('click', testJSONExport);
+            document.getElementById('btn-check').addEventListener('click', checkExtensionInstalled);
+            document.getElementById('btn-open-test').addEventListener('click', openTestGradesPage);
             checkExtensionInstalled();
         });
     </script>

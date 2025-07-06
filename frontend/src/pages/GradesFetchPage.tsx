@@ -13,16 +13,24 @@ import {
   Card,
   CardContent,
   Grid,
-  Chip
+  Chip,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow
 } from '@mui/material'
-import { Visibility, VisibilityOff, Download, Upload } from '@mui/icons-material'
+import { Visibility, VisibilityOff, Download, Upload, School } from '@mui/icons-material'
 
-const SIS_URL = 'https://sis-web.uth.gr/'
+const API_BASE_URL = 'http://localhost:3001/api'
 
 interface Grade {
+  code?: string
   course: string
   grade: number
-  semester: string
+  period?: string
+  year?: string
   extractedAt?: string
 }
 
@@ -32,9 +40,9 @@ const GradesFetchPage: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [gradesHtml, setGradesHtml] = useState<string | null>(null)
-  const [importedGrades, setImportedGrades] = useState<Grade[]>([])
-  const [showExtensionInfo, setShowExtensionInfo] = useState(false)
+  const [grades, setGrades] = useState<Grade[]>([])
+  const [sessionId, setSessionId] = useState<string | null>(null)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   const handleClickShowPassword = () => setShowPassword((show) => !show)
 
@@ -42,43 +50,82 @@ const GradesFetchPage: React.FC = () => {
     event.preventDefault()
   }
 
-  const handleFetchGrades = async (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     setError(null)
-    setGradesHtml(null)
     setLoading(true)
 
     try {
-      // 1. Κάνε login στο φοιτητολόγιο (POST)
-      const loginResponse = await fetch(SIS_URL + 'login.aspx', {
+      const response = await fetch(`${API_BASE_URL}/sis/login`, {
         method: 'POST',
-        credentials: 'include',
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Type': 'application/json',
         },
-        body: `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`,
+        body: JSON.stringify({ username, password }),
       })
 
-      if (!loginResponse.ok) {
-        throw new Error('Αποτυχία login στο φοιτητολόγιο')
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Σφάλμα κατά τη σύνδεση')
       }
 
-      // 2. Fetch τη σελίδα βαθμολογιών (GET)
-      const gradesResponse = await fetch(SIS_URL + 'student/grades.aspx', {
-        credentials: 'include',
-      })
-
-      if (!gradesResponse.ok) {
-        throw new Error('Αποτυχία λήψης βαθμολογιών')
+      if (data.success) {
+        setSessionId(data.sessionId)
+        setIsLoggedIn(true)
+        setError(null)
+      } else {
+        throw new Error(data.error || 'Αποτυχία σύνδεσης')
       }
-
-      const html = await gradesResponse.text()
-      setGradesHtml(html)
     } catch (err: any) {
-      setError(err.message || 'Σφάλμα κατά το fetch')
+      setError(err.message || 'Σφάλμα κατά τη σύνδεση')
     } finally {
       setLoading(false)
     }
+  }
+
+  const handleFetchGrades = async () => {
+    if (!sessionId) {
+      setError('Πρέπει πρώτα να συνδεθείτε')
+      return
+    }
+
+    setError(null)
+    setLoading(true)
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/sis/grades`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ sessionId }),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Σφάλμα κατά την ανάκτηση βαθμών')
+      }
+
+      if (data.success && data.grades) {
+        setGrades(data.grades)
+        setError(null)
+      } else {
+        throw new Error(data.error || 'Δεν βρέθηκαν βαθμοί')
+      }
+    } catch (err: any) {
+      setError(err.message || 'Σφάλμα κατά την ανάκτηση βαθμών')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleLogout = () => {
+    setSessionId(null)
+    setIsLoggedIn(false)
+    setGrades([])
+    setError(null)
   }
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -89,38 +136,40 @@ const GradesFetchPage: React.FC = () => {
     reader.onload = (e) => {
       try {
         const content = e.target?.result as string
-        const grades: Grade[] = JSON.parse(content)
+        const uploadedGrades = JSON.parse(content)
         
-        if (Array.isArray(grades) && grades.length > 0) {
-          setImportedGrades(grades)
+        if (Array.isArray(uploadedGrades)) {
+          setGrades(uploadedGrades)
           setError(null)
         } else {
           setError('Μη έγκυρο αρχείο JSON')
         }
-      } catch (err) {
+      } catch (error) {
         setError('Σφάλμα κατά την ανάγνωση του αρχείου')
       }
     }
     reader.readAsText(file)
   }
 
-  const handleDownloadTemplate = () => {
-    const template = [
-      {
-        course: "Παράδειγμα Μαθήματος",
-        grade: 8.5,
-        semester: "1ο Εξάμηνο",
-        extractedAt: new Date().toISOString()
-      }
-    ]
+  const handleExportGrades = () => {
+    if (grades.length === 0) {
+      setError('Δεν υπάρχουν βαθμοί για εξαγωγή')
+      return
+    }
+
+    const dataStr = JSON.stringify(grades, null, 2)
+    const dataBlob = new Blob([dataStr], { type: 'application/json' })
     
-    const blob = new Blob([JSON.stringify(template, null, 2)], { type: 'application/json' })
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = url
-    a.download = 'grades-template.json'
-    a.click()
-    URL.revokeObjectURL(url)
+    const link = document.createElement('a')
+    link.href = URL.createObjectURL(dataBlob)
+    link.download = 'uth-grades.json'
+    link.click()
+  }
+
+  const calculateAverage = () => {
+    if (grades.length === 0) return 0
+    const sum = grades.reduce((acc, grade) => acc + grade.grade, 0)
+    return (sum / grades.length).toFixed(2)
   }
 
   return (
@@ -133,162 +182,173 @@ const GradesFetchPage: React.FC = () => {
           
           <Alert severity="info" sx={{ mb: 3 }}>
             <Typography variant="body2">
-              <strong>Εναλλακτική λύση:</strong> Χρησιμοποιήστε το browser extension για καλύτερη εξαγωγή βαθμών.
-              <Button 
-                size="small" 
-                onClick={() => setShowExtensionInfo(!showExtensionInfo)}
-                sx={{ ml: 1 }}
-              >
-                {showExtensionInfo ? 'Απόκρυψη' : 'Περισσότερα'}
-              </Button>
+              <strong>Server-side Proxy:</strong> Οι βαθμοί ανάγονται μέσω του server, 
+              αποφεύγοντας τα CORS περιορισμούς του browser.
             </Typography>
           </Alert>
-
-          {showExtensionInfo && (
-            <Alert severity="success" sx={{ mb: 3 }}>
-              <Typography variant="body2">
-                <strong>Browser Extension:</strong>
-                <br />
-                1. Εγκαταστήστε το extension από το φάκελο <code>uth-sis-extension</code>
-                <br />
-                2. Ανοίξτε τη σελίδα του SIS και συνδεθείτε
-                <br />
-                3. Πλοηγηθείτε στη σελίδα των βαθμών
-                <br />
-                4. Κάντε κλικ στο extension και εξάγετε τους βαθμούς
-                <br />
-                5. Κατεβάστε το JSON αρχείο και ανεβάστε το εδώ
-              </Typography>
-            </Alert>
-          )}
 
           {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
           
           <Grid container spacing={3}>
             <Grid item xs={12} md={6}>
               <Typography variant="h6" gutterBottom>
-                Απευθείας σύνδεση (CORS περιορισμοί)
+                Σύνδεση στο SIS
               </Typography>
-              <Box component="form" onSubmit={handleFetchGrades}>
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  label="Όνομα χρήστη φοιτητολογίου"
-                  value={username}
-                  onChange={e => setUsername(e.target.value)}
-                  autoComplete="username"
-                />
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  label="Κωδικός φοιτητολογίου"
-                  type={showPassword ? 'text' : 'password'}
-                  value={password}
-                  onChange={e => setPassword(e.target.value)}
-                  autoComplete="current-password"
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleClickShowPassword}
-                          onMouseDown={handleMouseDownPassword}
-                          edge="end"
-                        >
-                          {showPassword ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  sx={{ mt: 3, mb: 2 }}
-                  disabled={loading}
-                >
-                  {loading ? <CircularProgress size={24} /> : 'Σύνδεση & Λήψη Βαθμών'}
-                </Button>
-              </Box>
+              
+              {!isLoggedIn ? (
+                <Box component="form" onSubmit={handleLogin}>
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    label="Όνομα χρήστη φοιτητολογίου"
+                    value={username}
+                    onChange={e => setUsername(e.target.value)}
+                    autoComplete="username"
+                    disabled={loading}
+                  />
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    label="Κωδικός φοιτητολογίου"
+                    type={showPassword ? 'text' : 'password'}
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
+                    autoComplete="current-password"
+                    disabled={loading}
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword}
+                            onMouseDown={handleMouseDownPassword}
+                            edge="end"
+                            disabled={loading}
+                          >
+                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    sx={{ mt: 3, mb: 2 }}
+                    disabled={loading}
+                  >
+                    {loading ? <CircularProgress size={24} /> : 'Σύνδεση'}
+                  </Button>
+                </Box>
+              ) : (
+                <Box>
+                  <Alert severity="success" sx={{ mb: 2 }}>
+                    Συνδεδεμένος ως: {username}
+                  </Alert>
+                  <Button
+                    fullWidth
+                    variant="contained"
+                    onClick={handleFetchGrades}
+                    disabled={loading}
+                    sx={{ mb: 2 }}
+                  >
+                    {loading ? <CircularProgress size={24} /> : 'Λήψη Βαθμών'}
+                  </Button>
+                  <Button
+                    fullWidth
+                    variant="outlined"
+                    onClick={handleLogout}
+                    disabled={loading}
+                  >
+                    Αποσύνδεση
+                  </Button>
+                </Box>
+              )}
             </Grid>
 
             <Grid item xs={12} md={6}>
               <Typography variant="h6" gutterBottom>
-                Εισαγωγή από extension
+                Εισαγωγή από Αρχείο
               </Typography>
-              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                <Button
-                  variant="outlined"
-                  startIcon={<Upload />}
-                  component="label"
-                  fullWidth
-                >
-                  Επιλογή JSON αρχείου
-                  <input
-                    type="file"
-                    hidden
-                    accept=".json"
-                    onChange={handleFileUpload}
-                  />
-                </Button>
-                <Button
-                  variant="outlined"
-                  startIcon={<Download />}
-                  onClick={handleDownloadTemplate}
-                  fullWidth
-                >
-                  Κατέβασμα template
-                </Button>
-              </Box>
+              <Button
+                fullWidth
+                variant="outlined"
+                component="label"
+                startIcon={<Upload />}
+                sx={{ mb: 2 }}
+              >
+                Επιλογή JSON Αρχείου
+                <input
+                  type="file"
+                  hidden
+                  accept=".json"
+                  onChange={handleFileUpload}
+                />
+              </Button>
+              <Typography variant="body2" color="text.secondary">
+                Εναλλακτικά, μπορείτε να ανεβάσετε αρχείο JSON με βαθμούς 
+                που έχετε εξάγει από το browser extension.
+              </Typography>
             </Grid>
           </Grid>
 
-          {gradesHtml && (
-            <Box mt={4}>
-              <Typography variant="h6">Αποτελέσματα (HTML):</Typography>
-              <pre style={{ maxHeight: 300, overflow: 'auto', background: '#eee', padding: 8 }}>
-                {gradesHtml}
-              </pre>
+          {grades.length > 0 && (
+            <Box sx={{ mt: 4 }}>
+              <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+                <Typography variant="h6">
+                  Βρέθηκαν {grades.length} βαθμοί
+                </Typography>
+                <Box>
+                  <Chip 
+                    icon={<School />} 
+                    label={`Μέσος όρος: ${calculateAverage()}`}
+                    color="primary"
+                    sx={{ mr: 1 }}
+                  />
+                  <Button
+                    variant="outlined"
+                    startIcon={<Download />}
+                    onClick={handleExportGrades}
+                  >
+                    Εξαγωγή JSON
+                  </Button>
+                </Box>
+              </Box>
+
+              <TableContainer component={Paper}>
+                <Table>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>Μάθημα</TableCell>
+                      <TableCell align="center">Βαθμός</TableCell>
+                      <TableCell>Εξάμηνο</TableCell>
+                      <TableCell>Έτος</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {grades.map((grade, index) => (
+                      <TableRow key={index}>
+                        <TableCell>{grade.course}</TableCell>
+                        <TableCell align="center">
+                          <Chip 
+                            label={grade.grade} 
+                            color={grade.grade >= 5 ? 'success' : 'error'}
+                            size="small"
+                          />
+                        </TableCell>
+                        <TableCell>{grade.period || '-'}</TableCell>
+                        <TableCell>{grade.year || '-'}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
             </Box>
           )}
         </Paper>
-
-        {importedGrades.length > 0 && (
-          <Paper elevation={3} sx={{ p: 4, width: '100%' }}>
-            <Typography variant="h6" gutterBottom>
-              Εισηγμένοι βαθμοί ({importedGrades.length})
-            </Typography>
-            <Grid container spacing={2}>
-              {importedGrades.map((grade, index) => (
-                <Grid item xs={12} sm={6} md={4} key={index}>
-                  <Card>
-                    <CardContent>
-                      <Typography variant="h6" noWrap>
-                        {grade.course}
-                      </Typography>
-                      <Typography variant="h4" color="primary" gutterBottom>
-                        {grade.grade}
-                      </Typography>
-                      <Chip 
-                        label={grade.semester} 
-                        size="small" 
-                        color="secondary" 
-                      />
-                      {grade.extractedAt && (
-                        <Typography variant="caption" display="block" sx={{ mt: 1 }}>
-                          Εξήχθη: {new Date(grade.extractedAt).toLocaleDateString('el-GR')}
-                        </Typography>
-                      )}
-                    </CardContent>
-                  </Card>
-                </Grid>
-              ))}
-            </Grid>
-          </Paper>
-        )}
       </Box>
     </Container>
   )
