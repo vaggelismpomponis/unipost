@@ -16,17 +16,27 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Paper as MuiPaper,
   Card,
   CardContent,
-  Divider
+  Divider,
+  useMediaQuery,
+  Chip,
+  Stack,
+  Drawer,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  Checkbox,
+  ListItemText
 } from '@mui/material'
 import { Visibility, VisibilityOff, School, Star } from '@mui/icons-material'
+import CloseIcon from '@mui/icons-material/Close'
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
 
 const API_BASE_URL = 'http://localhost:3001/api'
 
-interface Grade {
+export interface Grade {
   code?: string
   course?: string
   name?: string
@@ -41,13 +51,13 @@ interface Grade {
   extractedAt?: string
 }
 
-interface GradeFetchFormProps {
+export interface GradeFetchFormProps {
   onFetch: (grades: Grade[], history: any[]) => void
   defaultUsername?: string
   defaultPassword?: string
 }
 
-const GradeFetchForm: React.FC<GradeFetchFormProps> = ({ onFetch, defaultUsername = '', defaultPassword = '' }) => {
+export const GradeFetchForm: React.FC<GradeFetchFormProps> = ({ onFetch, defaultUsername = '', defaultPassword = '' }) => {
   const [username, setUsername] = useState(defaultUsername)
   const [password, setPassword] = useState(defaultPassword)
   const [showPassword, setShowPassword] = useState(false)
@@ -173,49 +183,6 @@ const GradeFetchForm: React.FC<GradeFetchFormProps> = ({ onFetch, defaultUsernam
   )
 }
 
-export const GradesTable: React.FC<{ grades: Grade[] }> = ({ grades }) => (
-  <TableContainer component={MuiPaper}>
-    <Table>
-      <TableHead>
-        <TableRow>
-          <TableCell>Κωδικός</TableCell>
-          <TableCell>Μάθημα</TableCell>
-          <TableCell>Βαθμός</TableCell>
-          <TableCell>Εξ. περίοδος</TableCell>
-          <TableCell>Ακ. Έτος</TableCell>
-          <TableCell>ECTS</TableCell>
-          <TableCell>Τύπος</TableCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {grades.map((g, i) => (
-          <TableRow key={i}>
-            <TableCell>{g.code}</TableCell>
-            <TableCell>{g.name || g.course}</TableCell>
-            <TableCell>{g.grade}</TableCell>
-            <TableCell>{g.period || g.date}</TableCell>
-            <TableCell>{g.year || g.semester}</TableCell>
-            <TableCell>{g.ects}</TableCell>
-            <TableCell>{g.type}</TableCell>
-          </TableRow>
-        ))}
-      </TableBody>
-    </Table>
-  </TableContainer>
-)
-
-export const GradesAverageChart: React.FC<{ averageHistory: { date: string, average: number }[] }> = ({ averageHistory }) => (
-  <ResponsiveContainer width="100%" height={220}>
-    <LineChart data={averageHistory} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="date" fontSize={12} angle={-20} height={60} interval={0} tick={{ dx: -10, dy: 10 }} />
-      <YAxis domain={[0, 10]} />
-      <Tooltip formatter={(value) => value + ' / 10'} />
-      <Line type="monotone" dataKey="average" stroke="#1976d2" strokeWidth={2} dot />
-    </LineChart>
-  </ResponsiveContainer>
-)
-
 function getSemesterFromCode(code?: string) {
   if (!code || code.length < 2) return null
   const match = code.match(/^[ΥΕ](\d)/)
@@ -242,20 +209,93 @@ function calcAverage(grades: Grade[]) {
   return (valid.reduce((a, b) => a + b, 0) / valid.length).toFixed(2)
 }
 
-export const SemesterGradesTable: React.FC<{ grades: Grade[] }> = ({ grades }) => {
+export const SemesterGradesTable: React.FC<{
+  grades: Grade[],
+  filtersOpen?: boolean,
+  setFiltersOpen?: (open: boolean) => void
+}> = ({ grades, filtersOpen, setFiltersOpen }) => {
   const grouped = groupGradesBySemester(grades)
-  const semesterOrder = Object.keys(grouped).sort((a, b) => {
-    if (a === 'Λοιπά') return 1
-    if (b === 'Λοιπά') return -1
-    return parseInt(a) - parseInt(b)
-  })
-
-  // Υπολογισμός συνολικού μέσου όρου
+  const semesterOrder = Object.keys(grouped).sort((a, b) => parseInt(a) - parseInt(b))
   const allGrades = Object.values(grouped).flat()
   const overallAverage = calcAverage(allGrades)
+  const isMobile = useMediaQuery('(max-width:930px)');
+
+  // Φίλτρα
+  const drawerOpen = typeof filtersOpen === 'boolean' ? filtersOpen : useState(false)[0];
+  const setDrawerOpen = typeof setFiltersOpen === 'function' ? setFiltersOpen : useState(false)[1];
+  const [filterSemester, setFilterSemester] = useState<string[]>([]);
+  const [filterStatus, setFilterStatus] = useState<'all' | 'passed' | 'failed'>('all');
+  const [filterType, setFilterType] = useState<string[]>([]);
+  const allSemesters = semesterOrder;
+  const allTypes = Array.from(new Set(allGrades.map(g => g.type).filter(Boolean)));
+  function filterGrades(grades: Grade[]) {
+    return grades.filter(g => {
+      if (filterSemester.length > 0) {
+        const sem = getSemesterFromCode(g.code)?.toString() || 'Χ/Ε';
+        if (!filterSemester.includes(sem)) return false;
+      }
+      let gradeNum = typeof g.grade === 'string' ? parseFloat((g.grade as string).replace(',', '.')) : g.grade;
+      if (filterStatus === 'passed' && !(gradeNum >= 5)) return false;
+      if (filterStatus === 'failed' && !(gradeNum < 5)) return false;
+      if (filterType.length > 0 && (!g.type || !filterType.includes(g.type))) return false;
+      return true;
+    });
+  }
 
   return (
     <Box>
+      <Drawer anchor="bottom" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
+        <Box sx={{ width: '100%', maxWidth: 400, mx: 'auto', p: 3, minHeight: 350, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', position: 'relative' }} role="presentation">
+          <IconButton onClick={() => setDrawerOpen(false)} sx={{ position: 'absolute', top: 8, right: 8 }}>
+            <CloseIcon />
+          </IconButton>
+          <Typography variant="h6" sx={{ mb: 2, mt: 1 }}>Φίλτρα</Typography>
+          <FormControl fullWidth sx={{ mb: 2 }}>
+            <InputLabel>Εξάμηνο</InputLabel>
+            <Select
+              multiple
+              value={filterSemester}
+              onChange={e => setFilterSemester(typeof e.target.value === 'string' ? e.target.value.split(',') : e.target.value)}
+              renderValue={selected => selected.map(s => ['1','2','3','4','5','6','7','8'].includes(s) ? `${s}ο` : 'Χ/Ε').join(', ')}
+            >
+              {allSemesters.map(sem => (
+                <MenuItem key={sem} value={sem}>
+                  <Checkbox checked={filterSemester.indexOf(sem) > -1} />
+                  <ListItemText primary={['1','2','3','4','5','6','7','8'].includes(sem) ? `${sem}ο εξάμηνο` : 'Χ/Ε'} />
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <FormControl fullWidth sx={{ mb: 2 }}>
+            <InputLabel>Κατάσταση</InputLabel>
+            <Select
+              value={filterStatus}
+              onChange={e => setFilterStatus(e.target.value as any)}
+            >
+              <MenuItem value="all">Όλα</MenuItem>
+              <MenuItem value="passed">Περασμένα</MenuItem>
+              <MenuItem value="failed">Κομμένα</MenuItem>
+            </Select>
+          </FormControl>
+          <FormControl fullWidth sx={{ mb: 2 }}>
+            <InputLabel>Τύπος</InputLabel>
+            <Select
+              multiple
+              value={filterType}
+              onChange={e => setFilterType(typeof e.target.value === 'string' ? e.target.value.split(',') : e.target.value)}
+              renderValue={selected => selected.join(', ')}
+            >
+              {allTypes.map(type => (
+                <MenuItem key={type} value={type}>
+                  <Checkbox checked={filterType.indexOf(type || '') > -1} />
+                  <ListItemText primary={type} />
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <Button variant="contained" fullWidth sx={{ mt: 2 }} onClick={() => setDrawerOpen(false)}>Εφαρμογή</Button>
+        </Box>
+      </Drawer>
       <Card sx={{ mb: 4, maxWidth: 400, mx: 'auto', background: 'linear-gradient(90deg, #1976d2 0%, #42a5f5 100%)', color: 'white', boxShadow: 3 }}>
         <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', py: 3 }}>
           <Star sx={{ fontSize: 48, mb: 1, color: 'gold' }} />
@@ -271,37 +311,80 @@ export const SemesterGradesTable: React.FC<{ grades: Grade[] }> = ({ grades }) =
         <Card key={sem} sx={{ mb: 4 }}>
           <CardContent>
             <Typography variant="h6" sx={{ mb: 2 }}>{['1','2','3','4','5','6','7','8'].includes(sem) ? `${sem}ο εξάμηνο` : 'Χ/Ε (Χωρίς Εξάμηνο)'}</Typography>
-            <TableContainer>
-              <Table size="small">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Κωδικός</TableCell>
-                    <TableCell>Μάθημα</TableCell>
-                    <TableCell>Βαθμός</TableCell>
-                    <TableCell>Εξ. περίοδος</TableCell>
-                    <TableCell>Ακ. Έτος</TableCell>
-                    <TableCell>ECTS</TableCell>
-                    <TableCell>Τύπος</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {grouped[sem].map((g, i) => (
-                    <TableRow key={i}>
-                      <TableCell>{g.code}</TableCell>
-                      <TableCell>{g.name || g.course}</TableCell>
-                      <TableCell>{g.grade}</TableCell>
-                      <TableCell>{g.period || g.date}</TableCell>
-                      <TableCell>{g.year || g.semester}</TableCell>
-                      <TableCell>{g.ects}</TableCell>
-                      <TableCell>{g.type}</TableCell>
+            {isMobile ? (
+              <Stack spacing={2}>
+                {filterGrades(grouped[sem]).map((g, i) => {
+                  let gradeNum = typeof g.grade === 'string' ? parseFloat((g.grade as string).replace(',', '.')) : g.grade;
+                  let color: string = '';
+                  if (g.grade === '-' || g.grade === undefined || g.grade === null || g.grade === '') {
+                    color = 'grey.600';
+                  } else if (!isNaN(gradeNum)) {
+                    if (gradeNum >= 5) color = 'success.dark';
+                    else if (gradeNum < 5) color = 'error.main';
+                  }
+                  return (
+                    <Card key={i} variant="outlined" sx={{ backgroundColor: 'grey.100', boxShadow: 1 }}>
+                      <CardContent sx={{ p: 2 }}>
+                        <Typography variant="subtitle2" sx={{ color: 'text.secondary', mb: 0.5 }}>{g.code}</Typography>
+                        <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ mb: 1 }}>
+                          <Typography variant="h6" sx={{ color, fontWeight: 'bold' }}>{g.name || g.course}</Typography>
+                          <Stack direction="row" spacing={1} alignItems="center">
+                            <Typography variant="body1" sx={{ color, fontWeight: 'bold', fontSize: 20 }}>{typeof g.grade === 'string' ? g.grade.replace(',', '.') : g.grade}</Typography>
+                            <Chip label="Βαθμός" size="small" sx={{ bgcolor: color, color: 'white', fontWeight: 'bold' }} />
+                          </Stack>
+                        </Stack>
+                        <Typography variant="body2">Εξ. περίοδος: {g.period || g.date}</Typography>
+                        <Typography variant="body2">Ακ. Έτος: {g.year || g.semester}</Typography>
+                        <Typography variant="body2">ECTS: {g.ects}</Typography>
+                        <Typography variant="body2">Τύπος: {g.type}</Typography>
+                      </CardContent>
+                    </Card>
+                  )
+                })}
+              </Stack>
+            ) : (
+              <TableContainer>
+                <Table size="small">
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>Κωδικός</TableCell>
+                      <TableCell>Μάθημα</TableCell>
+                      <TableCell>Βαθμός</TableCell>
+                      <TableCell>Εξ. περίοδος</TableCell>
+                      <TableCell>Ακ. Έτος</TableCell>
+                      <TableCell>ECTS</TableCell>
+                      <TableCell>Τύπος</TableCell>
                     </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
+                  </TableHead>
+                  <TableBody>
+                    {filterGrades(grouped[sem]).map((g, i) => {
+                      let gradeNum = typeof g.grade === 'string' ? parseFloat((g.grade as string).replace(',', '.')) : g.grade;
+                      let color: string = '';
+                      if (g.grade === '-' || g.grade === undefined || g.grade === null || g.grade === '') {
+                        color = 'grey.600';
+                      } else if (!isNaN(gradeNum)) {
+                        if (gradeNum >= 5) color = 'success.dark';
+                        else if (gradeNum < 5) color = 'error.main';
+                      }
+                      return (
+                        <TableRow key={i} sx={{ backgroundColor: 'grey.100' }}>
+                          <TableCell>{g.code}</TableCell>
+                          <TableCell sx={{ color }}>{g.name || g.course}</TableCell>
+                          <TableCell sx={{ color, fontWeight: 'bold' }}>{typeof g.grade === 'string' ? g.grade.replace(',', '.') : g.grade}</TableCell>
+                          <TableCell>{g.period || g.date}</TableCell>
+                          <TableCell>{g.year || g.semester}</TableCell>
+                          <TableCell>{g.ects}</TableCell>
+                          <TableCell>{g.type}</TableCell>
+                        </TableRow>
+                      )
+                    })}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            )}
             <Divider sx={{ my: 2 }} />
             <Typography variant="subtitle1" color="primary">
-              Μέσος όρος εξαμήνου: {calcAverage(grouped[sem]) ?? '-'}
+              Μέσος όρος εξαμήνου: {calcAverage(filterGrades(grouped[sem])) ?? '-'}
             </Typography>
           </CardContent>
         </Card>
@@ -309,5 +392,17 @@ export const SemesterGradesTable: React.FC<{ grades: Grade[] }> = ({ grades }) =
     </Box>
   )
 }
+
+export const GradesAverageChart: React.FC<{ averageHistory: { date: string, average: number }[] }> = ({ averageHistory }) => (
+  <ResponsiveContainer width="100%" height={220}>
+    <LineChart data={averageHistory} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+      <CartesianGrid strokeDasharray="3 3" />
+      <XAxis dataKey="date" fontSize={12} angle={-20} height={60} interval={0} tick={{ dx: -10, dy: 10 }} />
+      <YAxis domain={[0, 10]} />
+      <Tooltip formatter={(value) => value + ' / 10'} />
+      <Line type="monotone" dataKey="average" stroke="#1976d2" strokeWidth={2} dot />
+    </LineChart>
+  </ResponsiveContainer>
+)
 
 export default GradeFetchForm 

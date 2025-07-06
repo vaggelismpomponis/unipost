@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Routes, Route, Link, useLocation } from 'react-router-dom'
 import { Box, AppBar, Toolbar, Typography, Button, Stack, IconButton, Drawer, List, ListItem, ListItemButton, ListItemText, Divider } from '@mui/material'
 import LandingPage from './pages/LandingPage'
@@ -10,7 +10,6 @@ import ProtectedRoute from './components/ProtectedRoute'
 import { useAuthStore } from './store/authStore'
 import GradesFetchPage from './pages/GradesFetchPage'
 import SchoolIcon from '@mui/icons-material/School'
-import DarkModeIcon from '@mui/icons-material/DarkMode'
 import MenuIcon from '@mui/icons-material/Menu'
 import GradesPage from './pages/GradesPage'
 import ProfilePage from './pages/ProfilePage'
@@ -24,7 +23,7 @@ const navLinks = [
   { to: '/register', label: 'Εγγραφή' },
   { to: '/dashboard', label: 'Dashboard' },
   { to: '/profile-setup', label: 'Ρύθμιση προφίλ' },
-  { to: '/grades-fetch', label: 'Βαθμοί' },
+  { to: '/grades', label: 'Βαθμοί' },
   { to: '/profile', label: 'Προφίλ SIS' },
 ]
 
@@ -155,7 +154,10 @@ function App({ toggleMode, mode }: { toggleMode: () => void; mode: 'light' | 'da
             </ProtectedRoute>
           } 
         />
-        <Route path="/grades-fetch" element={<GradesFetchPage />} />
+        <Route path="/grades-fetch" element={<GradesFetchPage onFetch={(grades, history) => {
+          // Handle the fetch result here if needed
+          console.log('Grades fetched:', grades, history)
+        }} />} />
         <Route path="/grades" element={<GradesPage />} />
         <Route path="/profile" element={<ProfilePage />} />
       </Routes>

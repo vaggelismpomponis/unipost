@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import {
   Box,
   Container,
@@ -22,7 +21,6 @@ import { useNavigate } from 'react-router-dom'
 const steps = ['Προσωπικά Στοιχεία', 'Ακαδημαϊκά Στοιχεία', 'Επιβεβαίωση']
 
 const ProfileSetup: React.FC = () => {
-  const { t } = useTranslation()
   const navigate = useNavigate()
   const { profile, updateProfile, loading } = useProfile()
   const [activeStep, setActiveStep] = useState(0)

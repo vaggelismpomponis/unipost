@@ -1,4 +1,3 @@
-import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { 
   Box, 
@@ -7,12 +6,9 @@ import {
   Button, 
   Grid, 
   Card, 
-  CardContent,
-  AppBar,
-  Toolbar
+  CardContent
 } from '@mui/material'
 import { Link } from 'react-router-dom'
-import SchoolIcon from '@mui/icons-material/School'
 import AssessmentIcon from '@mui/icons-material/Assessment'
 import ForumIcon from '@mui/icons-material/Forum'
 import DarkModeIcon from '@mui/icons-material/DarkMode'

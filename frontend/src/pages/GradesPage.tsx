@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Typography, Box, CircularProgress, Alert, Button } from '@mui/material'
+import { Container, Typography, Box, CircularProgress, Alert, Button, Stack, useMediaQuery } from '@mui/material'
 import { SemesterGradesTable, GradesAverageChart } from './GradesFetchPage'
 import { useAuthStore } from '../store/authStore'
 import GradeFetchForm from './GradesFetchPage'
 import { useProfile } from '../hooks/useProfile'
 import CryptoJS from 'crypto-js'
+import FilterListIcon from '@mui/icons-material/FilterList'
+import RefreshIcon from '@mui/icons-material/Refresh'
 
 const API_BASE_URL = 'http://localhost:3001/api'
 
@@ -35,6 +37,9 @@ const GradesPage: React.FC = () => {
   const defaultPassword = profile?.sis_password
     ? CryptoJS.AES.decrypt(profile.sis_password, 'unipost-demo-key').toString(CryptoJS.enc.Utf8)
     : ''
+
+  const isMobile = useMediaQuery('(max-width:930px)');
+  const [filtersOpen, setFiltersOpen] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -89,31 +94,40 @@ const GradesPage: React.FC = () => {
             defaultPassword={defaultPassword}
           />
         )}
-        <Button variant="outlined" sx={{ mt: 2 }} onClick={() => {
-          if (username) {
-            setLoading(true)
-            setError(null)
-            fetch(`${API_BASE_URL}/sis/grades-history?username=${encodeURIComponent(username)}`)
-              .then(res => res.json())
-              .then(data => {
-                if (data.success && Array.isArray(data.history) && data.history.length > 0) {
-                  setGrades(data.history[0].grades || [])
-                  setHistory(data.history)
-                } else {
-                  setGrades([])
-                  setHistory([])
-                }
-              })
-              .catch(() => setError('Σφάλμα κατά τη λήψη βαθμολογιών'))
-              .finally(() => setLoading(false))
-          }
-        }}>Ανανέωση</Button>
       </Box>
       <Box>
-        <Typography variant="h4" gutterBottom>Βαθμολογίες</Typography>
+        <Stack direction="row" spacing={2} alignItems="center" justifyContent="space-between" sx={{ mb: 1 }}>
+          <Typography variant="h4" gutterBottom sx={{ mb: 0, textAlign: isMobile ? 'left' : 'center' }}>Βαθμολογίες</Typography>
+          <Stack direction="row" spacing={1}>
+            <Button variant="outlined" aria-label="Ανανέωση" onClick={() => {
+              if (username) {
+                setLoading(true)
+                setError(null)
+                fetch(`${API_BASE_URL}/sis/grades-history?username=${encodeURIComponent(username)}`)
+                  .then(res => res.json())
+                  .then(data => {
+                    if (data.success && Array.isArray(data.history) && data.history.length > 0) {
+                      setGrades(data.history[0].grades || [])
+                      setHistory(data.history)
+                    } else {
+                      setGrades([])
+                      setHistory([])
+                    }
+                  })
+                  .catch(() => setError('Σφάλμα κατά τη λήψη βαθμολογιών'))
+                  .finally(() => setLoading(false))
+              }
+            }}>
+              <RefreshIcon />
+            </Button>
+            <Button variant="outlined" startIcon={<FilterListIcon />} onClick={() => setFiltersOpen(true)}>
+              Φίλτρα
+            </Button>
+          </Stack>
+        </Stack>
         {!user ? (
           <Alert severity="info">Πρέπει να συνδεθείς για να δεις τις βαθμολογίες σου.</Alert>
-        ) : loading ? <CircularProgress /> : error ? <Alert severity="error">{error}</Alert> : <SemesterGradesTable grades={grades} />}
+        ) : loading ? <CircularProgress /> : error ? <Alert severity="error">{error}</Alert> : <SemesterGradesTable grades={grades} filtersOpen={filtersOpen} setFiltersOpen={setFiltersOpen} />}
       </Box>
       <Box sx={{ mt: 6 }}>
         <Typography variant="h5" gutterBottom>Εξέλιξη μέσου όρου</Typography>

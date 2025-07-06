@@ -11,7 +11,7 @@ interface AuthState {
   checkUser: () => Promise<void>
 }
 
-export const useAuthStore = create<AuthState>((set, get) => ({
+export const useAuthStore = create<AuthState>((set) => ({
   user: null,
   loading: true,
 
@@ -33,7 +33,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   },
 
   signUp: async (email: string, password: string, userData: any) => {
-    const { data, error } = await supabase.auth.signUp({
+    const { error } = await supabase.auth.signUp({
       email,
       password,
       options: {
@@ -64,6 +64,6 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 }))
 
 // Initialize auth state
-supabase.auth.onAuthStateChange((event, session) => {
+supabase.auth.onAuthStateChange((_event, session) => {
   useAuthStore.setState({ user: session?.user ?? null })
 }) 

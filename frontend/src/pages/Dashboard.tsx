@@ -1,4 +1,3 @@
-import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { 
   Box, 
@@ -8,29 +7,21 @@ import {
   Card, 
   CardContent,
   Button,
-  IconButton,
   CircularProgress
 } from '@mui/material'
 import { Link, useNavigate } from 'react-router-dom'
-import DarkModeIcon from '@mui/icons-material/DarkMode'
 import AssessmentIcon from '@mui/icons-material/Assessment'
 import ForumIcon from '@mui/icons-material/Forum'
 import BarChartIcon from '@mui/icons-material/BarChart'
-import AddIcon from '@mui/icons-material/Add'
-import { useAuthStore } from '../store/authStore'
+
 import { useProfile } from '../hooks/useProfile'
-import { GradesTable, GradesAverageChart } from './GradesFetchPage'
+import { SemesterGradesTable, GradesAverageChart } from './GradesFetchPage'
 
 const Dashboard: React.FC = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const { user, signOut } = useAuthStore()
-  const { profile, isProfileComplete, loading: profileLoading } = useProfile()
 
-  const handleLogout = async () => {
-    await signOut()
-    navigate('/')
-  }
+  const { profile, isProfileComplete, loading: profileLoading } = useProfile()
 
   // Show loading while checking profile
   if (profileLoading) {
@@ -180,7 +171,7 @@ const Dashboard: React.FC = () => {
         {/* Προβολή βαθμολογιών */}
         <Box sx={{ mt: 6 }}>
           <Typography variant="h5" gutterBottom>Βαθμολογίες</Typography>
-          <GradesTable grades={mockGrades} />
+          <SemesterGradesTable grades={mockGrades} />
         </Box>
 
         {/* Προβολή στατιστικών */}
