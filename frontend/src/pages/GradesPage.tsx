@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Container, Typography, Box, CircularProgress, Alert, Button } from '@mui/material'
-import { GradesTable, GradesAverageChart } from './GradesFetchPage'
+import { SemesterGradesTable, GradesAverageChart } from './GradesFetchPage'
 import { useAuthStore } from '../store/authStore'
 import GradeFetchForm from './GradesFetchPage'
 import { useProfile } from '../hooks/useProfile'
+import CryptoJS from 'crypto-js'
 
 const API_BASE_URL = 'http://localhost:3001/api'
 
@@ -31,6 +32,9 @@ const GradesPage: React.FC = () => {
   const [error, setError] = useState<string | null>(null)
 
   const username = profile?.username || ''
+  const defaultPassword = profile?.sis_password
+    ? CryptoJS.AES.decrypt(profile.sis_password, 'unipost-demo-key').toString(CryptoJS.enc.Utf8)
+    : ''
 
   useEffect(() => {
     const fetchData = async () => {
@@ -82,6 +86,7 @@ const GradesPage: React.FC = () => {
               setError(null)
             }}
             defaultUsername={username}
+            defaultPassword={defaultPassword}
           />
         )}
         <Button variant="outlined" sx={{ mt: 2 }} onClick={() => {
@@ -108,7 +113,7 @@ const GradesPage: React.FC = () => {
         <Typography variant="h4" gutterBottom>Βαθμολογίες</Typography>
         {!user ? (
           <Alert severity="info">Πρέπει να συνδεθείς για να δεις τις βαθμολογίες σου.</Alert>
-        ) : loading ? <CircularProgress /> : error ? <Alert severity="error">{error}</Alert> : <GradesTable grades={grades} />}
+        ) : loading ? <CircularProgress /> : error ? <Alert severity="error">{error}</Alert> : <SemesterGradesTable grades={grades} />}
       </Box>
       <Box sx={{ mt: 6 }}>
         <Typography variant="h5" gutterBottom>Εξέλιξη μέσου όρου</Typography>

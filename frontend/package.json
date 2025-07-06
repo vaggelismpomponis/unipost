@@ -11,10 +11,10 @@
     "lint:fix": "eslint . --ext ts,tsx --fix"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
     "@mui/icons-material": "^5.14.19",
-    "@mui/material": "^5.14.20",
+    "@mui/material": "^5.17.1",
     "@supabase/supabase-js": "^2.38.4",
     "@types/crypto-js": "^4.2.2",
     "crypto-js": "^4.2.0",

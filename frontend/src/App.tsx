@@ -15,6 +15,8 @@ import MenuIcon from '@mui/icons-material/Menu'
 import GradesPage from './pages/GradesPage'
 import ProfilePage from './pages/ProfilePage'
 import CloseIcon from '@mui/icons-material/Close'
+import Brightness4Icon from '@mui/icons-material/Brightness4'
+import Brightness7Icon from '@mui/icons-material/Brightness7'
 
 const navLinks = [
   { to: '/', label: 'Αρχική' },
@@ -26,7 +28,7 @@ const navLinks = [
   { to: '/profile', label: 'Προφίλ SIS' },
 ]
 
-function App() {
+function App({ toggleMode, mode }: { toggleMode: () => void; mode: 'light' | 'dark' }) {
   const { checkUser, user, signOut } = useAuthStore()
   const location = useLocation()
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -73,8 +75,8 @@ function App() {
       <Divider />
       <List>
         <ListItem disablePadding>
-          <ListItemButton>
-            <DarkModeIcon />
+          <ListItemButton onClick={toggleMode}>
+            {mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
             <ListItemText primary="Dark mode" sx={{ ml: 2 }} />
           </ListItemButton>
         </ListItem>
@@ -118,8 +120,8 @@ function App() {
                 Αποσύνδεση
               </Button>
             )}
-            <Button sx={{ ml: 1, minWidth: 0 }} color="inherit">
-              <DarkModeIcon />
+            <Button sx={{ ml: 1, minWidth: 0 }} color="inherit" onClick={toggleMode}>
+              {mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
             </Button>
           </Stack>
         </Toolbar>
