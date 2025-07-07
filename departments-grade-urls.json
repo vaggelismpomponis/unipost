@@ -1,0 +1,9 @@
+{
+  "uth": {
+    "Πληροφορικής": "https://sis-web.uth.gr/student/grades?dept=inf",
+    "Ηλεκτρολόγων": "https://sis-web.uth.gr/student/grades?dept=ee"
+  },
+  "uoa": {
+    "Μαθηματικό": "https://my-studies.uoa.gr/grades?dept=math"
+  }
+} 

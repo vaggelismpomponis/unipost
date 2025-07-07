@@ -306,48 +306,14 @@ app.post('/api/sis/grades', async (req, res) => {
 
 // Playwright-based grades fetch endpoint
 app.post('/api/sis/playwright-grades', async (req, res) => {
+  const { username, password } = req.body;
+  const gradesUrl = "https://sis-web.uth.gr/student/grades/list_diploma?p=";
   try {
-    const { username, password, gradesUrl } = req.body;
-    if (!username || !password || !gradesUrl) {
-      return res.status(400).json({
-        success: false,
-        error: 'Χρειάζονται username, password και gradesUrl'
-      });
-    }
-    // Τρέξε το Playwright flow και πάρε τους βαθμούς
+    // ... pass gradesUrl to your Playwright logic
     const grades = await fetchGradesWithPlaywright({ username, password, gradesUrl });
-
-    // --- Supabase snapshot logic ---
-    // Φέρε το πιο πρόσφατο snapshot για τον χρήστη
-    const { data: lastSnapshots, error: fetchError } = await supabase
-      .from('grades_history')
-      .select('grades, fetched_at')
-      .eq('username', username)
-      .order('fetched_at', { ascending: false })
-      .limit(1);
-    let shouldInsert = false;
-    if (!lastSnapshots || lastSnapshots.length === 0) {
-      shouldInsert = true; // Πρώτο fetch, αποθήκευσε
-    } else {
-      const lastGrades = lastSnapshots[0].grades;
-      // Σύγκρινε τα arrays (stringify για απλότητα)
-      shouldInsert = JSON.stringify(lastGrades) !== JSON.stringify(grades);
-    }
-    if (shouldInsert) {
-      const { error: insertError } = await supabase
-        .from('grades_history')
-        .insert([{ username, grades }]);
-      if (insertError) {
-        console.error('Supabase insert error:', insertError);
-        // Δεν σταματάμε το flow, απλά ενημερώνουμε
-      }
-    }
-    // --- τέλος snapshot logic ---
-
-    return res.json({ success: true, grades });
+    res.json({ success: true, grades });
   } catch (error) {
-    console.error('Playwright grades fetch error:', error);
-    return res.status(500).json({ success: false, error: 'Σφάλμα κατά την ανάκτηση βαθμών με Playwright' });
+    res.status(500).json({ success: false, error: error.message });
   }
 });
 

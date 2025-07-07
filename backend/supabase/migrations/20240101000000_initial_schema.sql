@@ -14,7 +14,9 @@ CREATE TABLE profiles (
   department TEXT,
   semester INTEGER CHECK (semester >= 1 AND semester <= 10),
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  username TEXT, -- SIS username
+  sis_password TEXT -- SIS password (encrypted, nullable)
 );
 
 -- Create grades table
