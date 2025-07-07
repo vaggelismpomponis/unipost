@@ -48,7 +48,7 @@ const LoginPage: React.FC = () => {
       }
       
       // Redirect to dashboard
-      navigate('/dashboard')
+      navigate('/grades')
     }
   }
 

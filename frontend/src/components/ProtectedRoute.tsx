@@ -1,7 +1,7 @@
 import React from 'react'
 import { Navigate } from 'react-router-dom'
 import { useAuthStore } from '../store/authStore'
-import { CircularProgress, Box } from '@mui/material'
+import { Box, Skeleton } from '@mui/material'
 
 interface ProtectedRouteProps {
   children: React.ReactNode
@@ -18,7 +18,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
         alignItems="center" 
         minHeight="100vh"
       >
-        <CircularProgress />
+        <Skeleton variant="circular" width={40} height={40} />
       </Box>
     )
   }

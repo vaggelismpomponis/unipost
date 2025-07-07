@@ -12,9 +12,11 @@ import { Link } from 'react-router-dom'
 import AssessmentIcon from '@mui/icons-material/Assessment'
 import ForumIcon from '@mui/icons-material/Forum'
 import DarkModeIcon from '@mui/icons-material/DarkMode'
+import { useAuthStore } from '../store/authStore'
 
 const LandingPage: React.FC = () => {
   const { t } = useTranslation()
+  const { user } = useAuthStore()
 
   return (
     <Box sx={{ minHeight: '100vh' }}>
@@ -30,23 +32,27 @@ const LandingPage: React.FC = () => {
             Διαχείριση βαθμολογιών, αναρτήσεις και στατιστικά
           </Typography>
           <Box sx={{ mt: 4 }}>
-            <Button 
-              variant="contained" 
-              size="large" 
-              component={Link} 
-              to="/register"
-              sx={{ mr: 2 }}
-            >
-              {t('auth.register')}
-            </Button>
-            <Button 
-              variant="outlined" 
-              size="large" 
-              component={Link} 
-              to="/login"
-            >
-              {t('auth.login')}
-            </Button>
+            {!user && (
+              <>
+                <Button 
+                  variant="contained" 
+                  size="large" 
+                  component={Link} 
+                  to="/register"
+                  sx={{ mr: 2 }}
+                >
+                  {t('auth.register')}
+                </Button>
+                <Button 
+                  variant="outlined" 
+                  size="large" 
+                  component={Link} 
+                  to="/login"
+                >
+                  {t('auth.login')}
+                </Button>
+              </>
+            )}
           </Box>
         </Box>
 
